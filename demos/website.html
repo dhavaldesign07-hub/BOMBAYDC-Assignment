@@ -508,9 +508,10 @@ const PH=['Ask me anything else about your loan…','Type your answer, or ask me
 function buildChips(q){let c=q.chips;if(q.k==='use'&&A.biz){const Lx=[...A.biz.loans];if((A.amt||0)>CAP&&!Lx.includes('Loan against property'))Lx.push('Loan against property');c=Lx.map(n=>[n,(A.biz.uses||{})[n]||KB.loans[n].sub,1]);c.push('Something else')}return c.map(chipB).join('')}
 const chipB=c=>Array.isArray(c)?`<button type="button" class="cat${c[2]?' sug':''}" data-v="${c[0]} – ${c[1].toLowerCase()}"><b>${c[0]}${c[2]?' <i>Suggested</i>':''}</b><span>${c[1]}</span></button>`:`<button type="button">${c}</button>`;
 const START=['How much loan can I get?','Which documents are required?','What are the fees and charges?','Speak to a loan expert'];
+const START_HI={'How much loan can I get?':'मुझे कितना लोन मिल सकता है?','Which documents are required?':'कौन से कागज़ात चाहिए?','What are the fees and charges?':'फ़ीस और चार्ज कितने हैं?','Speak to a loan expert':'लोन एक्सपर्ट से बात करें'};
 /* after a call is booked: no new-estimate chips, only what still helps */
 function bookedChips(){chips.innerHTML='<button type="button" data-cbchange="1">Change the time</button>'+START.slice(1,3).map(c=>`<button type="button">${c}</button>`).join('')}
-function starters(){if(window.CB)return bookedChips();chips.innerHTML=START.map(c=>`<button type="button">${c}</button>`).join('')}
+function starters(){if(window.CB)return bookedChips();chips.innerHTML=START.map(c=>HI()&&START_HI[c]?`<button type="button" data-v="${c}" data-show="${START_HI[c]}">${START_HI[c]}</button>`:`<button type="button">${c}</button>`).join('')}
 const MAXCALC=5000000;const an=w=>/^[AEIOU]/i.test(w)?'an':'a',CAP=2500000,capNote=a=>a>CAP?`Our business loans without collateral go up to ${lakh(CAP)} (sample). For a larger amount, a Loan against property may fit, since your property is the security.`:'';
 const startNote=t=>/\b(start|starting|shuru|naya|launch|opening|open a new|new (?:business|shop|clinic|unit))\b/i.test(t)?"Since you're starting out: most lenders want a business to have run for a while, usually 1 to 3 years depending on the lender. Our sample rule needs at least 1 year of sales, so I'll check that next.":'';
 const amtOnly=t=>/^\s*(?:₹|rs\.?|inr)?\s*[\d,.]+\s*(?:lakhs?|lacs?|l|k|thousand|cr|crores?)?\s*(?:rupees|rs)?\s*$/i.test(t);
@@ -537,7 +538,7 @@ function ask(){const q=Q[qi];
  if(q.k==='use'&&A.pre){A.use=A.pre;A.pre=null;usedChip=true;put(loanCard(A.use));qi=nextQ();return ask()}
  if(!A.br&&qi>Q.findIndex(x=>x.k==='use')){const k=brOf((A.bizText||'')+' '+(usedChip?'':lastUse));if(k){A.bizText=A.bizText||bizPhrase(lastUse);setBracket(k);qi=nextQ();return ask()}}
  ph(1);starts[qi]=msgs.children.length;bot(qText(q),()=>{chips.innerHTML=buildChips(q);lastChips=chips.innerHTML})}
-function answer(t){if(!t.trim())return;add(t,'me');$('in').value='';if(!window._chip)detectLang(t);window._chip=0;
+function answer(t){if(!t.trim())return;add(window._show||t,'me');window._show=null;$('in').value='';if(!window._chip)detectLang(t);window._chip=0;
  if(isUndo(t)){const u=lastUndo();if(u!=null)return undoTo(u);return bot("There's nothing to undo yet. Ask me anything, or tap a question below.",starters)}
  if(cbOpen&&/^\d{10}$/.test(t.trim())&&window.fillCb){window.fillCb(t.trim());return}
  if(guard(t))return;
@@ -617,7 +618,7 @@ function undoTo(i){if(msgs.querySelector('.typing'))return;msgs.querySelectorAll
 const lastUndo=()=>{const b=[...msgs.querySelectorAll('.chg')].pop();return b?+b.dataset.q:null};
 const isUndo=t=>/^\s*(\[SYSTEM_COMMAND: UNDO_LAST_STEP\]|undo|change my answer|go back|galat (ho gaya|hai)|wapas|pichla)\b/i.test(t);
 msgs.addEventListener('click',e=>{const c=e.target.closest('.chg');if(c)undoTo(+c.dataset.q)});
-$('say').onsubmit=e=>{e.preventDefault();answer($('in').value)};chips.onclick=e=>{const b=e.target.closest('button');if(b&&b.dataset.cbchange){add(b.textContent,'me');window.CB=null;showCb();return}if(b&&b.dataset.el){add(b.textContent,'me');if(ctxStart){const f=ctxStart;ctxStart=null;f();return}if(qi>=0&&qi<Q.length){ask();return}Object.keys(QQ).forEach(k=>delete A[k]);Q=['amt','use','yrs','sales','pay','emi'].map(k=>({k,...QQ[k]}));A.br=null;qi=nextQ();ask();return}if(b){window._chip=1;answer(b.dataset.v||b.textContent)}};
+$('say').onsubmit=e=>{e.preventDefault();answer($('in').value)};chips.onclick=e=>{const b=e.target.closest('button');if(b&&b.dataset.cbchange){add(b.textContent,'me');window.CB=null;showCb();return}if(b&&b.dataset.el){add(b.textContent,'me');if(ctxStart){const f=ctxStart;ctxStart=null;f();return}if(qi>=0&&qi<Q.length){ask();return}Object.keys(QQ).forEach(k=>delete A[k]);Q=['amt','use','yrs','sales','pay','emi'].map(k=>({k,...QQ[k]}));A.br=null;qi=nextQ();ask();return}if(b){window._chip=1;window._show=b.dataset.show||null;answer(b.dataset.v||b.textContent)}};
 const dim=document.createElement('div');dim.className='dim';document.body.appendChild(dim);dim.onclick=()=>closeChat();
 let started=0,ctxStart=null;const eligChips=()=>starters();function openChat(first){$('chat').classList.add('open');dim.classList.add('on');document.documentElement.classList.add('chatlock');
  const ctx=()=>{if(!first)return;const L=HI();const pv=window.__ctxEl;if(pv&&pv.isConnected&&![...msgs.querySelectorAll('.m.me')].some(m=>pv.compareDocumentPosition(m)&Node.DOCUMENT_POSITION_FOLLOWING))pv.remove();const mark=()=>{const a=msgs.querySelectorAll('.m.ai');window.__ctxEl=a[a.length-1];eligChips()};
