@@ -1,0 +1,366 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Saarthi – Apply</title>
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet">
+<style>
+:root{--deep:#0B1F47;--navy:#1E4C9A;--sun:#FFD36B;--mute:#5A6478;--tint:#DEEBFF;--line:#DCE3EE;--ok:#1E8E5A;--bg:#F5F8FD;--err:#C2410C;--errbg:#FFF4ED}
+*{box-sizing:border-box;margin:0}body{font-family:Satoshi,system-ui,sans-serif;color:var(--deep);background:radial-gradient(circle at 1px 1px,#C3D2EA 1.1px,transparent 1.4px) 0 0/22px 22px,linear-gradient(180deg,#E4EDFB 0,var(--bg) 420px);background-color:var(--bg);background-attachment:fixed}
+button,input,select,textarea{font:inherit;color:inherit}[hidden]{display:none!important}
+.top{display:flex;justify-content:space-between;align-items:center;padding:14px 40px;background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5}
+.logo{font-weight:900;font-size:22px;color:var(--navy);text-decoration:none}.logo i{font-style:normal;color:#E8B53A}
+.top span{font-size:14px;color:var(--mute)}.top a.help{color:var(--navy);font-weight:700;text-decoration:none}
+.prog{max-width:1080px;margin:28px auto 0;padding:0 24px;display:grid;grid-template-columns:repeat(6,1fr);gap:8px}
+.prog div{font-size:12px;color:var(--mute);font-weight:500}.prog div::before{content:"";display:block;height:5px;border-radius:9px;background:var(--line);margin-bottom:8px}
+.prog .on{color:var(--deep);font-weight:700}.prog .on::before{background:var(--navy)}.prog .done::before{background:var(--ok)}
+.wrap{max-width:1080px;margin:22px auto 60px;padding:0 24px;display:grid;grid-template-columns:1fr 340px;gap:24px;align-items:start}
+.card{background:#fff;border:1px solid var(--line);border-radius:24px;padding:32px}
+.step{display:none}.step.on{display:block;animation:in .3s both}@keyframes in{from{opacity:0;translate:0 8px}}
+.k{font-size:12px;font-weight:700;letter-spacing:.1em;color:var(--navy)}
+h1{font-size:30px;line-height:1.15;margin:6px 0 8px}.lead{color:var(--mute);line-height:1.55;margin-bottom:22px;max-width:560px}
+h2{font-size:20px;margin:28px 0 4px}
+label{display:block;font-weight:700;font-size:14px;margin:16px 0 6px}
+.in{width:100%;border:1px solid var(--line);border-radius:14px;padding:14px 16px;font-size:16px;outline:0;background:#fff}.in:focus{border-color:var(--navy)}
+textarea.in{resize:vertical;min-height:84px;line-height:1.45}
+.ph{display:flex;align-items:center;border:1px solid var(--line);border-radius:14px;overflow:hidden}.ph b{padding:14px 12px 14px 16px;color:var(--mute);border-right:1px solid var(--line)}.ph .in{border:0;border-radius:0}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.chk a.tc{color:var(--navy);text-decoration:underline}.chk b{color:var(--ink,#111);font-weight:700}
+.chk{display:flex;gap:10px;align-items:flex-start;font-size:14px;color:var(--mute);margin-top:16px;line-height:1.45;font-weight:500}.chk input{margin-top:1px;width:18px;height:18px;accent-color:var(--navy);flex:none}
+.hint{font-size:13px;color:var(--mute);margin-top:6px;line-height:1.45}.bad{color:var(--err)}
+.btns{display:flex;gap:10px;margin-top:26px;flex-wrap:wrap;align-items:center}
+.pill{border:0;border-radius:999px;padding:14px 26px;font-weight:700;cursor:pointer;font-size:16px;text-decoration:none;display:inline-block}.sun{background:var(--sun);color:var(--deep)}.ghost{background:none;border:1px solid var(--line)}.navy{background:var(--navy);color:#fff}
+.pill:disabled{opacity:.45;cursor:not-allowed}.sm{padding:9px 16px;font-size:14px}
+.ok{display:flex;gap:10px;align-items:center;background:#E8F6EF;color:var(--ok);border-radius:14px;padding:12px 16px;font-weight:700;margin-top:16px}
+.box{border:1px solid var(--line);border-radius:18px;padding:18px;margin-top:16px}.box.blue{background:#F4F8FF;border-color:#C9DAF5}
+.box b{font-size:16px}.box p{font-size:14px;color:var(--mute);line-height:1.5;margin-top:4px}
+.src{display:inline-block;font-size:12px;font-weight:700;color:var(--ok);background:#E8F6EF;border-radius:99px;padding:3px 10px}
+.opt{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:6px}
+.opt button{text-align:left;border:1.5px solid var(--line);background:#fff;border-radius:18px;padding:18px;cursor:pointer}.opt button.sel{border-color:var(--navy);background:#F4F8FF}
+.opt b{display:block;font-size:16px;margin-bottom:4px}.opt span{font-size:13px;color:var(--mute);line-height:1.45}.tag{display:inline-block;background:var(--sun);border-radius:99px;padding:2px 8px;font-size:11px;font-weight:700;margin-bottom:8px}
+/* bank picker */
+.bsearch{position:relative;margin-top:4px}.bsearch svg{position:absolute;left:16px;top:50%;translate:0 -50%;color:var(--mute)}.bsearch .in{padding-left:46px}
+.banks{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px}
+.banks button{display:flex;flex-direction:column;align-items:center;gap:8px;border:1.5px solid var(--line);background:#fff;border-radius:16px;padding:14px 8px;cursor:pointer;font-size:13px;font-weight:500;text-align:center;line-height:1.25}
+.banks button:hover{border-color:#B8C8E4}.banks button.sel{border-color:var(--navy);background:#F4F8FF}
+.bd{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;color:#fff;font-weight:900;font-size:12px;letter-spacing:.02em}
+.none{grid-column:1/-1;font-size:14px;color:var(--mute);padding:8px 2px}
+.up{display:flex;justify-content:space-between;align-items:center;gap:12px;border:1.5px dashed var(--line);border-radius:16px;padding:14px 16px;margin-top:10px}.up b{font-size:15px}.up small{display:block;color:var(--mute);font-size:13px}.up label{margin:0;color:var(--navy);cursor:pointer;white-space:nowrap}.up input{display:none}.up.done{border-style:solid;border-color:var(--ok)}.up.miss{border-color:var(--err);background:var(--errbg)}
+.sf{margin-top:18px}.sfr{display:flex;gap:18px;align-items:flex-start}.sft{flex:1;min-width:0}.sft p{margin-top:4px}
+.cam{position:relative;flex:none;width:140px;aspect-ratio:3/4;border-radius:18px;overflow:hidden;background:#EEF3FB;display:grid;place-items:center;border:1px solid var(--line)}
+.cam video,.cam img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}.cam video{transform:scaleX(-1)}
+.cam .scan{position:absolute;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,#4D8BFF,transparent);box-shadow:0 0 12px #4D8BFF;animation:scan 1.2s ease-in-out infinite}@keyframes scan{0%,100%{top:8%}50%{top:90%}}
+@media (max-width:560px){.sfr{flex-direction:column}.cam{width:100%;max-width:220px}}
+.errs{margin-top:10px;color:var(--err);font-size:14px;line-height:1.5}
+.ib{position:relative;display:inline-grid;place-items:center;vertical-align:middle;margin-left:10px;color:var(--mute);cursor:help;outline:0}.ib:hover,.ib:focus{color:var(--navy,#1C4C9A)}
+.ib .tip{position:absolute;left:50%;bottom:calc(100% + 10px);translate:-50% 4px;width:max-content;max-width:300px;background:#0B1F47;color:#fff;font-size:13px;font-weight:400;line-height:1.5;letter-spacing:0;padding:10px 12px;border-radius:10px;box-shadow:0 10px 30px #0B1F4740;opacity:0;pointer-events:none;transition:opacity .18s,translate .18s;z-index:20;text-align:left;white-space:normal}
+.ib .tip:after{content:"";position:absolute;left:50%;top:100%;translate:-50% 0;border:6px solid transparent;border-top-color:#0B1F47}
+.ib:hover .tip,.ib:focus .tip{opacity:1;translate:-50% 0}
+@media (max-width:860px){.ib .tip{left:auto;right:-8px;translate:0 4px}.ib:hover .tip,.ib:focus .tip{translate:0 0}.ib .tip:after{left:auto;right:10px}}
+/* status */
+.track{list-style:none;padding:0;margin:20px 0 0}.track li{display:grid;grid-template-columns:34px 1fr;gap:14px;padding-bottom:22px;position:relative}
+.track li::before{content:"";position:absolute;left:16px;top:34px;bottom:0;width:2px;background:var(--line)}.track li:last-child::before{display:none}
+.dot{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font-weight:900;font-size:14px;background:#EEF2F8;color:var(--mute);position:relative;z-index:1}
+.track .done .dot{background:var(--ok);color:#fff}.track .now .dot{background:var(--navy);color:#fff;box-shadow:0 0 0 6px #DEEBFF}.track .warn .dot{background:var(--err);color:#fff}
+.track b{display:block;font-size:16px;padding-top:6px}.track p{font-size:14px;color:var(--mute);line-height:1.5;margin-top:3px}
+.track .fix{background:var(--errbg);border-radius:14px;padding:12px 14px;margin-top:10px;color:var(--err);font-size:14px;line-height:1.5}
+.track .fix .up{background:#fff;margin-top:10px}
+.demo{margin-top:6px;border:1.5px dashed #C9D3E3;border-radius:14px;padding:10px 14px;display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:13px;color:var(--mute)}
+.demo button{border:0;background:none;color:var(--navy);font-weight:700;cursor:pointer;text-decoration:underline}
+.big{font-size:44px;font-weight:900;margin:2px 0 4px}
+input[type=range]{width:100%;accent-color:var(--navy);margin-top:8px}
+.ten{display:flex;gap:8px;margin-top:6px}.ten button{flex:1;border:1.5px solid var(--line);background:#fff;border-radius:12px;padding:10px;cursor:pointer;font-weight:700}.ten button.sel{border-color:var(--navy);background:#F4F8FF}
+.tbl{margin-top:20px;border:1px solid var(--line);border-radius:16px;overflow:hidden}.tbl div{display:flex;justify-content:space-between;padding:12px 16px;font-size:15px;border-top:1px solid var(--line)}.tbl div:first-child{border-top:0}.tbl span{color:var(--mute)}.tbl .tot{background:#F4F8FF;font-weight:700}
+aside .card{padding:24px}.sum .k{color:var(--mute)}.sum .amt{font-size:30px;font-weight:900;margin:4px 0}.sum p{font-size:14px;color:var(--mute);line-height:1.5}
+.why{margin-top:16px;background:var(--deep);color:#fff;border:0}.why .k{color:var(--sun)}.why p{color:#DCE6F7;font-size:14px;line-height:1.55;margin-top:8px}
+.done-h{text-align:center;padding:12px 0}.tick{width:72px;height:72px;border-radius:50%;background:#E8F6EF;color:var(--ok);display:grid;place-items:center;font-size:36px;margin:0 auto 16px}
+.tl{margin:24px 0 0;padding:0;list-style:none}.tl li{display:flex;gap:14px;padding:12px 0;border-top:1px solid var(--line);font-size:15px}.tl li b{min-width:120px}
+.dtabs{display:flex;gap:6px;flex-wrap:wrap;margin-top:14px}.dtabs button{border:1px solid var(--line);background:#fff;border-radius:999px;padding:7px 13px;font-size:13px;font-weight:700;cursor:pointer;color:var(--mute)}.dtabs button.sel{background:var(--deep);border-color:var(--deep);color:#fff}.dtabs button.rd::after{content:" ✓";color:var(--ok)}.dtabs button.sel.rd::after{color:#7FE0B0}
+.doc{margin-top:10px;height:340px;overflow:auto;border:1px solid var(--line);border-radius:14px;background:#FBFCFE;padding:22px 24px;font-size:14px;line-height:1.6}.doc h3{font-size:16px;margin:0 0 6px}.doc h4{font-size:14px;margin:16px 0 4px}.doc p{margin:0 0 8px;color:#2B3A55}.doc .pg{display:block;text-align:center;font-size:11px;letter-spacing:.08em;color:var(--mute);border-top:1px dashed var(--line);margin:18px 0 12px;padding-top:6px}.doc table{width:100%;border-collapse:collapse;font-size:13px}.doc td,.doc th{border-bottom:1px solid var(--line);padding:6px 4px;text-align:right}.doc td:first-child,.doc th:first-child{text-align:left}.docbar{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:8px;font-size:13px;color:var(--mute)}.docbar button{border:0;background:none;color:var(--navy);font-weight:700;cursor:pointer;text-decoration:underline;font-size:13px}
+.whyIn{display:flex;gap:10px;align-items:flex-start;background:#F4F8FF;border:1px solid #C9DAF5;border-radius:14px;padding:12px 14px;margin-top:12px;font-size:14px;color:#2B3A55;line-height:1.5}.whyIn svg{flex:none;margin-top:2px;color:var(--navy)}.whyIn b{color:var(--deep)}
+.otp{letter-spacing:.5em;font-weight:700;max-width:260px}
+.aa{margin-top:14px;border:1px solid var(--line);border-radius:16px;padding:16px;background:#F7FAFF}.aat{width:100%;border-collapse:collapse;margin-top:10px;font-size:14px}.aat td{padding:7px 0;border-top:1px solid var(--line)}.aat td:first-child{color:var(--mute);width:90px}
+.btns.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}.btns.two .pill{width:100%;text-align:center;justify-content:center}@media (max-width:560px){.btns.two{grid-template-columns:1fr}}
+.slots{display:flex;flex-wrap:wrap;gap:8px;margin-top:2px}.slots button{border:1px solid var(--line);background:#fff;border-radius:999px;padding:9px 14px;font-size:14px;font-weight:500;color:var(--deep);cursor:pointer}.slots button.sel{background:var(--deep);border-color:var(--deep);color:#fff}
+@media (max-width:860px){.top{padding:12px 16px}.top span{display:none}.wrap{grid-template-columns:1fr;padding:0 16px}.prog{padding:0 16px;gap:4px}.prog div{font-size:0}.card{padding:22px}h1{font-size:25px}.row2,.opt{grid-template-columns:1fr}.banks{grid-template-columns:repeat(3,1fr)}aside{order:-1}aside .why{display:none}}
+.demoW .demo{display:block}.skip{display:block;margin-top:10px;border:0;background:none;padding:0;color:var(--navy);font-weight:700;font-size:14px;cursor:pointer;text-decoration:underline;white-space:nowrap}
+.dl{display:flex;flex-direction:column;gap:10px;margin-top:6px}.dl button{display:flex;align-items:center;gap:14px;width:100%;text-align:left;border:1px solid var(--line);background:#fff;border-radius:16px;padding:14px 16px;cursor:pointer}.dl button:hover{border-color:#B8C8E4}
+.dl .di{flex:none;width:42px;height:42px;border-radius:12px;background:var(--tint);color:var(--navy);display:grid;place-items:center;font-size:12px;font-weight:900}.dl b{display:block;font-size:15px}.dl small{display:block;font-size:13px;color:var(--mute);margin-top:2px}.dl span:nth-child(2){flex:1}.dl i{font-style:normal;font-size:14px;font-weight:700;color:var(--navy)}.dl .rd i{color:var(--ok)}
+.rdr{position:fixed;inset:0;z-index:50;background:#0B1F4766;display:flex;align-items:center;justify-content:center;padding:24px;animation:fd .2s both}@keyframes fd{from{opacity:0}}
+.rsh{width:min(720px,100%);max-height:100%;background:#fff;border-radius:24px;padding:20px;display:flex;flex-direction:column;animation:in .25s both}.rsh .doc{flex:1;height:auto;min-height:0;max-height:60vh}
+.rtop{display:flex;justify-content:space-between;align-items:center;gap:10px}.rtop b{font-size:17px}.rx{border:0;background:#F1F5FC;width:36px;height:36px;border-radius:50%;cursor:pointer;color:var(--navy);font-size:15px;flex:none}
+html.lock,html.lock body{overflow:hidden}
+.hmb{display:none;width:44px;height:44px;border:0;border-radius:50%;background:none;place-items:center;cursor:pointer}
+.drw{position:fixed;inset:0;z-index:60;background:#0B1F4766;animation:fd .2s both}.dsh{width:min(84%,320px);height:100%;background:#fff;border-radius:0 24px 24px 0;padding:18px 20px;animation:sl .28s cubic-bezier(.2,.8,.2,1) both}@keyframes sl{from{translate:-100% 0}}
+.dtop{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}.dsh>a{display:block;padding:14px 0;font-size:16px;font-weight:500;color:var(--deep);text-decoration:none;border-bottom:1px solid #EEF2F8}
+/* ===== phone = app ===== */
+@media (max-width:560px){
+ html,body{overflow-x:clip}
+ .top{padding:8px 8px 8px 16px}.top a.help{display:none}.hmb{display:grid}
+ .logo{width:36px;overflow:hidden}.logo svg{flex:none;margin-left:-64px}.logo .lg-l,.logo .lg-r{display:none}
+ .prog{margin-top:16px}
+ aside{position:sticky;top:60px;z-index:4;transition:margin .25s}aside .card{padding:14px 18px;box-shadow:0 10px 24px -18px #0B1F4766;transition:border-radius .25s}
+ aside .prog{margin:0 0 12px;padding:0;gap:4px}aside.stuck{margin:0 -16px}aside.stuck .card{border-radius:0;border-left:0;border-right:0;border-top:0}.sum .amt{font-size:24px;margin:2px 0}.sum p{font-size:13px}
+ .wrap{margin-top:14px;gap:14px}.card{padding:20px 18px}
+ .btns.bar,.step>.btns,#leadForm>.btns,#offerPart>.btns{position:sticky;bottom:0;z-index:3;background:#fff;margin:22px -18px -20px;padding:12px 18px calc(12px + env(safe-area-inset-bottom));border-top:1px solid var(--line);border-radius:0 0 24px 24px;flex-wrap:nowrap}
+ .btns.bar .pill,.step>.btns .pill,#leadForm>.btns .pill,#offerPart>.btns .pill{flex:1;text-align:center;padding:14px 12px}
+ .btns.bar .ghost,.step>.btns .ghost{flex:0 0 auto}
+ .rdr{padding:0;align-items:flex-end}.rsh{width:100%;height:92%;max-height:none;border-radius:24px 24px 0 0;padding:16px 16px calc(12px + env(safe-area-inset-bottom));animation:up .3s cubic-bezier(.2,.8,.2,1) both}@keyframes up{from{translate:0 100%}}.rsh .doc{max-height:none;padding:16px}
+}
+</style></head><body>
+<header class="top"><a class="logo" href="website.html" aria-label="Saarthi home" style="display:flex;align-items:center"><svg width="130" height="23" role="img" aria-label="Saarthi" viewBox="0 0 113 20" fill="none"><g class="lg-l"><path d="M36.4159 19.6004L42.2903 0.375H47.7108L53.5852 19.6004H49.8469L44.6134 2.64466H45.3076L40.1542 19.6004H36.4159ZM39.9405 15.5951V12.2039H50.0873V15.5951H39.9405Z" fill="#1E4C9A"/><path d="M17.3802 19.6004L23.2547 0.375H28.6752L34.5496 19.6004H30.8113L25.5777 2.64466H26.272L21.1185 19.6004H17.3802ZM20.9049 15.5951V12.2039H31.0516V15.5951H20.9049Z" fill="#1E4C9A"/><path d="M8.06397 20C6.63987 20 5.35373 19.7508 4.20555 19.2523C3.06627 18.745 2.12725 18.0241 1.3885 17.0895C0.658647 16.146 0.195814 15.0245 0 13.7251L3.79167 13.1643C4.05869 14.268 4.61053 15.118 5.44719 15.7143C6.28385 16.3107 7.23621 16.6089 8.30429 16.6089C8.90063 16.6089 9.47917 16.5154 10.0399 16.3285C10.6007 16.1416 11.059 15.8657 11.4151 15.5007C11.78 15.1358 11.9625 14.6863 11.9625 14.1523C11.9625 13.9565 11.9313 13.7696 11.869 13.5915C11.8156 13.4046 11.7221 13.2311 11.5886 13.0709C11.4551 12.9106 11.2638 12.7593 11.0145 12.6169C10.7742 12.4745 10.4671 12.3455 10.0933 12.2297L5.10006 10.7611C4.72624 10.6543 4.2901 10.503 3.79167 10.3072C3.30213 10.1114 2.82595 9.83103 2.36312 9.4661C1.90028 9.10118 1.51311 8.62054 1.20159 8.0242C0.898964 7.41896 0.747653 6.65795 0.747653 5.74119C0.747653 4.45059 1.07253 3.37807 1.72227 2.52361C2.37202 1.66915 3.23983 1.03275 4.32571 0.614422C5.41158 0.196092 6.61317 -0.00862288 7.93046 0.00027817C9.25666 0.0180792 10.4404 0.245045 11.4818 0.681176C12.5232 1.11731 13.3955 1.7537 14.0986 2.59036C14.8018 3.41812 15.3091 4.43279 15.6206 5.63438L11.6954 6.30193C11.553 5.67888 11.2905 5.15374 10.9077 4.72651C10.525 4.29928 10.0666 3.97441 9.53258 3.7519C9.00744 3.52938 8.4556 3.40922 7.87706 3.39142C7.30742 3.37362 6.76893 3.45372 6.2616 3.63174C5.76316 3.80085 5.35373 4.05007 5.03331 4.37939C4.72179 4.70871 4.56602 5.10034 4.56602 5.55427C4.56602 5.9726 4.69508 6.31528 4.9532 6.5823C5.21132 6.84041 5.53619 7.04958 5.92782 7.20979C6.31945 7.37 6.71998 7.50351 7.12941 7.61032L10.4671 8.51818C10.9656 8.65169 11.5174 8.82971 12.1227 9.05222C12.7279 9.26584 13.3064 9.56846 13.8583 9.96009C14.419 10.3428 14.8774 10.8502 15.2334 11.4821C15.5984 12.114 15.7808 12.9151 15.7808 13.8853C15.7808 14.9177 15.5628 15.8212 15.1266 16.5955C14.6994 17.361 14.1209 17.9974 13.391 18.5047C12.6612 19.0031 11.8334 19.377 10.9077 19.6262C9.99096 19.8754 9.04304 20 8.06397 20Z" fill="#1E4C9A"/></g><g class="lg-m"><path d="M77.1 19.6004V3.82178H71.0387V0.375H86.7928V3.82178H80.7315V19.6004H77.1Z" fill="#E8B53A"/><path d="M55.9781 0.375H60.4641C60.651 0.375 60.9002 0.383901 61.2117 0.401702C61.5321 0.410603 61.817 0.437305 62.0662 0.481808C63.2144 0.65982 64.1534 1.0381 64.8832 1.61664C65.622 2.19518 66.1649 2.92503 66.512 3.80619C66.8592 4.67846 67.0327 5.65308 67.0327 6.73005C67.0327 8.34107 66.6545 9.69396 65.8979 10.7887C65.1414 11.8746 63.9798 12.5822 62.4133 12.9115C62.0306 12.9916 61.7102 13.0406 61.452 13.0584C61.1939 13.0762 60.8646 13.0851 60.4641 13.0851H55.9781V9.69396H60.3039C60.4908 9.69396 60.6955 9.68506 60.918 9.66726C61.1405 9.64946 61.3452 9.61386 61.5321 9.56045C62.0217 9.41804 62.4 9.19108 62.667 8.87955C62.934 8.56803 63.1165 8.22091 63.2144 7.83818C63.3212 7.44655 63.3746 7.07718 63.3746 6.73005C63.3746 6.38293 63.3212 6.018 63.2144 5.63527C63.1165 5.24365 62.934 4.89207 62.667 4.58055C62.4 4.26013 62.0217 4.03316 61.5321 3.89965C61.3452 3.84625 61.1405 3.81064 60.918 3.79284C60.6955 3.77504 60.4908 3.76614 60.3039 3.76614H55.9781V0.375ZM55.9781 13.0851L59.9834 12.2573L68.2343 19.6004H63.1877L55.9781 13.0851ZM56.085 8.0785V5.38161H69.4359V8.0785H56.085ZM59.9834 3.82178V0.375H71.7565V3.82178H59.9834Z" fill="#E8B53A"/></g><g class="lg-r"><path d="M108.815 19.6004V0.375H112.446V19.6004H108.815Z" fill="#1E4C9A"/><path d="M88.9384 19.6004V0.375H92.5698V8.27876H101.168V0.375H104.799V19.6004H101.168V11.6699H92.5698V19.6004H88.9384Z" fill="#1E4C9A"/></g></svg></a><span id="stepTxt"></span><a class="help" href="website.html">Need help?</a><button type="button" class="hmb" id="hmb" aria-label="Open menu" aria-expanded="false"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1E4C9A" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button></header>
+<div class="drw" id="drw" hidden><div class="dsh" role="dialog" aria-label="Menu"><div class="dtop"><img src="../img/saarthi-mark.svg" width="40" height="40" alt="Saarthi"><button type="button" class="rx" id="drwX" aria-label="Close menu">✕</button></div><a href="website.html">Home</a><a href="website.html">Need help?</a></div></div>
+<div class="prog" id="prog"><div>Your details</div><div>PAN</div><div>Aadhaar</div><div>Bank &amp; business</div><div>Review</div><div>Offer &amp; sign</div></div>
+<main class="wrap">
+<section class="card">
+
+<!-- 1 YOUR DETAILS = the lead -->
+<div class="step" data-why="Your details are used only for this application.">
+ <div id="leadForm">
+ <span class="k">STEP 1 · YOUR DETAILS</span><h1>Start your application</h1>
+ <label for="mob">Mobile number</label><div class="ph" data-why-at><b>+91</b><input class="in" id="mob" inputmode="numeric" maxlength="10" placeholder="Enter here" autocomplete="tel-national"></div>
+ <div class="row2"><div><label for="lnm">Full name</label><input class="in" id="lnm" placeholder="e.g. Raghav Patil" autocomplete="name"></div><div><label for="pin">PIN code</label><input class="in" id="pin" inputmode="numeric" maxlength="6" placeholder="6 digits" autocomplete="postal-code"></div></div>
+ <div id="otpBox" hidden><label for="otp">Enter the code sent to your phone</label><input class="in otp" id="otp" inputmode="numeric" maxlength="6" placeholder="••••••"><p class="hint">Demo mode · Enter any 6 digits.</p></div>
+ <div class="btns"><button class="pill sun" id="b1" disabled>Send code</button></div>
+ </div>
+</div>
+
+<!-- 2 PAN -->
+<div class="step" data-why="PAN verification is mandatory for every loan. With your consent, we also check your credit report to confirm the offer.">
+ <span class="k">STEP 2 · PAN CARD</span><h1>Your PAN details</h1><p class="lead">Your loan is confirmed only after we check your PAN and Aadhaar. Type your details exactly as they appear on your PAN card.</p>
+ <label for="pan">PAN number</label><input class="in" id="pan" maxlength="10" placeholder="ABCDE1234F" style="text-transform:uppercase"><p class="hint" id="panH" data-why-at>10 characters: 5 letters, 4 numbers, 1 letter.</p>
+ <div class="row2"><div><label for="nm">Full name (as on PAN)</label><input class="in" id="nm" placeholder="Sunita Devi"></div><div><label for="dob">Date of birth</label><input class="in" id="dob" type="date"></div></div>
+ <label for="biz">Business name</label><input class="in" id="biz" placeholder="Sunita Tailoring Works">
+ <label class="chk"><input type="checkbox" id="c2"><span>I agree to the <a href="#" class="tc" onclick="event.preventDefault()">Terms and Conditions</a> of <b>TransUnion CIBIL</b> and hereby provide explicit consent to share my Credit Information with Saarthi.</span></label>
+ <label class="chk"><input type="checkbox" id="c2b"><span>I authorise Saarthi to conduct a credit bureau enquiry, fetch my KYC details from <b>CERSAI, UIDAI, NSDL</b> and share my information with our third parties to process my loan application.</span></label>
+ <div id="panOk"></div>
+ <div id="gstBox" hidden class="box blue"><b>Is this your business's GST number?</b><p>We looked this up on the government GST website using your PAN.</p><p style="font-size:17px;font-weight:700;color:var(--deep);margin-top:8px;letter-spacing:.04em"><span id="gstN"></span> <span class="hint" style="font-weight:500;letter-spacing:0">(sample)</span></p><div class="btns" style="margin-top:12px" id="gBtns"><button class="pill ghost sm" data-g="yes">Yes, it's mine</button><button class="pill ghost sm" data-g="other">This isn't my number</button><button class="pill ghost sm" data-g="none">I don't have GST</button></div><div id="gOther" hidden><label for="gIn">Your GST number</label><input class="in" id="gIn" maxlength="15" placeholder="15 characters, e.g. 27ABCDE1234F1Z5" style="text-transform:uppercase"><p class="hint" id="gH">You can find it on your GST certificate.</p></div><p class="hint" id="gNone" hidden style="color:var(--deep)">That's fine. Many small businesses don't need GST. We'll use your Udyam certificate and bank statement instead.</p></div>
+ <div class="btns"><button class="pill ghost" data-back>Back</button><button class="pill sun" id="b2" disabled>Verify PAN</button></div>
+</div>
+
+<!-- 3 AADHAAR -->
+<div class="step" data-why="RBI requires KYC (Know Your Customer) for every loan. Using Aadhaar for it is your choice. Only the last 4 digits of your Aadhaar are shown.">
+ <span class="k">STEP 3 · AADHAAR</span><h1>Confirm it's you</h1><p class="lead">The quickest way is DigiLocker, the government's document app. You approve it with a code, so nothing is shared without your OK.</p>
+ <div id="dlAsk" class="box blue" data-why-at><b>Get your details from DigiLocker</b><p>DigiLocker will share your <b style="font-size:14px;color:var(--deep)">name, date of birth, gender, address and photo</b> from your Aadhaar. You'll check everything before we use it.</p>
+  <div id="dlOtp" hidden><label for="aotp">Code sent to your Aadhaar-linked mobile</label><input class="in otp" id="aotp" inputmode="numeric" maxlength="6" placeholder="••••••"><p class="hint">Demo mode · Enter any 6 digits.</p></div>
+  <div class="btns" style="margin-top:14px"><button class="pill navy" id="b3a">Continue with DigiLocker</button></div></div>
+ <div id="dlGot" hidden>
+  <div class="ok">✓ Aadhaar verified · KYC complete</div>
+  <h2>Check your details</h2><p class="hint" style="margin-bottom:4px"><span class="src">From your Aadhaar</span> &nbsp;If anything is wrong, you can edit it.</p>
+  <div class="row2"><div><label for="aNm">Name</label><input class="in" id="aNm"></div><div><label for="aAd">Aadhaar</label><input class="in" id="aAd" value="XXXX XXXX 9012" disabled></div></div>
+  <label for="addr">Home address</label><textarea class="in" id="addr"></textarea>
+  <label class="chk"><input type="checkbox" id="same" checked>I run my business from this address too.</label>
+  <div id="bizAddrBox" hidden><label for="bAddr">Business address</label><textarea class="in" id="bAddr" placeholder="Shop number, street, area, city, PIN code"></textarea></div>
+  <div class="box sf" id="sfBox"><div class="sfr"><div class="cam" id="sfCam"><svg id="sfPh" width="88" height="110" viewBox="0 0 88 110" fill="none" stroke="#9AACCB" stroke-width="2" stroke-dasharray="4 6" stroke-linecap="round"><ellipse cx="44" cy="46" rx="30" ry="38"/><path d="M8 108c4-18 18-26 36-26s32 8 36 26"/></svg><video id="sfV" playsinline muted hidden></video><img id="sfI" hidden alt="Your selfie"><div class="scan" id="sfScan" hidden></div></div>
+   <div class="sft"><b>Take a live selfie</b><p>We match it with your Aadhaar photo to confirm it's really you. Face the camera in good light, without glasses or a cap.</p>
+    <div class="btns" style="margin-top:12px"><button class="pill navy sm" id="sfGo">Open camera</button><button class="pill ghost sm" id="sfDemo">Use a sample photo</button></div>
+    <p class="hint" id="sfHint">Demo mode · Your photo stays on this device.</p><div class="ok" id="sfOk" hidden>✓ Face matched with your Aadhaar photo</div><p class="errs" id="sfErr" role="alert" hidden></p></div></div></div>
+ </div>
+ <div class="btns"><button class="pill ghost" data-back>Back</button><button class="pill sun" id="b3" hidden>Continue</button></div>
+</div>
+
+<!-- 4 BANK + BUSINESS -->
+<div class="step" data-why="Your repayment capacity is assessed from the money credited to your bank account over the last 6 months.">
+ <span class="k">STEP 4 · BANK &amp; BUSINESS</span><h1>Share your bank statement</h1><p class="lead">We need the last 6 months. Pick whichever way is easier for you.</p>
+ <div class="opt" id="bankOpt" data-why-at><button type="button" data-o="link"><span class="tag">FASTEST</span><b>Link my bank</b><span>Approve it in your bank's app, and your statement comes straight from the bank. This uses Account Aggregator, an RBI-approved way to share bank data safely.</span></button><button type="button" data-o="pdf"><b>Upload a PDF</b><span>Download the statement from your bank's app or website, then upload it here.</span></button></div>
+ <div id="linkBox" hidden><label for="bq">Choose your bank</label>
+  <div class="bsearch"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input class="in" id="bq" placeholder="Search your bank"></div>
+  <div class="banks" id="banks"></div></div>
+ <div id="pdfBox" hidden><div class="up" id="upStmt"><div><b>Bank statement (PDF)</b><small>Last 6 months</small></div><label>Choose file<input type="file" accept=".pdf" data-up="stmt"></label></div></div>
+ <div id="bankOk"></div>
+ <h2>Business proof</h2><p class="hint">Type your Udyam number, and we'll check it on the government's Udyam website. Or upload your GST or Udyam certificate.</p>
+ <label for="udy">Udyam registration number</label><input class="in" id="udy" maxlength="19" placeholder="UDYAM-MH-26-0012345" style="text-transform:uppercase"><p class="hint" id="udyH">Demo mode · Enter any number.</p>
+ <p class="hint" style="text-align:center;margin:12px 0 2px" id="udyOr">or</p>
+ <div class="up" id="upBiz"><div><b>Upload GST or Udyam certificate</b><small>A photo or PDF</small></div><label>Choose file<input type="file" accept=".pdf,image/*" data-up="biz"></label></div>
+ <div id="errs4"></div>
+ <p class="hint" style="margin-top:18px">After you submit, a person checks your application. You'll get a decision in 2-3 working days.</p>
+ <div class="btns"><button class="pill ghost" data-back>Back</button><button class="pill sun" id="b4">Submit for review</button></div>
+</div>
+
+<!-- 5 REVIEW / STATUS -->
+<div class="step">
+ <span class="k">STEP 5 · REVIEW</span><h1 id="rvH">Your application is being checked</h1><p class="lead" id="rvL"></p>
+ <ul class="track" id="track" data-why-at></ul>
+ <div class="demoW"><div class="demo"><span id="demoTxt">Demo mode · Review normally takes 2–3 working days.</span></div><button id="skip" class="skip">Skip ahead ▸</button></div>
+</div>
+
+<!-- 6 OFFER + SIGN -->
+<div class="step" data-why="This is the complete cost. You will receive the same figures in an RBI-mandated Key Facts Statement before you accept.">
+ <div id="offerPart">
+ <div class="ok" style="margin:0 0 20px"><span>✓ Approved on <span id="apDate"></span>. We also sent you an SMS.</span></div><span class="k">STEP 6 · YOUR FINAL OFFER</span><h1>Your loan is approved</h1><p class="lead">Our team checked your documents and spoke to you. You can take less than the full amount if you like.</p>
+ <span class="k" style="color:var(--mute)">LOAN AMOUNT</span><div class="big" id="oAmt"></div>
+ <input type="range" id="oP" min="50000" step="10000" aria-label="Loan amount"><p class="hint" id="oMax"></p>
+ <label>Repay over</label><div class="ten" id="ten"><button type="button" data-n="12">1 year</button><button type="button" data-n="24">2 years</button><button type="button" data-n="36">3 years</button></div>
+ <label>EMI date each month</label><div class="ten" id="edate"><button type="button" data-d="1">1st</button><button type="button" data-d="5">5th</button><button type="button" data-d="10">10th</button></div><p class="hint">Tip: pick a date a few days after you usually have the most money in your account. (Sample dates. Each lender offers its own.)</p>
+ <div class="tbl" data-why-at><div><span>Monthly EMI</span><b id="tE"></b></div><div><span>Interest rate (sample)</span><b id="tR"></b></div><div><span>Processing fee (2% + GST)</span><b id="tF"></b></div><div><span>Net amount credited</span><b id="tIn"></b></div><div><span>Total interest</span><b id="tI"></b></div><div><span>APR (yearly cost, including fee)</span><b id="tA"></b></div><div class="tot"><span>Total you repay</span><b id="tT"></b></div></div>
+ <p class="hint" style="margin-top:12px"><button type="button" id="kfsB" style="border:0;background:none;padding:0;color:var(--navy);font-weight:700;text-decoration:underline;cursor:pointer;font-size:14px">View Key Facts Statement</button> · a summary of every cost, in the standard format RBI requires.</p>
+ <div class="box blue" id="kfs" hidden><b>Key Facts Statement (sample)</b><div class="tbl" id="kfsT" style="background:#fff"></div><p>Demo mode · Shortened version. The full document is issued as a downloadable PDF.</p></div>
+ <p class="hint" style="margin-top:12px">Offer valid until <b id="valid"></b> (sample). Cooling-off period: within 3 days of getting the money, you can return the loan. You pay back the amount plus interest for those days only, with no penalty.</p>
+ <label class="chk"><input type="checkbox" id="c5">I have read the Key Facts Statement, and I understand the total cost and charges of this loan.</label>
+ <div class="btns"><button class="pill sun" id="b6a" disabled>Accept offer</button><button class="pill ghost" id="nn">Not now</button></div>
+ <div class="box blue" id="later" hidden><b>No problem</b><p>Your offer stays open until the date above. We'll remind you once by SMS before it ends. Nothing is signed, and you owe nothing.</p></div>
+ </div>
+ <div id="signPart" hidden>
+ <div id="sgScr">
+ <span class="k">STEP 6 · SIGN</span><h1>Sign your loan documents</h1><p class="lead">You sign online. Nothing to print. Aadhaar e-sign is legally valid, just like signing on paper.</p>
+ <div class="dl" id="dlist"><button type="button" data-d="kfs"><span class="di">KFS</span><span><b>Key Facts Statement</b><small>2 pages</small></span><i>Read</i></button><button type="button" data-d="san"><span class="di">SL</span><span><b>Sanction letter</b><small>1 page</small></span><i>Read</i></button><button type="button" data-d="agt"><span class="di">LA</span><span><b>Loan agreement</b><small>8 pages</small></span><i>Read</i></button><button type="button" data-d="sch"><span class="di">RS</span><span><b>Repayment schedule</b><small>1 page</small></span><i>Read</i></button></div>
+ <div id="esg"><p class="hint" style="margin-top:18px">Signing through NSDL e-Sign, a government-approved e-sign service. One OTP signs all 4 documents.</p>
+  <label for="esA">Aadhaar number or Virtual ID</label><input class="in" id="esA" inputmode="numeric" maxlength="19" placeholder="Enter here">
+  <div id="esOtpBox" hidden><label for="esO">OTP sent to your Aadhaar-linked mobile</label><input class="in otp" id="esO" inputmode="numeric" maxlength="6" placeholder="••••••"><p class="hint">Demo mode · Enter any 6 digits.</p></div></div>
+ <div id="sgDone" hidden><div class="ok">✓ All 4 documents signed</div><p class="hint" style="margin-top:8px"><a href="#" onclick="return false" style="color:var(--navy);font-weight:700">Download signed copy (PDF)</a> · A signed copy has also been sent to your email and by SMS.</p></div>
+ <div class="btns bar"><button class="pill ghost" id="toOffer">Back</button><button class="pill sun" id="esGo" disabled>Sign all with Aadhaar</button><button class="pill sun" id="toNa" hidden>Continue</button></div>
+ </div>
+ <div id="naScr" hidden>
+ <span class="k">STEP 6 · AUTO-PAY</span><h1>Set up auto-pay for EMIs</h1><p class="lead" id="naT"></p>
+ <div id="naSet"><label>How do you want to approve it?</label><div class="ten" id="naM"><button type="button" data-m="Net banking">Net banking</button><button type="button" data-m="Debit card">Debit card</button><button type="button" data-m="Aadhaar">Aadhaar</button></div>
+  <p class="hint">You'll go to a secure page run by NPCI, the organisation that runs UPI, to approve it with your bank. Aadhaar works only if your Aadhaar is linked to this bank account.</p></div>
+ <div id="naDone" hidden><div class="ok" id="naOk" style="display:block"></div></div>
+ <div class="btns bar"><button class="pill sun" id="naGo" disabled>Continue to approve</button><button class="pill sun" id="b6" hidden>Finish</button></div>
+ </div>
+ </div>
+</div>
+
+<!-- document reader (opens as a sheet) -->
+<div class="rdr" id="rdr" hidden><div class="rsh" role="dialog" aria-label="Loan document"><div class="rtop"><b id="rT"></b><button type="button" class="rx" id="rX" aria-label="Close">✕</button></div><div class="doc" id="doc" tabindex="0"></div><div class="docbar"><span id="docInfo"></span><button type="button" onclick="return false">Download PDF</button></div></div></div>
+
+<!-- DONE -->
+<div class="step">
+ <div class="done-h"><div class="tick">✓</div><span class="k">ALL DONE</span><h1>Your money is on its way</h1><p class="lead" style="margin:0 auto" id="dTxt"></p></div>
+ <ul class="tl" data-why-at><li><b>Today</b>Agreement signed, and auto-pay set up</li><li><b>In 24-48 hours</b><span id="dMoney"></span></li><li><b id="dFirst"></b><span id="dEmi"></span></li></ul>
+ <div class="btns" style="justify-content:center"><a class="pill sun" href="website.html">Back to home</a></div>
+</div>
+
+</section>
+<aside><div class="card sum"><span class="k">YOUR LOAN</span><div class="amt" id="sAmt"></div><p id="sTxt"></p></div></aside>
+</main>
+<script>
+const $=id=>document.getElementById(id),inr=n=>'₹'+Math.round(n).toLocaleString('en-IN'),lakh=n=>n>=100000?'₹'+(+(n/100000).toFixed(1))+' lakh':inr(n);
+const emi=(P,N,R)=>{const r=R/1200;return P*r*Math.pow(1+r,N)/(Math.pow(1+r,N)-1)};
+let L={P:300000,N:36,R:18,use:''};try{Object.assign(L,JSON.parse(sessionStorage.getItem('loan')||'{}'))}catch(e){}
+const MAX=Math.max(L.max||L.P,L.P);const whyEl=document.createElement('div');whyEl.className='ib';whyEl.tabIndex=0;whyEl.setAttribute('role','button');whyEl.setAttribute('aria-label','More information');whyEl.innerHTML='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg><span class="tip" role="tooltip"></span>';let st=0;const steps=[...document.querySelectorAll('.step')];
+function go(i){st=i;window.sfStop&&window.sfStop();steps.forEach((s,j)=>s.classList.toggle('on',j===i));[...$('prog').children].forEach((d,j)=>{d.className=i>=6||j<i?'done':j===i?'on':''});
+ $('stepTxt').textContent=i<6?`Step ${i+1} of 6`:'Done';const h=steps[i].querySelector('h1'),w=steps[i].dataset.why;if(w&&h){whyEl.querySelector('.tip').textContent=w;h.appendChild(whyEl)}else whyEl.remove();sum();scrollTo({top:0,behavior:'smooth'});const f=steps[i].querySelector('input:not([type=checkbox]):not([disabled])');f&&f.offsetParent&&f.focus({preventScroll:true})}
+function sum(){$('sAmt').textContent=lakh(L.P);$('sTxt').textContent=`${L.use?L.use+' · ':''}${inr(emi(L.P,L.N,L.R))} a month for ${L.N/12} year${L.N>12?'s':''}`}
+document.addEventListener('click',e=>{if(e.target.closest('[data-back]'))go(st-1)});
+const digits=el=>el.value=el.value.replace(/\D/g,'');
+const okMsg=(id,t)=>$(id).innerHTML=`<div class="ok">✓ ${t}</div>`;
+function wait(btn,t,fn,ms=900){btn.disabled=true;const o=btn.textContent;btn.textContent=t;setTimeout(()=>{btn.textContent=o;btn.disabled=false;fn()},ms)}
+
+/* Silent PIN code routing (internal only, never shown as a tier). SAMPLE lookup by the first 3 digits; a real lender keeps its own table.
+   green = standard priority lead · orange = tenure estimate shortened from 3 to 2 years · red = note for the executive: "Requires Collateral Co-Applicant" (no rejection screen). */
+const PIN_TIERS={orange:['226','560'],red:['999']};
+function pinTier(pin){const p3=String(pin).slice(0,3),tier=PIN_TIERS.red.includes(p3)?'red':PIN_TIERS.orange.includes(p3)?'orange':'green';
+ if(tier==='orange'&&L.N>24){L.N=24;sum()}
+ try{const ld=JSON.parse(sessionStorage.getItem('lead')||'{}');ld.pin=pin;ld.tier=tier;ld.execNote=tier==='red'?'Requires Collateral Co-Applicant':tier==='orange'?'Tenure estimate shortened to 2 years':'Standard priority lead';sessionStorage.setItem('lead',JSON.stringify(ld))}catch(e){}}
+/* 1 your details = lead: name, mobile + OTP, PIN code, call-back time, consent */
+const v1=()=>{const sent=!$('otpBox').hidden;$('b1').disabled=!($('lnm').value.trim().length>1&&$('mob').value.length===10&&$('pin').value.length===6&&(!sent||$('otp').value.length===6))};
+$('lnm').oninput=v1;$('mob').oninput=e=>{digits(e.target);v1()};$('pin').oninput=e=>{digits(e.target);v1()};$('otp').oninput=e=>{digits(e.target);v1()};
+$('b1').onclick=()=>{if($('otpBox').hidden)wait($('b1'),'Sending…',()=>{$('otpBox').hidden=false;$('b1').textContent='Verify and send details';v1();$('otp').focus()});
+ else wait($('b1'),'Sending…',()=>{window.leadRef='SAR-'+Math.floor(100000+Math.random()*900000);pinTier($('pin').value);
+  if($('nm')&&!$('nm').value)$('nm').value=$('lnm').value.trim();go(1)})};
+
+/* 2 PAN + GST suggestion */
+const panRe=/^[A-Z]{5}\d{4}[A-Z]$/;let panDone=0,gstAns=0;
+const v2=()=>{const p=$('pan').value.toUpperCase(),okp=panRe.test(p),badLen=p.length===10&&!okp;$('panH').className='hint'+(badLen?' bad':'');$('panH').textContent=badLen?"This doesn't look like a PAN. Check the letters and numbers.":'10 characters: 5 letters, 4 numbers, 1 letter.';
+ $('b2').disabled=panDone?!gstAns:!(okp&&$('nm').value.trim()&&$('dob').value&&$('biz').value.trim()&&$('c2').checked&&$('c2b').checked)};
+['pan','nm','dob','biz'].forEach(i=>$(i).oninput=()=>{panDone=gstAns=0;gMode='';$('panOk').innerHTML='';$('gstBox').hidden=true;$('b2').textContent='Verify PAN';v2()});$('c2').onchange=v2;$('c2b').onchange=v2;
+$('b2').onclick=()=>{if(panDone)return go(2);wait($('b2'),'Verifying PAN…',()=>{panDone=1;okMsg('panOk',`PAN verified · name matches (${$('nm').value.trim()})`);$('gstN').textContent='27'+$('pan').value.toUpperCase()+'1Z5';$('gstBox').hidden=false;$('b2').textContent='Continue';v2()})};
+const gstRe=/^\d{2}[A-Z]{5}\d{4}[A-Z][1-9A-Z]Z[0-9A-Z]$/;let gMode='';
+function gChk(){const v=$('gIn').value.toUpperCase(),ok=gstRe.test(v);gstAns=gMode==='other'?ok:!!gMode;$('gH').className='hint'+(v.length===15&&!ok?' bad':'');$('gH').textContent=v.length===15&&!ok?"This doesn't look like a GST number. Check it on your GST certificate.":'You can find it on your GST certificate.';v2()}
+$('gBtns').onclick=e=>{const b=e.target.closest('button');if(!b)return;gMode=b.dataset.g;[...$('gBtns').children].forEach(x=>x.className='pill sm '+(x===b?'navy':'ghost'));$('gOther').hidden=gMode!=='other';$('gNone').hidden=gMode!=='none';if(gMode==='other')$('gIn').focus();gChk()};$('gIn').oninput=gChk;
+
+/* 3 Aadhaar via DigiLocker */
+$('aotp').oninput=e=>{digits(e.target);$('b3a').disabled=e.target.value.length!==6};
+$('b3a').onclick=()=>{if($('dlOtp').hidden)wait($('b3a'),'Opening DigiLocker…',()=>{$('dlOtp').hidden=false;$('b3a').textContent='Verify and share';$('b3a').disabled=true;$('aotp').focus()});
+ else wait($('b3a'),'Getting your details…',()=>{$('dlAsk').hidden=true;$('dlGot').hidden=false;$('aNm').value=$('nm').value.trim()||'Sunita Devi';$('addr').value='House 14, Shivaji Nagar, Near Hanuman Mandir, Pune, Maharashtra 411005';$('b3').hidden=false},1200)};
+$('same').onchange=e=>$('bizAddrBox').hidden=e.target.checked;
+$('b3').onclick=()=>{if(!$('same').checked&&!$('bAddr').value.trim()){$('bAddr').focus();$('bAddr').style.borderColor='var(--err)';return}if(!sfDone){$('sfErr').textContent='Please take a live selfie to finish KYC.';$('sfErr').hidden=false;$('sfBox').scrollIntoView({behavior:'smooth',block:'center'});return}go(3)};
+/* live selfie (liveness + face match with the Aadhaar photo; simulated in this demo) */
+let sfDone=0,sfStream=null;
+window.sfStop=()=>{if(sfStream){sfStream.getTracks().forEach(t=>t.stop());sfStream=null}$('sfV').hidden=true};
+function sfCheck(src){window.sfStop();$('sfI').src=src;$('sfI').hidden=false;$('sfPh').style.display='none';$('sfErr').hidden=true;$('sfScan').hidden=false;$('sfGo').disabled=$('sfDemo').disabled=true;$('sfHint').textContent='Checking it’s a live photo and matching it with your Aadhaar…';
+ setTimeout(()=>{$('sfScan').hidden=true;sfDone=1;$('sfOk').hidden=false;$('sfBox').style.borderColor='var(--ok)';$('sfHint').textContent='Demo mode · Your photo stays on this device.';$('sfGo').disabled=false;$('sfGo').textContent='Retake';$('sfDemo').hidden=true},1600)}
+$('sfGo').onclick=async()=>{if(sfStream){const v=$('sfV'),c=document.createElement('canvas');c.width=v.videoWidth||480;c.height=v.videoHeight||640;const x=c.getContext('2d');x.translate(c.width,0);x.scale(-1,1);x.drawImage(v,0,0,c.width,c.height);sfCheck(c.toDataURL('image/jpeg',.85));return}
+ sfDone=0;$('sfOk').hidden=true;$('sfBox').style.borderColor='';$('sfI').hidden=true;
+ try{sfStream=await navigator.mediaDevices.getUserMedia({video:{facingMode:'user'},audio:false});const v=$('sfV');v.srcObject=sfStream;v.hidden=false;$('sfPh').style.display='none';await v.play();$('sfGo').textContent='Take photo';$('sfHint').textContent='Keep your face inside the frame, then tap Take photo.'}
+ catch(e){sfStream=null;$('sfPh').style.display='';$('sfErr').textContent='We couldn’t open your camera. Allow camera access, or use a sample photo.';$('sfErr').hidden=false;$('sfDemo').hidden=false}};
+$('sfDemo').onclick=()=>sfCheck('../img/ai-contact-priya.jpg');
+
+/* 4 bank picker + uploads + submit */
+const BANKS=[['SBI','State Bank of India','#1E5AA8'],['HDFC','HDFC Bank','#0B3D91'],['ICICI','ICICI Bank','#B3541E'],['AXIS','Axis Bank','#97144D'],['KOTAK','Kotak Mahindra Bank','#D6232A'],['BOB','Bank of Baroda','#E5632B'],['PNB','Punjab National Bank','#A31D3F'],['CANARA','Canara Bank','#0A7BC1'],['UNION','Union Bank of India','#C8102E'],['IDFC','IDFC FIRST Bank','#9C1D26'],['YES','Yes Bank','#0F4C9A'],['IDBI','IDBI Bank','#00836C']];
+let bankDone=0,bizDone=0,bankMode='';
+function drawBanks(q=''){const list=BANKS.filter(b=>(b[1]+' '+b[0]).toLowerCase().includes(q.toLowerCase())),show=q?list:list.slice(0,8);
+ $('banks').innerHTML=show.map(b=>`<button type="button" data-b="${b[1]}"${L.bank===b[1]?' class="sel"':''}><span class="bd" style="background:${b[2]}">${b[0]}</span>${b[1]}</button>`).join('')||`<p class="none">No bank found. Try another name, or upload a PDF instead.</p>`}
+$('bq').oninput=e=>drawBanks(e.target.value);
+$('banks').onclick=e=>{const b=e.target.closest('button');if(!b)return;L.bank=b.dataset.b;drawBanks($('bq').value);bankDone=0;
+ const mob=($('mob')&&$('mob').value)||'';
+ $('bankOk').innerHTML=`<div class="aa"><b>Approve sharing through Account Aggregator</b><p class="hint" style="margin-top:4px">Nothing is shared until you approve this consent request. It is sent to your Account Aggregator app (for example Finvu or OneMoney) linked to +91 ${mob.replace(/\d(?=\d{4})/g,'•')||'your mobile'}.</p>
+ <table class="aat"><tr><td>Bank</td><td>${L.bank}</td></tr><tr><td>Data</td><td>Account statement</td></tr><tr><td>Period</td><td>Last 6 months</td></tr><tr><td>Purpose</td><td>Loan assessment by Saarthi</td></tr><tr><td>Use</td><td>One time · consent expires in 30 days</td></tr></table>
+ <label for="aaOtp" style="margin-top:10px">Enter the OTP to approve</label><input class="in otp" id="aaOtp" inputmode="numeric" maxlength="6" placeholder="••••••"><p class="hint">Demo mode · Enter any 6 digits.</p>
+ <div class="btns" style="margin-top:10px"><button type="button" class="pill navy sm" id="aaGo" disabled>Approve and share</button></div></div>`;
+ $('aaOtp').oninput=x=>{x.target.value=x.target.value.replace(/\D/g,'');$('aaGo').disabled=x.target.value.length!==6};
+ $('aaGo').onclick=()=>wait($('aaGo'),'Fetching statement…',()=>{bankDone=1;okMsg('bankOk',`${L.bank} linked with your consent · 6 months received`);clearErr()},1300)};
+$('bankOpt').onclick=e=>{const b=e.target.closest('button');if(!b)return;bankMode=b.dataset.o;[...$('bankOpt').children].forEach(x=>x.classList.toggle('sel',x===b));$('linkBox').hidden=bankMode!=='link';$('pdfBox').hidden=bankMode!=='pdf';bankDone=0;$('bankOk').innerHTML='';$('upStmt').classList.remove('done');if(bankMode==='link')drawBanks($('bq').value)};
+function markUp(f){const u=f.closest('.up');u.classList.add('done');u.classList.remove('miss');u.querySelector('small').textContent='✓ '+f.files[0].name;f.parentNode.firstChild.textContent='Change '}
+document.addEventListener('change',e=>{const f=e.target;if(!f.matches('[data-up]')||!f.files[0])return;markUp(f);if(f.dataset.up==='stmt')bankDone=1;if(f.dataset.up==='biz')bizDone=1;if(f.dataset.up==='fix')fixDone();clearErr()});
+function clearErr(){if($('errs4').innerHTML)check4(true)}
+function check4(quiet){const m=[];if(!bankDone)m.push(bankMode==='link'?'Choose your bank and approve the link':bankMode==='pdf'?'Upload your bank statement PDF':'Add your bank statement: link your bank or upload a PDF');if(!bizDone)m.push('Type your Udyam number, or upload your GST or Udyam certificate');
+ $('upBiz').classList.toggle('miss',!bizDone);$('upStmt').classList.toggle('miss',bankMode==='pdf'&&!bankDone);$('errs4').innerHTML=m.length?`<p class="errs" role="alert">${m.join('. ')}.</p>`:'';return !m.length}
+let udyOk=0;$('udy').oninput=e=>{/* demo: any number is accepted */const val=e.target.value.toUpperCase(),ok=val.replace(/[^A-Z0-9]/g,'').length>=6;
+ udyOk=ok;bizDone=ok||!!document.querySelector('[data-up=biz]').files[0];$('udyOr').hidden=ok;$('upBiz').hidden=ok;
+ $('udyH').className='hint';$('udyH').innerHTML=ok?'<span style="color:var(--ok);font-weight:700">✓ Looks right. No certificate needed: we\'ll verify this number on the government Udyam website.</span>':'Demo mode · Enter any number.';clearErr()};
+$('b4').onclick=()=>{if(!check4())return;wait($('b4'),'Submitting…',()=>{stage=0;ref=window.leadRef||'SAR-'+Math.floor(100000+Math.random()*900000);drawTrack();go(4)})};
+
+/* 5 review status (simulated) */
+let stage=0,ref='',fixed=0;const now=()=>new Date().toLocaleTimeString('en-IN',{hour:'numeric',minute:'2-digit'});const subAt=now();
+function drawTrack(){const S=[
+ {t:'Application submitted',p:`Today, ${subAt} · Reference ${ref}`},
+ {t:'Documents being checked',p:'Our team checks your PAN, Aadhaar, bank statement and business proof. This usually takes a few hours.'},
+ {t:'Call from your loan officer',p:"A short call to confirm your business details. If we need to visit your shop, we'll tell you before we come."},
+ {t:'Loan approval',p:'Usually within 2-3 working days. We\'ll send you an SMS.'}];
+ const state=i=>{if(stage===1&&i===1&&!fixed)return'warn';const cur=[1,1,2,3,4][stage];return i<cur?'done':i===cur?'now':''};
+ $('track').innerHTML=S.map((s,i)=>{const c=state(i);let extra='';
+  if(c==='warn')extra=`<div class="fix"><b style="font-size:14px;padding:0">One document needs your help</b>${udyOk?"We couldn't match your Udyam number to your business name. Please upload your Udyam certificate so we can check.":"Your GST or Udyam certificate photo is blurry, so we can't read the number. Please upload a clearer photo."}<div class="up"><div><b>${udyOk?'Upload Udyam certificate':'Upload a clearer photo'}</b><small>Take it in good light, with all 4 corners showing</small></div><label>Choose file<input type="file" accept=".pdf,image/*" data-up="fix"></label></div></div>`;
+  if(i===2&&c==='now')extra=`<p style="color:var(--navy);font-weight:700">Call booked: ${slot} · <button type="button" id="chT" style="border:0;background:none;padding:0;color:inherit;font-weight:700;text-decoration:underline;cursor:pointer">Change time</button></p><div id="slots" hidden style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px">${SLOTS.map(x=>`<button type="button" class="pill sm ${x===slot?'navy':'ghost'}" data-slot="${x}">${x}</button>`).join('')}</div>`;
+  
+  return`<li class="${c}"><span class="dot">${c==='done'?'✓':c==='warn'?'!':i+1}</span><div><b>${s.t}</b><p>${s.p}</p>${extra}</div></li>`}).join('');
+ const T=[['Your application is being checked',"You don't need to keep this page open. We'll message you at every step."],['We need one thing from you','Fix it here and we\'ll continue checking straight away.'],['Your application is being checked','Your documents look good. Next, a quick call with your loan officer.'],['Your application is being checked','Thanks for the call. We\'re making the final decision.'],['Your loan is approved','Good news! Your final offer is ready to see.']][stage===1&&fixed?2:stage];
+ $('rvH').textContent=T[0];$('rvL').textContent=T[1];$('skip').parentNode.hidden=stage>=4;$('skip').disabled=stage===1&&!fixed;$('demoTxt').textContent=stage===1&&!fixed?'Demo mode · Upload any file to continue.':'Demo mode · Review normally takes 2–3 working days.'}
+const SLOTS=['Tomorrow, 11 am to 1 pm','Tomorrow, 3 to 5 pm','Day after, 11 am to 1 pm','Day after, 3 to 5 pm'];let slot=SLOTS[0];
+$('track').addEventListener('click',e=>{if(e.target.id==='chT'){$('slots').hidden=!$('slots').hidden;return}const b=e.target.closest('[data-slot]');if(b){slot=b.dataset.slot;drawTrack()}});
+function fixDone(){fixed=1;stage=2;drawTrack()}
+$('skip').onclick=()=>{stage=Math.min(4,stage+1);if(stage===2&&!fixed)stage=1;drawTrack();if(stage===4){const d=new Date();d.setDate(d.getDate()+2);const v=new Date(d);v.setDate(v.getDate()+30);const f=x=>x.toLocaleDateString('en-IN',{day:'numeric',month:'short'});$('apDate').textContent=f(d);$('valid').textContent=f(v);offer();$('offerPart').hidden=false;$('signPart').hidden=true;$('later').hidden=true;go(5)}};
+
+/* 6 offer + sign */
+const oP=$('oP');oP.max=MAX;
+function offer(){oP.value=L.P;$('oMax').textContent=`Approved up to ${lakh(MAX)}.`;[...$('ten').children].forEach(b=>b.classList.toggle('sel',+b.dataset.n===L.N));L.d=L.d||5;[...$('edate').children].forEach(b=>b.classList.toggle('sel',+b.dataset.d===L.d));calc()}
+function calc(){const P=L.P=+oP.value,E=emi(P,L.N,L.R),fee=P*.02*1.18,tot=E*L.N;$('oAmt').textContent=lakh(P);$('tE').textContent=inr(E);$('tR').textContent=L.R+'% a year';$('tF').textContent=inr(fee);$('tIn').textContent=inr(P-fee);$('tI').textContent=inr(tot-P);$('tT').textContent=inr(tot);const apr=aprOf(P-fee,E,L.N);$('tA').textContent=apr.toFixed(1)+'%';$('kfsT').innerHTML=[['Loan amount',inr(P)],['Net amount credited',inr(P-fee)],['Interest rate (sample)',L.R+'% a year, fixed'],['APR, including fee',apr.toFixed(1)+'% a year'],['EMI',inr(E)+' × '+L.N+' months'],['Processing fee (2% + GST)',inr(fee)],['Penal charges (sample)','2% of the late EMI'],['Cooling-off period (sample)','3 days, no penalty'],['Total you repay',inr(tot)],['Complaints','Grievance Redressal Officer, details in the PDF']].map(x=>`<div><span>${x[0]}</span><b>${x[1]}</b></div>`).join('');sum()}
+oP.oninput=calc;$('kfsB').onclick=()=>{$('kfs').hidden=!$('kfs').hidden};
+function aprOf(net,E,N){let lo=0,hi=1;for(let k=0;k<60;k++){const m=(lo+hi)/2,pv=E*(1-Math.pow(1+m,-N))/m;pv>net?lo=m:hi=m}return((lo+hi)/2)*1200}
+$('edate').onclick=e=>{const b=e.target.closest('button');if(!b)return;L.d=+b.dataset.d;[...$('edate').children].forEach(x=>x.classList.toggle('sel',x===b))};const ord=d=>d+(d===1?'st':'th');
+$('ten').onclick=e=>{const b=e.target.closest('button');if(!b)return;L.N=+b.dataset.n;[...$('ten').children].forEach(x=>x.classList.toggle('sel',x===b));calc()};
+$('nn').onclick=()=>{$('later').hidden=false};$('c5').onchange=()=>$('b6a').disabled=!$('c5').checked;
+$('b6a').onclick=()=>{$('naT').textContent=`${inr(emi(L.P,L.N,L.R))} on the ${ord(L.d)} of each month, from ${L.bank?L.bank+' ':'your bank account '}••4521`;$('offerPart').hidden=true;$('signPart').hidden=false;$('sgScr').hidden=false;$('naScr').hidden=true;scrollTo({top:0,behavior:'smooth'})};
+$('toOffer').onclick=()=>{$('offerPart').hidden=false;$('signPart').hidden=true;scrollTo({top:0})};
+let sg=0,na=0,naMode='';
+let curDoc='kfs';
+function docs(){const E=emi(L.P,L.N,L.R),fee=L.P*.02*1.18,today=new Date().toLocaleDateString('en-IN',{day:'numeric',month:'long',year:'numeric'}),nm=$('nm').value.trim()||'Sunita Devi',biz=$('biz').value.trim()||'Sunita Tailoring Works',row=(a,b)=>`<tr><td>${a}</td><td><b>${b}</b></td></tr>`;
+ let bal=L.P,rows='';const r=L.R/1200,d0=new Date();for(let k=1;k<=L.N;k++){const i=bal*r,pr=E-i;bal=Math.max(0,bal-pr);if(k<=3||k>L.N-2){const dt=new Date(d0.getFullYear(),d0.getMonth()+k,L.d||5);rows+=`<tr><td>${k}. ${dt.toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'})}</td><td>${inr(E)}</td><td>${inr(pr)}</td><td>${inr(i)}</td><td>${inr(bal)}</td></tr>`}else if(k===4)rows+='<tr><td colspan="5" style="text-align:center;color:var(--mute)">…</td></tr>'}
+ return{kfs:{pages:2,html:`<h3>Key Facts Statement</h3><p>Part 1 · Interest rate and fees (sample)</p><table>${row('Loan amount',inr(L.P))+row('Loan term',L.N+' months')+row('Interest rate',L.R+'% a year, fixed')+row('EMI',inr(E)+', '+L.N+' instalments')+row('Processing fee (incl. GST)',inr(fee))+row('Net amount credited',inr(L.P-fee))+row('APR',aprOf(L.P-fee,E,L.N).toFixed(1)+'% a year')+row('Penal charges','2% of the overdue EMI')+row('Cooling-off period','3 days')}</table><span class="pg">PAGE 2 OF 2</span><h4>Part 2 · Other information</h4><p>Recovery: only by our staff or authorised agents, who will identify themselves. Grievance Redressal Officer: contact details are on our website and in the agreement.</p>`},
+ san:{pages:1,html:`<h3>Sanction letter</h3><p>Date: ${today}</p><p>Dear ${nm},</p><p>We are pleased to sanction a business loan to ${biz}, subject to the terms below and in the loan agreement.</p><table>${row('Sanctioned amount',inr(L.P))+row('Term',L.N+' months')+row('Interest rate',L.R+'% a year, fixed')+row('EMI date',ord(L.d||5)+' of each month')}</table><p style="margin-top:10px">This offer is valid for 30 days from the date above. Disbursal is subject to signing the agreement and setting up auto-pay.</p>`},
+ agt:{pages:8,html:['1. Parties|This agreement is between Saarthi (the Lender) and '+nm+', owner of '+biz+' (the Borrower).','2. The loan|The Lender agrees to lend '+inr(L.P)+' for business use only. The net amount of '+inr(L.P-fee)+' will be credited to the Borrower\'s bank account.','3. Interest and repayment|Interest is '+L.R+'% a year, fixed. The Borrower will repay in '+L.N+' EMIs of '+inr(E)+' on the '+ord(L.d||5)+' of each month, through auto-pay.','4. Fees and charges|A processing fee of '+inr(fee)+' (incl. GST) is deducted at disbursal. No other fee is charged unless listed in the Key Facts Statement.','5. Penal charges|If an EMI is not paid on time, a charge of 2% of the overdue EMI applies. Repeated non-payment may be reported to credit bureaus.','6. Prepayment and cooling-off|The Borrower may exit within 3 days of disbursal by repaying the principal and interest for those days, with no penalty. Prepayment after that follows the Key Facts Statement.','7. Grievances|Complaints can be raised with the Grievance Redressal Officer. If not resolved in 30 days, the Borrower may approach the Reserve Bank – Integrated Ombudsman Scheme.','8. Signatures|Signed electronically by both parties using Aadhaar e-sign.'].map((x,i)=>{const[h,t]=x.split('|');return`${i?`<span class="pg">PAGE ${i+1} OF 8</span>`:'<h3>Loan agreement</h3>'}<h4>${h}</h4><p>${t}</p><p>${'Further sample text for this clause. In the real agreement, each clause is written out in full legal detail. '.repeat(3)}</p>`}).join('')},
+ sch:{pages:1,html:`<h3>Repayment schedule</h3><table><tr><th>EMI</th><th>Amount</th><th>Principal</th><th>Interest</th><th>Balance</th></tr>${rows}</table>`}}}
+function showDoc(k){curDoc=k;const D=docs()[k];$('doc').innerHTML=D.html;$('doc').scrollTop=0;$('docInfo').textContent=`${D.pages} page${D.pages>1?'s':''} · sample`;$('rT').textContent={kfs:'Key Facts Statement',san:'Sanction letter',agt:'Loan agreement',sch:'Repayment schedule'}[k];$('rdr').hidden=false;document.documentElement.classList.add('lock');const b=$('dlist').querySelector(`[data-d=${k}]`);b.classList.add('rd');b.querySelector('i').textContent='Read ✓'}
+const closeDoc=()=>{$('rdr').hidden=true;document.documentElement.classList.remove('lock')};$('rX').onclick=closeDoc;$('rdr').onclick=e=>{if(e.target===$('rdr'))closeDoc()};
+$('dlist').onclick=e=>{const b=e.target.closest('[data-d]');if(b)showDoc(b.dataset.d)};
+const vEs=()=>{const a=$('esA').value.replace(/\D/g,'');$('esGo').disabled=!((a.length===12||a.length===16)&&($('esOtpBox').hidden||$('esO').value.length===6))};
+$('esA').oninput=e=>{e.target.value=e.target.value.replace(/\D/g,'').slice(0,16).replace(/(\d{4})(?=\d)/g,'$1 ');vEs()};$('esO').oninput=e=>{digits(e.target);vEs()};
+$('esGo').onclick=()=>{if($('esOtpBox').hidden)wait($('esGo'),'Sending OTP…',()=>{$('esOtpBox').hidden=false;$('esGo').textContent='Sign all';vEs();$('esO').focus()});else wait($('esGo'),'Signing…',()=>{sg=1;$('esg').hidden=true;$('sgDone').hidden=false;$('esGo').hidden=true;$('toOffer').hidden=true;$('toNa').hidden=false})};
+$('toNa').onclick=()=>{$('sgScr').hidden=true;$('naScr').hidden=false;scrollTo({top:0,behavior:'smooth'})};
+$('naM').onclick=e=>{const b=e.target.closest('button');if(!b)return;naMode=b.dataset.m;[...$('naM').children].forEach(x=>x.classList.toggle('sel',x===b));$('naGo').disabled=false};
+$('naGo').onclick=()=>wait($('naGo'),'Waiting for your bank…',()=>{na=1;$('naSet').hidden=true;$('naDone').hidden=false;$('naGo').hidden=true;$('b6').hidden=false;$('b6').disabled=false;$('naOk').innerHTML=`✓ Auto-pay set up with ${naMode.toLowerCase()}<br><span style="font-weight:500">Maximum limit: ${inr(emi(L.P,L.N,L.R)*1.5)} a month (sample, 1.5× EMI). Normally, only your monthly EMI is debited. The higher limit covers any missed EMI or charges, as per your loan agreement.</span>`},1300);
+$('b6').onclick=()=>{const fee=L.P*.02*1.18,d=new Date();d.setMonth(d.getMonth()+1,L.d||5);$('dTxt').textContent=`Reference ${ref}. We've sent the details to +91 ${$('mob').value.replace(/\d(?=\d{4})/g,'•')}.`;$('dMoney').innerHTML=`<b>${inr(L.P-fee)} will be credited to your bank account.</b><br>Loan amount ${inr(L.P)}, less processing fee ${inr(fee)} (incl. GST).`;$('dFirst').textContent=d.toLocaleDateString('en-IN',{day:'numeric',month:'short'});$('dEmi').textContent=`First EMI of ${inr(emi(L.P,L.N,L.R))} is paid automatically`;go(6)};
+(function(){const d=$('drw'),b=$('hmb'),o=v=>{d.hidden=!v;b.setAttribute('aria-expanded',v);document.documentElement.classList.toggle('lock',v)};b.onclick=()=>o(true);$('drwX').onclick=()=>o(false);d.onclick=e=>{if(e.target===d)o(false)}})();
+/* phone: the 6-step bar sits inside the loan card; the card goes edge to edge once you scroll */
+(function(){const ph=matchMedia('(max-width:560px)'),pr=$('prog'),home=pr.parentNode,nx=pr.nextSibling,card=document.querySelector('aside .card'),as=document.querySelector('aside');
+ const place=()=>{if(ph.matches){if(pr.parentNode!==card)card.prepend(pr)}else if(pr.parentNode!==home)home.insertBefore(pr,nx)};place();ph.addEventListener('change',place);
+ addEventListener('scroll',()=>as.classList.toggle('stuck',ph.matches&&scrollY>8),{passive:true})})();
+go(0);
+</script></body></html>

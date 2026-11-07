@@ -1,0 +1,937 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Saarthi – Business loans</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+@font-face{font-family:Satoshi;src:url(../fonts/Satoshi-Regular.woff2) format('woff2');font-weight:400}
+@font-face{font-family:Satoshi;src:url(../fonts/Satoshi-Medium.woff2) format('woff2');font-weight:500}
+@font-face{font-family:Satoshi;src:url(../fonts/Satoshi-Bold.woff2) format('woff2');font-weight:700 900}
+:root{--navy:#1C4C9A;--blue:#1E4C9A;--deep:#0B1F47;--ink:#131413;--mute:#5A6478;--tint:#DEEBFF;--line:#DCE3EE;--sun:#FFD36B;--gold:#FFD950;--soft:#C9D6F2;--bg:#FEFDFC;--ok:#1E8E5A}
+*{box-sizing:border-box;margin:0}html{scroll-behavior:auto}body{font-family:Satoshi,system-ui,sans-serif;background:var(--bg);color:var(--ink);overflow-x:hidden}
+button,input{font:inherit}a{color:inherit;text-decoration:none}
+.w{width:min(1280px,calc(100% - 32px));margin:0 auto}
+.pill{border:0;border-radius:999px;padding:12px 22px;font-weight:700;cursor:pointer}.sun{background:var(--sun);color:var(--deep)}.navy{background:var(--blue);color:#fff}
+/* reveal + parallax */
+.rv{opacity:0;translate:0 40px;transition:opacity .8s cubic-bezier(.2,.8,.2,1),translate .8s cubic-bezier(.2,.8,.2,1)}.rv.in{opacity:1;translate:0 0}
+[data-par]{will-change:transform}
+/* top strip + header */
+.strip{background:#fff;padding:10px 80px;display:flex;justify-content:space-between;align-items:center}
+.strip .rbi{display:flex;gap:8px;align-items:center;font-size:13px;font-weight:500;color:#000}
+.lang{display:flex;padding:2px;border:1px solid #00000026;border-radius:32px}.lang button{border:1px solid transparent;background:none;border-radius:16px;padding:2px 11px;font-size:14px;cursor:pointer;color:#000}.lang button.on{background:#fff;border-color:#000}
+.hdr{position:sticky;top:12px;z-index:50;margin-top:19px}
+.hdr .bar{height:60px;background:var(--navy);border:1px solid #A1A1A1;border-radius:64px;display:flex;align-items:center;padding:0 24px;color:#fff;box-shadow:0 10px 30px -18px #0B1F4799}
+.hdr nav{display:flex;gap:36px;margin-left:64px;font-size:14px}.hdr nav a{display:flex;align-items:center;gap:6px}
+.hdr .act{margin-left:auto;display:flex;gap:20px}.hdr .act a{border:1px solid #fff;border-radius:16px;padding:4.5px 10px;font-size:14px;line-height:19px}.hdr .act .ap{background:#fff;color:var(--navy);font-weight:700}.hdr .act .ap2{background:var(--sun);border-color:var(--sun);color:var(--navy)}
+/* hero */
+.hero{position:relative;margin-top:28px;height:588px;border-radius:32px;overflow:hidden;background:var(--bg);display:grid;grid-template-columns:1fr 1fr}
+.hero .l{position:relative;background:var(--blue);color:#fff;padding:96px 53px 0;overflow:hidden}.hero .hap{position:relative;margin-top:28px;padding:14px 28px;font-size:15px}
+.hero .dots{position:absolute;inset:-60px -20px;background-image:radial-gradient(#ffffff26 1.3px,transparent 1.3px);background-size:14px 14px}
+.hero h1{position:relative;font-size:clamp(40px,5vw,64px);font-weight:700;line-height:1.05;max-width:520px}
+.hero p{position:relative;margin-top:22px;font-size:20px;line-height:1.5;color:#DCE6F7;max-width:520px}
+.hero .r{position:relative;overflow:hidden}
+.hero .r img{position:absolute;left:0;top:-60px;width:100%;height:calc(100% + 120px);object-fit:cover;object-position:center top}
+.ask{position:absolute;left:50%;bottom:45px;translate:-50% 0;width:min(780px,calc(100% - 48px));background:#fff;border-radius:48px;box-shadow:0 14px 40px #0A1F4738;display:flex;align-items:center;gap:16px;padding:18px 24px 18px 18px;z-index:2}
+.ask .av{width:40px;height:40px;flex:none}.ask label{font-size:16px;font-weight:700;color:var(--deep);white-space:nowrap}
+.ask input{flex:1;min-width:0;height:48px;background:#E3ECFC;border:1px solid #A2BDEE;border-radius:36px;padding:0 18px;font-size:16px;color:var(--deep);outline:0}.ask input::placeholder{color:#0B1F4766}.ask input:focus{border-color:var(--navy)}
+.ask .go{height:48px;border-radius:36px;padding:0 26px;background:var(--blue);color:#fff;font-weight:700;font-size:16px;border:0;cursor:pointer;white-space:nowrap}
+/* stats */
+.stats{display:flex;gap:152px;margin-top:68px}.stats>div{display:flex;flex-direction:column;gap:6px;padding:4px 0}.stats>div:nth-child(1){width:316px}.stats>div:nth-child(2){width:383px;padding-left:32px}.stats>div:nth-child(3){flex:1;padding-left:32px}
+.stats b{font-size:80px;font-weight:500;color:var(--navy);opacity:.34;letter-spacing:-2.4px;line-height:1.35;white-space:nowrap}.stats span{font-size:18px}
+/* why */
+.why{position:relative;height:400vh;margin-top:-40px}
+.why .stk{position:sticky;top:0;height:100vh;display:grid;place-items:center;padding-top:40px}
+.why .card{position:relative;width:min(1280px,calc(100% - 32px));height:488px;background:var(--tint);border-radius:32px;overflow:hidden}
+.why h2{position:absolute;top:61px;left:0;right:0;text-align:center;font-size:40px;font-weight:700;line-height:1.2;letter-spacing:-1.2px;color:var(--navy);z-index:2}
+.rings{position:absolute;left:calc(50% - 578px);top:-117px;width:827px;height:827px;pointer-events:none}
+.why canvas{position:absolute;left:calc(50% - 165px - 170px);top:127px;width:340px;height:340px;z-index:1}
+.why .txt{position:absolute;left:calc(50% - 18px);top:236px;z-index:2}
+.why .txt b{display:block;font-size:20px;font-weight:700;line-height:1.2;letter-spacing:-.6px;color:var(--navy)}
+.why .txt span{display:block;margin-top:10px;font-size:16px;line-height:1.2;letter-spacing:-.48px}
+.why .txt.sw{animation:sw .5s cubic-bezier(.2,.8,.2,1)}@keyframes sw{from{opacity:0;translate:0 14px}}
+.why .pg{position:absolute;right:26px;top:50%;translate:0 -50%;display:flex;flex-direction:column;gap:6px;z-index:2}.why .pg i{width:6px;height:6px;border-radius:50%;background:#fff;transition:background .3s}.why .pg i.on{background:var(--navy)}
+/* loan types: intro grows into the blue section */
+.tr{position:relative;height:300vh}
+.tr .stk{position:sticky;top:0;height:100vh;overflow:hidden}
+.intro{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 24px;background-image:radial-gradient(#1C4C9A22 1.2px,transparent 1.2px);background-size:18px 18px}
+.eb{font-size:14px;font-weight:700;letter-spacing:.14em;color:var(--navy);opacity:.75}
+.intro h2{margin-top:18px;font-size:40px;font-weight:700;line-height:1.1;color:var(--ink)}
+.intro p{margin-top:18px;max-width:560px;font-size:16px;line-height:1.55;color:var(--mute)}
+.intro .cta{margin-top:28px;background:var(--sun);color:var(--deep);font-weight:700;font-size:16px;padding:14px 24px;border-radius:999px;border:0;cursor:pointer}
+.blue{position:absolute;inset:0;background:var(--blue);color:#fff;clip-path:inset(50%);overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 24px}
+.blue .gl{position:absolute;border-radius:50%;background:#4D8CFF4d;filter:blur(140px)}
+.blue h2{position:relative;font-size:46px;font-weight:700;line-height:1.2}
+.blue>p{position:relative;margin-top:12px;font-size:16px;color:var(--soft)}
+.tiles{position:relative;margin-top:40px;display:flex;flex-direction:column;gap:14px;align-items:center}.tiles div{display:flex;gap:14px}
+.tile{width:370px;display:flex;align-items:center;gap:16px;padding:16px 18px 16px 16px;border-radius:16px;background:#ffffff0a;border:1px solid #ffffff1a;text-align:left;transition:background .25s,border-color .25s,transform .25s}
+.tile:hover{background:#ffffff14;border-color:#ffffff33;transform:translateY(-2px)}
+.tile .ic{flex:none;width:44px;height:44px;border-radius:12px;background:#ffffff14;border:1px solid #ffffff1f;display:grid;place-items:center}
+.tile b{display:block;font-size:20px;font-weight:700}.tile span{display:block;margin-top:2px;font-size:16px;color:var(--soft)}
+.tile .ar{margin-left:auto;font-weight:500;opacity:.5;transition:opacity .2s,translate .2s}.tile:hover .ar{opacity:1;translate:4px 0}
+.blue .rv2{opacity:0;translate:0 18px;transition:opacity .5s var(--d,0s),translate .5s var(--d,0s)}.blue.open .rv2{opacity:1;translate:0 0}
+/* EMI calculator */
+.calc{padding-top:96px}.hd h2{font-size:40px;font-weight:700;color:var(--navy);line-height:1.35}.hd p{margin-top:10px;font-size:16px;line-height:1.55;color:var(--mute)}
+.ccard{margin-top:24px;display:grid;grid-template-columns:690fr 590fr;background:#fff;border:1px solid var(--line);border-radius:32px;overflow:hidden;min-height:682px}
+.cst{position:relative;background:var(--tint);padding:36px 40px 28px;display:flex;flex-direction:column}
+.cst .top{display:flex;justify-content:space-between}.cst .cap{font-size:15px;color:var(--mute)}.cst .emi{display:block;margin-top:4px;font-size:52px;font-weight:700;color:var(--deep);line-height:1.3}.cst .tp{text-align:right}.cst .tp b{display:block;margin-top:4px;font-size:24px;color:var(--deep)}
+.persp{flex:1;display:grid;place-items:center;min-height:380px}
+.r3{position:relative;width:min(532px,100%);aspect-ratio:532/399}.r3 canvas{width:100%;height:100%;display:block;cursor:pointer}
+.pin{position:absolute;transition:left .45s cubic-bezier(.2,.8,.2,1),top .45s cubic-bezier(.2,.8,.2,1);pointer-events:none}
+.pin .in{transform:translate(-50%,-100%);display:flex;flex-direction:column;align-items:center}
+.pin .lab{background:#ffffffcc;border:1px solid #fff;padding:8px 14px;border-radius:12px;white-space:nowrap;font-weight:700;font-size:16px;color:var(--deep);box-shadow:0 6px 20px #1A409926;backdrop-filter:blur(10px)}.pin .lab small{display:block;font-weight:500;font-size:12px;color:var(--mute);margin-top:2px}
+.pin .stem{width:2px;height:40px;background:linear-gradient(#1C4C9Ab3,#1C4C9A00)}
+.leg{display:grid;grid-template-columns:1fr 1fr;gap:10px}.leg button{display:flex;flex-direction:column;align-items:flex-start;gap:4px;text-align:left;background:#ffffff99;border:1px solid #C9D6EE;border-radius:16px;padding:12px 14px;cursor:pointer;color:var(--deep);transition:border-color .2s,background .2s}.leg button.on{background:#fff;border-color:var(--navy)}
+.leg .k{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--mute)}.leg .k i{width:10px;height:10px;border-radius:3px}.leg .v{font-size:20px;font-weight:700}
+.ctl{padding:40px;display:flex;flex-direction:column;gap:26px}
+.f .h{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}.f label{font-size:16px;font-weight:700}
+.f output{display:flex;gap:6px;align-items:center;height:44px;padding:0 14px;background:#fff;border:1px solid var(--line);border-radius:12px;font-size:16px;font-weight:700}.f output i{font-style:normal;font-weight:500;color:var(--mute)}
+.f .mm{display:flex;justify-content:space-between;margin-top:12px;font-size:14px;color:var(--mute)}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:24px;background:none;cursor:pointer;--p:50%}
+input[type=range]::-webkit-slider-runnable-track{height:6px;border-radius:9px;background:linear-gradient(90deg,var(--navy) var(--p),var(--line) var(--p))}
+input[type=range]::-moz-range-track{height:6px;border-radius:9px;background:linear-gradient(90deg,var(--navy) var(--p),var(--line) var(--p))}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;height:20px;margin-top:-7px;border-radius:50%;background:#fff;border:4px solid var(--navy);box-shadow:0 2px 6px #1C4C9A40}
+input[type=range]::-moz-range-thumb{width:12px;height:12px;border-radius:50%;background:#fff;border:4px solid var(--navy)}
+.tot{display:flex;justify-content:space-between;align-items:center;background:var(--tint);border-radius:16px;padding:18px 20px;font-size:16px}.tot b{font-size:26px;color:var(--deep)}
+.ctl .pill{align-self:flex-start;padding:13px 22px;font-size:16px}.small{font-size:13px;color:var(--mute)}
+/* papers */
+.docs{margin-top:180px;text-align:center}.docs h2{font-size:40px;font-weight:700;color:var(--navy)}.docs>p{margin-top:12px;font-size:18px;color:#33415C}
+.steps{position:relative;margin-top:44px;display:grid;grid-template-columns:repeat(4,1fr)}
+.steps:before{content:"";position:absolute;left:12.5%;right:12.5%;top:44px;border-top:2.5px dotted #9AACCB}
+.step i{position:relative;display:grid;place-items:center;width:88px;height:88px;margin:0 auto;border-radius:50%;background:var(--gold);border:6px solid #fff;transition:transform .3s}.step:hover i{transform:translateY(-4px)}
+.step b{display:block;margin-top:6px;font-size:20px}.step span{display:block;margin-top:6px;font-size:16px;color:var(--mute)}
+/* testimonials */
+.tst{margin-top:124px;background:var(--tint);padding:80px 0 22px;overflow:hidden}
+.tst .hd{text-align:center}.tst .hd p{font-size:17px;margin-top:8px}
+.tstage{position:relative;height:400px;margin-top:36px}
+.ttrack{position:absolute;left:0;top:0;height:100%;display:flex;align-items:center;will-change:transform}
+.tcard{flex:none;width:200px;height:340px;margin:0 16px;display:flex;flex-direction:column;justify-content:space-between;padding:22px 20px;background:#fff;border:1px solid var(--line);border-radius:22px;box-shadow:0 18px 40px #0A1F471f;color:var(--deep)}
+.tcard .q{font-size:18px;font-weight:700;line-height:1.3}.tcard .q:before{content:"“";display:block;font-size:48px;line-height:.9;opacity:.35;margin-bottom:12px}
+.tcard b{display:block;font-size:16px}.tcard span{display:block;margin-top:4px;font-size:14px;opacity:.7}
+.fade{position:absolute;top:0;bottom:0;width:120px;z-index:2;pointer-events:none}.fade.l{left:0;background:linear-gradient(90deg,var(--tint),#DEEBFF00)}.fade.r{right:0;background:linear-gradient(-90deg,var(--tint),#DEEBFF00)}
+.tst .note{text-align:center;font-size:13px;color:var(--mute);margin-top:8px}
+/* faq */
+.faq{padding:100px 0 72px}.faq h2{text-align:center;font-size:40px;font-weight:700;color:var(--navy)}
+.ql{width:min(832px,100%);margin:32px auto 0}
+.qi{border-bottom:1px solid var(--line);padding:22px 0}.qi.open{border-color:#C8D7EE}
+.qi button{width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;background:none;border:0;padding:0;cursor:pointer;text-align:left;font-size:20px;font-weight:500;line-height:1.45;color:var(--deep)}.qi.open button{font-weight:700}
+.qi .pm{flex:none;position:relative;width:36px;height:36px;border-radius:50%;background:var(--tint);transition:background .25s}.qi.open .pm{background:var(--navy)}
+.qi .pm:before,.qi .pm:after{content:"";position:absolute;left:50%;top:50%;width:12px;height:2px;border-radius:2px;background:var(--navy);translate:-50% -50%;transition:rotate .25s,background .25s}.qi .pm:after{rotate:90deg}.qi.open .pm:before,.qi.open .pm:after{background:#fff;width:16px}.qi.open .pm:after{rotate:0deg}
+.qi .a{display:grid;grid-template-rows:0fr;transition:grid-template-rows .3s}.qi.open .a{grid-template-rows:1fr}.qi .a>div{overflow:hidden}.qi .a p{padding-top:10px;max-width:600px;font-size:16px;line-height:1.4;color:var(--mute)}
+.qi.hide{display:none}.more{margin-top:20px;background:none;border:0;cursor:pointer;font-size:16px;font-weight:700;color:var(--navy);padding:0}
+/* footer */
+footer{background:var(--blue);color:#F3EFE8;padding:80px 0 40px}
+.fg{display:flex;gap:60px}.fg .b{width:320px;display:flex;flex-direction:column;gap:14px}.fg .b p{font-size:14px;opacity:.75}
+.fg .c{width:180px;display:flex;flex-direction:column;gap:12px;font-size:14px}.fg .c h4{font-size:14px;font-weight:700}.fg .c a{opacity:.7}.fg .c a:hover{opacity:1}
+.footer-support-ribbon{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;row-gap:12px;padding:20px 0;border-top:1px solid rgba(255,255,255,.1);border-bottom:1px solid rgba(255,255,255,.1);margin:30px 0 15px 0;font-family:'Satoshi',sans-serif;font-size:14px;letter-spacing:-.01em;color:#e0e0e0}
+.support-item{display:flex;align-items:center;gap:10px;margin:0;flex-wrap:wrap}.support-text strong{font-weight:700;color:#fff}.support-text a{color:#fff;text-decoration:none;font-weight:500;transition:color .2s ease}.support-text a:hover{color:#ffd700}
+.support-hours{font-size:12px;font-weight:400;color:#b0b0b0;margin-left:8px}.support-divider{color:rgba(255,255,255,.2);margin:0 8px}.support-item .ti{flex:none;color:#fff;opacity:.85}.support-item{gap:8px}
+.fb{margin-top:0;padding-top:10px;display:flex;justify-content:space-between;font-size:13px;opacity:.6}
+/* chat (same as ai-home) */
+.chat{position:fixed;left:50%;bottom:20px;z-index:60;width:min(560px,calc(100% - 32px));height:min(620px,calc(100vh - 110px));opacity:0;translate:-50% 24px;pointer-events:none;transition:opacity .25s,translate .3s cubic-bezier(.2,.8,.2,1);background:#fff;border-radius:26px;box-shadow:0 30px 70px -30px #0B1F4780;display:flex;flex-direction:column;overflow:hidden;color:var(--deep)}
+.chat.open{opacity:1;translate:-50% 0;pointer-events:auto}
+.x{margin-left:auto;border:0;background:#F1F5FC;width:34px;height:34px;border-radius:50%;font-size:16px;cursor:pointer;color:var(--navy)}
+.ch{display:flex;gap:12px;align-items:center;padding:16px 20px;border-bottom:1px solid var(--line)}.ch b{display:block}.ch span{font-size:12px;color:var(--ok)}
+.av{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;flex:none}
+.msgs{flex:1;overflow:auto;padding:18px 18px 8px;display:flex;flex-direction:column;gap:10px;min-height:0}.msgs>*{flex-shrink:0}
+.m{max-width:86%;padding:11px 14px;border-radius:18px;font-size:15px;line-height:1.45;animation:in .3s both}
+.m.ai{background:#F1F5FC;border-bottom-left-radius:6px}.m.me{align-self:flex-end;background:var(--blue);color:#fff;border-bottom-right-radius:6px}
+@keyframes in{from{opacity:0;translate:0 8px}}
+.typing{display:flex;gap:4px;padding:12px 14px;background:#F1F5FC;border-radius:18px;width:max-content}.typing i{width:6px;height:6px;border-radius:50%;background:#9AACCB;animation:b 1s infinite}.typing i:nth-child(2){animation-delay:.15s}.typing i:nth-child(3){animation-delay:.3s}@keyframes b{50%{transform:translateY(-4px)}}
+.chips{display:flex;flex-wrap:wrap;gap:8px;padding:6px 18px 10px}.chips button{border:1px solid var(--line);background:#fff;border-radius:999px;padding:8px 13px;font-size:14px;font-weight:500;color:var(--navy);cursor:pointer}
+.chips .cat{display:flex;flex-direction:column;align-items:flex-start;gap:2px;border-radius:14px;padding:9px 13px;text-align:left}.chips .cat b{font-size:14px;color:var(--navy)}.chips .cat span{font-size:12.5px;color:var(--mute);font-weight:500}
+.chips .cat i{font-style:normal;font-size:10.5px;font-weight:700;letter-spacing:.04em;background:var(--sun);color:var(--deep);border-radius:99px;padding:1px 7px;margin-left:4px;vertical-align:1px}.chips .cat.sug{border-color:var(--navy)}
+.say{display:flex;gap:8px;padding:12px 14px;border-top:1px solid var(--line)}.say input{flex:1;border:1px solid var(--line);border-radius:999px;padding:12px 16px;outline:0;min-width:0}.say input:focus{border-color:var(--navy)}
+.res{background:var(--deep);color:#fff;border-radius:18px;padding:18px;max-width:100%;animation:in .4s both}
+.res .k{font-size:11px;font-weight:700;letter-spacing:.1em;color:var(--sun)}.res .big{font-size:34px;font-weight:700;margin:4px 0}.res .s{font-size:13px;color:#C9D6F2;line-height:1.5}
+.res .row{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}.res .pill{padding:10px 16px;font-size:14px}
+.res .docs2{margin:12px 0 0;font-size:13px;font-weight:700}.res ul{margin:4px 0 0;padding-left:18px;font-size:13px;color:#DCE6F7;line-height:1.7}
+.chg{align-self:flex-end;display:inline-flex;align-items:center;gap:4px;border:0;background:none;color:var(--mute);font-size:12px;text-decoration:underline;cursor:pointer;padding:0 4px;margin-top:-4px}.chg:hover{color:var(--navy)}
+.dim{position:fixed;inset:0;background:#0B1F4766;z-index:55;opacity:0;pointer-events:none;transition:opacity .25s}.dim.on{opacity:1;pointer-events:auto}
+.loan{max-width:86%;background:#fff;border:1px solid var(--line);border-radius:18px;padding:12px 14px;font-size:14px;animation:in .3s both}.loan summary{cursor:pointer;font-weight:700;color:var(--navy);list-style:none;display:flex;justify-content:space-between;align-items:center;gap:14px}.loan summary::-webkit-details-marker{display:none}.loan summary::after{content:"";flex:none;width:8px;height:8px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;rotate:45deg;margin:0 4px 4px 0;transition:rotate .2s,margin .2s}.loan[open] summary::after{rotate:-135deg;margin:4px 4px 0 0}.loan p{margin:8px 0 0;line-height:1.5}.loan .lb{display:block;font-size:11px;font-weight:700;letter-spacing:.08em;color:var(--mute);margin-top:10px}.loan ul{margin:4px 0 0;padding-left:18px;line-height:1.6}
+.note{font-size:11px;color:var(--mute);text-align:center;padding:0 0 10px}
+/* smaller screens */
+@media (max-width:1100px){.stats{gap:40px}.stats b{font-size:56px}.stats>div:nth-child(n){width:auto;flex:1;padding-left:0}.hdr nav{gap:20px;margin-left:32px}.fg{flex-wrap:wrap;gap:32px}.tiles div{flex-direction:column}}
+.hdr .act a{white-space:nowrap}
+@media (max-width:900px){.strip{padding:10px 16px}.strip .rbi{font-size:12px}.hdr nav{display:none}.hdr .bar{padding:0 12px 0 20px}.hdr .act{gap:8px}.hdr .act a:first-child{display:none}.hero{grid-template-columns:1fr;height:auto}.hero .l{padding:48px 22px 150px}.hero h1{font-size:42px}.hero p{font-size:17px}.hero .r{height:360px}
+ .ask{position:relative;left:auto;bottom:auto;translate:none;margin:-110px auto 0;flex-wrap:wrap;border-radius:28px;padding:16px}.ask label{width:100%}.ask .av{display:none}.ask .go{width:100%}.hero .r{order:3}
+ .stats{flex-direction:column;gap:20px;margin-top:40px}.why canvas{left:50%;translate:-50% 0;top:110px;width:260px;height:260px}.why .txt{left:24px;right:24px;top:auto;bottom:40px;text-align:center}.why h2{font-size:30px;top:40px}.rings{left:calc(50% - 413px);top:-180px}
+ .intro h2{font-size:30px}.blue h2{font-size:30px}.tile{width:min(370px,calc(100vw - 48px))}.ccard{grid-template-columns:1fr}.ctl{padding:24px}.cst{padding:24px}.cst .emi{font-size:40px}
+ .steps{grid-template-columns:1fr 1fr;gap:28px}.steps:before{display:none}.docs h2,.hd h2,.faq h2{font-size:30px}.tst .tcard{width:170px;height:290px}.qi button{font-size:17px}
+ .chat{left:0;bottom:0;width:100%;translate:0 24px;height:85vh;border-radius:22px 22px 0 0}.chat.open{translate:0 0}}
+/* ===== round 2 fixes ===== */
+body{font-family:Satoshi,'Noto Sans Devanagari',system-ui,sans-serif}
+.hdr .bar>a{display:flex;align-items:center}.hdr .bar>a svg{display:block}
+.lgw{display:block;width:113px;overflow:hidden;transition:width .9s cubic-bezier(.65,0,.35,1)}.lgw svg{overflow:visible}
+.lgw g{transition:opacity .6s ease,transform .9s cubic-bezier(.65,0,.35,1)}.hdr nav{transition:margin-left .9s cubic-bezier(.65,0,.35,1)}
+.hdr.mini .lgw{width:31px}.hdr.mini .lg-l,.hdr.mini .lg-r{opacity:0}.hdr.mini .lg-m{transform:translateX(-56px)}.hdr.mini nav{margin-left:36px}
+@media (prefers-reduced-motion:reduce){.lgw,.lgw g,.hdr nav{transition:none}}
+/* menus (behaviour from test.html) */
+.hdr nav>div{position:relative}.hdr nav button{display:flex;align-items:center;gap:6px;background:none;border:0;color:#fff;font-size:14px;cursor:pointer;padding:0;height:60px}
+.hdr nav button svg{transition:rotate .2s}.hdr nav button[aria-expanded=true] svg{rotate:180deg}
+.dd{position:absolute;top:calc(100% - 4px);left:-16px;background:#fff;color:var(--deep);border:1px solid var(--line);border-radius:20px;box-shadow:0 18px 50px #0B1F4729;padding:12px;width:280px;z-index:60;animation:in .2s both}
+.dd.mega{width:min(760px,calc(100vw - 40px));display:grid;grid-template-columns:1.25fr 1fr;gap:14px;padding:16px}
+.dd h4{margin:4px 8px 6px;font-size:11px;letter-spacing:.08em;color:var(--mute)}
+.mi{display:flex;gap:12px;align-items:center;width:100%;text-align:left;background:none;border:0;border-radius:12px;padding:10px;cursor:pointer;color:var(--deep);font-size:15px}.mi:hover{background:#F1F5FC}
+.mi i{flex:none;width:36px;height:36px;border-radius:10px;background:var(--tint);display:grid;place-items:center}.mi b{display:block;font-size:15px}.mi small{display:block;font-size:12px;color:var(--mute)}
+.hdr nav .dd button{height:auto;color:var(--deep);gap:12px}.hdr nav .dd .mi{padding:10px}.hdr nav .dd .mpro .pill{color:var(--navy);padding:12px 22px;font-weight:700}
+.mpro{background:var(--blue);color:#fff;border-radius:16px;padding:20px;display:flex;flex-direction:column;justify-content:space-between;gap:14px}.mpro b{font-size:20px;line-height:1.25}.mpro p{font-size:14px;color:var(--soft);line-height:1.5}.mpro .pill{align-self:flex-start;background:#fff;color:var(--navy)}
+.toast{position:fixed;left:50%;bottom:32px;translate:-50% 0;background:var(--deep);color:#fff;padding:12px 18px;border-radius:12px;font-size:14px;z-index:70;max-width:90vw;box-shadow:0 12px 30px #0B1F4740;animation:in .25s both}
+.hdr .act a,.hdr .act button{white-space:nowrap}.hdr .act .ap{border:1px solid #fff;border-radius:16px;padding:4.5px 10px;font-size:14px;line-height:19px;background:#fff;color:var(--navy);font-weight:700;cursor:pointer}.hdr .act .ap.ap2{background:var(--sun);border-color:var(--sun);color:var(--navy)}
+/* load: header down rises from the bottom */
+.ld{animation:up 1s cubic-bezier(.2,.8,.2,1) both;animation-delay:var(--ld,0s)}@keyframes up{from{opacity:0;transform:translateY(70px)}}
+/* banner dots: fade in from left, group at 40% */
+.hero .dots{inset:0;opacity:.4;background-image:radial-gradient(#ffffff99 1.3px,transparent 1.4px);-webkit-mask-image:linear-gradient(90deg,transparent,#000);mask-image:linear-gradient(90deg,transparent,#000)}
+/* Ask bar = ai-home bar, whole bar opens the chat */
+.ask{cursor:pointer;border:0;font-size:16px;text-align:left;gap:14px;padding:18px 28px 18px 22px;color:var(--mute);transition:box-shadow .25s,translate .25s}.ask:hover{box-shadow:0 18px 50px #0A1F4752}
+.ask .av{width:44px;height:44px}.ask .fq{flex:1;min-width:0}.ask .fq b{color:var(--navy)}.ask .fq span{color:#9AA3B5}
+.ask .arw{flex:none;width:44px;height:44px;border-radius:50%;background:var(--tint);display:grid;place-items:center;color:var(--navy);font-size:18px}
+/* why: bigger icon, half rings */
+.why canvas{left:calc(50% - 166px - 240px);top:57px;width:480px;height:480px}
+/* loan tiles: new Figma cards + tilt on hover */
+.tiles{margin-top:0;gap:24px}.tiles div{gap:24px}
+.tile{position:relative;width:300px;height:229px;flex-direction:column;align-items:stretch;justify-content:space-between;padding:28px 18px 28px 17px;transform-style:preserve-3d;transition:transform .25s ease-out,background .25s,border-color .25s}
+.tile:hover{transform:none}.tile.hov{transition:transform .08s linear,background .25s,border-color .25s;background:#ffffff12;border-color:#ffffff33}
+.tile .big{width:80px;height:80px}.tile .row{display:flex;justify-content:space-between;align-items:flex-start}.tile .ar{margin:4px 0 0}
+.tile:after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .25s;background:radial-gradient(circle at var(--gx,50%) var(--gy,50%),#ffffff26,transparent 60%)}.tile.hov:after{opacity:1}.tile.hov .ar{opacity:1;translate:4px 0}
+/* calculator ~30% shorter */
+.ccard{min-height:0;margin-top:20px}.cst{padding:24px 32px 22px}.cst .emi{font-size:42px}.cst .tp b{font-size:22px}
+.persp{min-height:0}.r3{width:min(360px,100%)}.leg button{padding:9px 14px}.leg .v{font-size:18px}
+.ctl{padding:26px 32px;gap:14px}.f .h{margin-bottom:6px}.f output{height:36px}.f .mm{margin-top:4px;font-size:13px}
+.trow{display:flex;gap:12px;align-items:stretch}.trow .tot{flex:1;padding:12px 18px}.trow .tot b{font-size:22px}.trow .pill{align-self:auto}
+/* testimonials = testimonials.html */
+.tst{background:var(--bg);padding:96px 0 110px;margin-top:40px}.tst .hd p{font-size:17px;margin-top:10px}
+.tstage{height:400px;margin-top:56px;perspective:1400px}.ttrack{display:flex;gap:32px;align-items:flex-start}
+.tcard{margin:30px 0 0;transform-style:preserve-3d;box-shadow:0 18px 40px -20px #0B1F4740}.tcard .q:before{font-size:56px;line-height:.6;margin-bottom:10px}
+.fade.l{background:linear-gradient(90deg,var(--bg),#FEFDFC00)}.fade.r{background:linear-gradient(-90deg,var(--bg),#FEFDFC00)}.tst .note{margin-top:18px}
+html[lang=hi] .hero h1{line-height:1.25}
+@media (max-width:900px){.dd{display:none}.why canvas{width:300px;height:300px;top:100px;left:50%;translate:-50% 0}.tile{width:min(300px,calc(100vw - 48px));height:auto;gap:20px}.trow{flex-direction:column}.ask .fq span{display:none}.ask{flex-wrap:nowrap;border-radius:48px}}
+.snd{flex:none;width:46px;height:46px;border-radius:50%;border:0;background:var(--blue);display:grid;place-items:center;cursor:pointer;transition:transform .15s,background .2s}.snd:hover{background:var(--navy);transform:scale(1.05)}.snd svg{translate:-1px 1px}
+.why .card{height:540px}.rings{top:-91px}.why canvas{top:113px;left:calc(50% - 166px - 210px);width:420px;height:420px}.why .txt{top:50%;translate:0 -50%;margin-top:52px}.why .txt.sw{animation:sw2 .5s cubic-bezier(.2,.8,.2,1)}@keyframes sw2{from{opacity:0;transform:translateY(14px)}}
+.tile b{font-weight:500;color:#fff}
+html.chatlock,html.chatlock body{overflow:hidden}.msgs{overscroll-behavior:contain}.msgs .chips{padding:4px 0 2px}.msgs .chips:empty{display:none}
+.tile .sec{position:absolute;top:24px;right:18px;font-size:12px;font-weight:500;padding:4px 10px;border-radius:999px;border:1px solid #ffffff33;background:#ffffff14;color:#fff;cursor:help;outline:0}.tile .sec.se{border-color:#FFD36B80;color:#FFE7A8}
+.tile .stip{position:absolute;right:0;top:calc(100% + 8px);width:230px;background:#0B1F47;color:#fff;font-size:13px;font-weight:400;line-height:1.45;padding:10px 12px;border-radius:10px;box-shadow:0 10px 30px #00000059;opacity:0;pointer-events:none;translate:0 -4px;transition:opacity .18s,translate .18s;z-index:5;text-align:left}
+.tile .sec:hover .stip,.tile .sec:focus .stip{opacity:1;translate:0 0}
+@media (max-width:900px){.tiles{display:grid;grid-template-columns:1fr 1fr;gap:10px;width:100%}.tiles div{display:contents}.tile{width:auto;height:auto;padding:14px 12px;gap:10px}.tile .big{width:40px;height:40px}.tile b{font-size:15px}.tile .row>span>span{font-size:12px}.tile .ar{display:none}.tile .sec{position:static;align-self:flex-start;font-size:11px;padding:3px 8px}.tile .stip{left:0;right:auto;width:200px}}
+.cta2{display:flex;flex-direction:column;align-items:stretch;gap:4px;margin-top:14px}.cta2 .pill{width:100%;padding:12px 16px;font-size:14px}.cta2 small{font-size:12px;color:#C9D6F2;margin:0 2px 8px;line-height:1.4}.pill.lite{background:#ffffff1a;color:#fff;border:1px solid #ffffff40}.res .dw{margin:8px 0 2px;color:#DCE6F7;line-height:1.5}
+.cb{background:#fff;border:1px solid var(--line);border-radius:18px;padding:16px;display:flex;flex-direction:column;gap:6px;font-size:14px;max-width:100%;animation:in .3s both}.cb>b{font-size:15px;line-height:1.4;color:var(--deep);margin-bottom:4px}.cb label{font-size:12px;font-weight:700;color:var(--mute);margin-top:6px}
+.cbr{display:flex;gap:8px;align-items:center}.cbr span{font-weight:700;color:var(--mute)}.cb input{flex:1;min-width:0;border:1px solid var(--line);border-radius:12px;padding:10px 12px;font-size:15px;outline:0}.cb input:focus{border-color:var(--navy)}.cbp{letter-spacing:.5em;max-width:140px}.cbo{display:flex;flex-direction:column;gap:4px}.cbo small{font-size:11px;color:var(--mute)}
+.cbr .pill{padding:10px 14px;font-size:13px}.cbr2{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:10px}.cbch{background:none;border:0;color:var(--navy);text-decoration:underline;font-size:13px;cursor:pointer;padding:4px}.cbB{display:flex;flex-direction:column;gap:6px}.cbA[hidden],.cbB[hidden]{display:none}.cb input.filled{border-color:var(--navy);background:#F4F8FF}.cbB small{font-size:11px;color:var(--mute)}.cbA{display:flex;flex-direction:column;gap:6px}.cb .pill:disabled{opacity:.45;cursor:not-allowed}.cbt{display:flex;flex-wrap:wrap;gap:6px}.cbt button{border:1px solid var(--line);background:#fff;border-radius:999px;padding:8px 12px;font-size:13px;color:var(--navy);cursor:pointer}.cbt button.sel{background:var(--blue);border-color:var(--blue);color:#fff}.cbgo{margin-top:10px}
+.cb.done{background:#EEF8F2;border-color:#BFE3CD}.cb.done b{color:var(--ok)}.cb.done p{color:var(--deep);line-height:1.5}
+.ask.fab{position:fixed;left:50%;bottom:20px;top:auto;translate:-50% 24px;margin:0;opacity:0;pointer-events:none;z-index:45;transition:opacity .25s,translate .3s cubic-bezier(.2,.8,.2,1);box-shadow:0 18px 40px -14px #0B1F4799;border:1px solid var(--line)}.ask.fab.show{opacity:1;translate:-50% 0;pointer-events:auto}
+@media (max-width:900px){.ask.fab{width:calc(100% - 24px);bottom:12px;padding:12px 16px}}
+.res details.pp{margin-top:8px;font-size:13px}.res details.pp summary{cursor:pointer;color:var(--sun);font-weight:700;list-style:none}.res details.pp summary::-webkit-details-marker{display:none}
+@media (max-width:900px){.why .card{height:520px}.why canvas{top:96px}.why .txt{top:auto;bottom:36px;translate:none;margin-top:0}.rings{top:-110px}}
+@media (prefers-reduced-motion:reduce){.rv{opacity:1;translate:none;transition:none}.ld{animation:none}}
+@media (max-width:560px){.hdr .act .ap.ap2{display:none}}
+/* how to apply: a deck of 4 cards that spreads into a row as you scroll */
+.hta{margin-top:180px;text-align:center}.hta+.tst{margin-top:84px}
+.hta h2{font-size:40px;font-weight:700;line-height:1.06;color:var(--navy)}
+.hta .hd p{margin-top:12px;font-size:16px;line-height:1.55;color:var(--mute)}
+.hta .hd .pill{margin-top:22px}
+.hta .hs{margin:56px auto 0;max-width:1180px;display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.hta .hc{min-height:290px;padding:24px;border-radius:26px;display:flex;flex-direction:column;align-items:center;background:var(--navy);color:#fff;z-index:calc(4 - var(--i));
+ transform:translateX(calc((1.5 - var(--i)) * (100% + 20px) * (1 - var(--p,0)))) rotate(calc((var(--i) - 1.5) * 5deg * (1 - var(--p,0))))}
+.hta .hc:nth-child(even){background:var(--tint);color:var(--deep)}
+.hta .hi{width:56px;height:56px;border-radius:50%;background:#fff;display:grid;place-items:center}
+.hta .hn{margin-top:14px;font-size:40px;font-weight:700;line-height:1.06}
+.hta h3{margin-top:10px;font-size:20px;font-weight:700}
+.hta .hc p{margin-top:6px;font-size:15px;line-height:1.5;opacity:.88}
+@media (max-width:900px){.hta{margin-top:72px}.hta h2{font-size:30px}.hta .hn{font-size:30px}.hta .hs{grid-template-columns:1fr 1fr;gap:14px}.hta .hc{transform:none;min-height:0;padding:20px 16px}}
+@media (prefers-reduced-motion:reduce){.hta .hc{transform:none}}
+@media (max-width:900px){.docs{margin-top:108px}.hta{margin-top:108px}.hta+.tst{margin-top:12px}}
+/* one heading style for every blue section heading */
+.why h2,.hd h2,.docs h2,.faq h2,.hta h2{line-height:1.06;letter-spacing:0;font-weight:700}
+.cta2{gap:16px}
+.hmb{display:none;margin-left:auto;width:44px;height:44px;border:0;border-radius:50%;background:none;place-items:center;cursor:pointer}
+.drw{position:fixed;inset:0;z-index:90;background:#0B1F4766;animation:fd .2s both}@keyframes fd{from{opacity:0}}
+.dsh{width:min(84%,340px);height:100%;background:#fff;border-radius:0 24px 24px 0;padding:18px 20px 24px;display:flex;flex-direction:column;overflow:auto;animation:sl .28s cubic-bezier(.2,.8,.2,1) both;color:var(--deep)}@keyframes sl{from{translate:-100% 0}}
+.dtop{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.dsh h4{margin:18px 0 4px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}
+.dsh>a{display:block;padding:12px 0;font-size:16px;font-weight:500;border-bottom:1px solid #EEF2F8}
+.dbt{margin-top:auto;padding-top:24px;display:flex;flex-direction:column;gap:12px}.dbt .pill{width:100%;text-align:center;padding:14px;font-size:15px}.pill.ghost{background:#fff;color:var(--navy);border:1px solid var(--line)}
+/* ===== phone = app ===== */
+@media (max-width:560px){
+ html,body{overflow-x:clip}
+ .hdr .act{display:none}.hmb{display:grid}.hdr .bar{padding:0 6px 0 18px}
+ .ld{animation:none}.strip,.hdr.ld,main{animation:up .9s cubic-bezier(.2,.8,.2,1) backwards}
+ .hero .l{padding:40px 22px 44px}.hero .ask{display:none}.hero .r{height:300px}
+ .ask.fab .av{display:block;width:40px;height:40px}.ask.fab{gap:12px;padding:10px 12px 10px 10px}
+ footer{padding-bottom:120px}
+ .why h2,.hd h2,.docs h2,.faq h2,.hta h2{font-size:24px;line-height:1.2}.tst .hd{padding:0 20px}.hd p,.docs>p,.hta .hd p{font-size:15px}
+ .why .txt b,.step b,.hta h3{font-size:18px;font-weight:700}
+ .tiles{grid-template-columns:1fr;gap:10px;max-width:420px;margin:0 auto}
+ .tile{display:grid;grid-template-columns:44px 1fr;column-gap:14px;row-gap:8px;align-items:center;padding:12px 14px}.tile .big{width:44px!important;height:44px!important}
+ .tile .big{grid-row:1/3;width:48px;height:48px}.tile .row{grid-column:2}.tile .sec{grid-column:2;justify-self:start}
+ .tile b{font-size:18px;font-weight:700}.tile .row>span>span{font-size:14px}.tile:focus-within{z-index:3}
+ .tile .stip{left:0;right:auto;width:min(260px,70vw)}
+ .blue .tile.rv2,.blue.open .tile.rv2{opacity:0;translate:none;scale:.6;transition:opacity .4s,scale .5s cubic-bezier(.2,.8,.2,1),background .25s}
+ .blue.open .tile.rv2.pop{opacity:1;scale:1}
+ .calc{padding-top:72px}.hd p{margin-top:6px}
+ .ccard{background:none;border:0;border-radius:0;margin-top:14px;overflow:visible}
+ .cst{background:none;padding:0}.cst .emi,.cst .tp b{font-size:18px}
+ .cst{display:flex;flex-direction:column}.persp{order:1;display:block}.leg{order:2}.cst .top{order:3}.r3{width:150px;margin:0 auto}.ccard{margin-top:4px!important}.calc .hd p{margin-top:4px}.trow .pill{padding:12px!important}.ctl .small{font-size:12px}.ctl{padding-top:10px!important;gap:6px!important}.f output{height:30px!important}.trow{margin-top:4px}.hd p{font-size:14px}
+ .leg{display:flex;justify-content:center;gap:20px;margin-top:4px!important}.leg button{flex-direction:row;align-items:center;gap:6px;background:none!important;border:0!important;padding:4px 0!important;border-radius:0}.leg .k{font-size:14px}.leg .v{font-size:15px}.leg button.on .v{color:var(--navy)}
+ .cst .top{margin-top:8px;background:var(--tint);border-radius:16px;padding:10px 16px}
+ .pin{opacity:0;transition:opacity .2s,left .45s,top .45s}.r3.tap .pin{opacity:1}.pin .lab{font-size:14px;padding:6px 10px}.pin .stem{height:24px}
+ .leg{margin-top:6px}.leg button{padding:8px 12px}.leg .v{font-size:16px}
+ .ctl{padding:14px 0 0;gap:10px}.f .h{margin-bottom:2px}.f label{font-size:15px}.f output{height:32px;font-size:15px}.f .mm{font-size:12px;margin-top:0}
+ .trow .tot{display:none}.trow .pill{width:100%}
+ .hta .hs{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px;margin:32px -16px 0;padding:0 16px 6px;scroll-padding:0 16px;scrollbar-width:none;overscroll-behavior-x:contain}.hta .hs::-webkit-scrollbar{display:none}
+ .hta .hc{flex:0 0 80%;scroll-snap-align:start;min-height:280px}
+ .chat .note{padding:0 32px 12px;line-height:1.45}
+ .intro h2{font-size:24px;line-height:1.2}
+ .hero .r img{top:0;height:100%;transform:none!important;object-position:center 20%}
+ html{scrollbar-width:none}::-webkit-scrollbar{display:none}
+ .hta .dots{display:flex;justify-content:center;gap:8px;margin-top:14px}.hta .dots i{width:8px;height:8px;border-radius:50%;background:#C9D6F2;transition:background .2s,width .2s}.hta .dots i.on{background:var(--navy);width:22px;border-radius:8px}
+}
+@media (min-width:561px){.hta .dots{display:none}}
+@media (max-width:900px){.why canvas{left:50%!important;translate:-50% 0!important;top:70px!important;width:340px!important;height:340px!important}}
+.cbr{border:1px solid var(--line);border-radius:12px;overflow:hidden;gap:0}.cbr span{padding:0 12px;align-self:stretch;display:grid;place-items:center;border-right:1px solid var(--line);background:#fff}.cbr input.cbm{border:0;border-radius:0}.cbr:focus-within,.cbr:has(.filled){border-color:var(--navy)}.cbr:has(.filled) span{background:#F4F8FF}
+</style>
+<script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.169.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.169.0/examples/jsm/"}}</script>
+</head><body>
+
+<div class="strip"><span class="rbi"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M5.5 8L7.3 9.8L10.7 6.4M8 1.5L13.5 3.5V8C13.5 11.2 11.1 13.8 8 14.5C4.9 13.8 2.5 11.2 2.5 8V3.5L8 1.5Z" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" stroke="black"/></svg><span>RBI-registered NBFC · Reg. no. N-XX.XXXXX</span></span>
+ <div class="lang" id="lang"><button class="on">EN</button><button>हिंदी</button></div></div>
+
+<header class="hdr w ld"><div class="bar">
+ <a href="#" aria-label="Saarthi home"><span class="lgw"><svg id="logo" width="113" height="20" viewBox="0 0 113 20" fill="none"><g class="lg-l"><path d="M36.4159 19.6004L42.2903 0.375H47.7108L53.5852 19.6004H49.8469L44.6134 2.64466H45.3076L40.1542 19.6004H36.4159ZM39.9405 15.5951V12.2039H50.0873V15.5951H39.9405Z" fill="white"/><path d="M17.3802 19.6004L23.2547 0.375H28.6752L34.5496 19.6004H30.8113L25.5777 2.64466H26.272L21.1185 19.6004H17.3802ZM20.9049 15.5951V12.2039H31.0516V15.5951H20.9049Z" fill="white"/><path d="M8.06397 20C6.63987 20 5.35373 19.7508 4.20555 19.2523C3.06627 18.745 2.12725 18.0241 1.3885 17.0895C0.658647 16.146 0.195814 15.0245 0 13.7251L3.79167 13.1643C4.05869 14.268 4.61053 15.118 5.44719 15.7143C6.28385 16.3107 7.23621 16.6089 8.30429 16.6089C8.90063 16.6089 9.47917 16.5154 10.0399 16.3285C10.6007 16.1416 11.059 15.8657 11.4151 15.5007C11.78 15.1358 11.9625 14.6863 11.9625 14.1523C11.9625 13.9565 11.9313 13.7696 11.869 13.5915C11.8156 13.4046 11.7221 13.2311 11.5886 13.0709C11.4551 12.9106 11.2638 12.7593 11.0145 12.6169C10.7742 12.4745 10.4671 12.3455 10.0933 12.2297L5.10006 10.7611C4.72624 10.6543 4.2901 10.503 3.79167 10.3072C3.30213 10.1114 2.82595 9.83103 2.36312 9.4661C1.90028 9.10118 1.51311 8.62054 1.20159 8.0242C0.898964 7.41896 0.747653 6.65795 0.747653 5.74119C0.747653 4.45059 1.07253 3.37807 1.72227 2.52361C2.37202 1.66915 3.23983 1.03275 4.32571 0.614422C5.41158 0.196092 6.61317 -0.00862288 7.93046 0.00027817C9.25666 0.0180792 10.4404 0.245045 11.4818 0.681176C12.5232 1.11731 13.3955 1.7537 14.0986 2.59036C14.8018 3.41812 15.3091 4.43279 15.6206 5.63438L11.6954 6.30193C11.553 5.67888 11.2905 5.15374 10.9077 4.72651C10.525 4.29928 10.0666 3.97441 9.53258 3.7519C9.00744 3.52938 8.4556 3.40922 7.87706 3.39142C7.30742 3.37362 6.76893 3.45372 6.2616 3.63174C5.76316 3.80085 5.35373 4.05007 5.03331 4.37939C4.72179 4.70871 4.56602 5.10034 4.56602 5.55427C4.56602 5.9726 4.69508 6.31528 4.9532 6.5823C5.21132 6.84041 5.53619 7.04958 5.92782 7.20979C6.31945 7.37 6.71998 7.50351 7.12941 7.61032L10.4671 8.51818C10.9656 8.65169 11.5174 8.82971 12.1227 9.05222C12.7279 9.26584 13.3064 9.56846 13.8583 9.96009C14.419 10.3428 14.8774 10.8502 15.2334 11.4821C15.5984 12.114 15.7808 12.9151 15.7808 13.8853C15.7808 14.9177 15.5628 15.8212 15.1266 16.5955C14.6994 17.361 14.1209 17.9974 13.391 18.5047C12.6612 19.0031 11.8334 19.377 10.9077 19.6262C9.99096 19.8754 9.04304 20 8.06397 20Z" fill="white"/></g><g class="lg-m"><path d="M77.1 19.6004V3.82178H71.0387V0.375H86.7928V3.82178H80.7315V19.6004H77.1Z" fill="#FFD950"/><path d="M55.9781 0.375H60.4641C60.651 0.375 60.9002 0.383901 61.2117 0.401702C61.5321 0.410603 61.817 0.437305 62.0662 0.481808C63.2144 0.65982 64.1534 1.0381 64.8832 1.61664C65.622 2.19518 66.1649 2.92503 66.512 3.80619C66.8592 4.67846 67.0327 5.65308 67.0327 6.73005C67.0327 8.34107 66.6545 9.69396 65.8979 10.7887C65.1414 11.8746 63.9798 12.5822 62.4133 12.9115C62.0306 12.9916 61.7102 13.0406 61.452 13.0584C61.1939 13.0762 60.8646 13.0851 60.4641 13.0851H55.9781V9.69396H60.3039C60.4908 9.69396 60.6955 9.68506 60.918 9.66726C61.1405 9.64946 61.3452 9.61386 61.5321 9.56045C62.0217 9.41804 62.4 9.19108 62.667 8.87955C62.934 8.56803 63.1165 8.22091 63.2144 7.83818C63.3212 7.44655 63.3746 7.07718 63.3746 6.73005C63.3746 6.38293 63.3212 6.018 63.2144 5.63527C63.1165 5.24365 62.934 4.89207 62.667 4.58055C62.4 4.26013 62.0217 4.03316 61.5321 3.89965C61.3452 3.84625 61.1405 3.81064 60.918 3.79284C60.6955 3.77504 60.4908 3.76614 60.3039 3.76614H55.9781V0.375ZM55.9781 13.0851L59.9834 12.2573L68.2343 19.6004H63.1877L55.9781 13.0851ZM56.085 8.0785V5.38161H69.4359V8.0785H56.085ZM59.9834 3.82178V0.375H71.7565V3.82178H59.9834Z" fill="#FFD950"/></g><g class="lg-r"><path d="M108.815 19.6004V0.375H112.446V19.6004H108.815Z" fill="white"/><path d="M88.9384 19.6004V0.375H92.5698V8.27876H101.168V0.375H104.799V19.6004H101.168V11.6699H92.5698V19.6004H88.9384Z" fill="white"/></g></svg></span></a>
+ <nav id="nav"><div><button data-menu="biz" aria-expanded="false" aria-haspopup="true"><span data-t="m_biz"></span><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 7.5l5 5 5-5" stroke="#fff" stroke-width="1.67" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div><div><button data-menu="res" aria-expanded="false" aria-haspopup="true"><span data-t="m_res"></span><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 7.5l5 5 5-5" stroke="#fff" stroke-width="1.67" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div><div><button data-menu="comp" aria-expanded="false" aria-haspopup="true"><span data-t="m_comp"></span><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 7.5l5 5 5-5" stroke="#fff" stroke-width="1.67" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div><div><button data-menu="help" aria-expanded="false" aria-haspopup="true"><span data-t="m_help"></span><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 7.5l5 5 5-5" stroke="#fff" stroke-width="1.67" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div></nav>
+ <div class="act"><a href="#" data-nb="1" data-t="login">SIGN UP</a><button class="ap" data-act="chat" data-t="cta">CHECK ELIGIBILITY</button><button class="ap ap2" data-act="hdrapply" data-t="ctaApply">APPLY NOW</button></div>
+ <button type="button" class="hmb" id="hmb" aria-label="Open menu" aria-expanded="false" aria-controls="drw"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+</div></header>
+<div class="drw" id="drw" hidden><div class="dsh" role="dialog" aria-label="Menu"><div class="dtop"><img src="../img/saarthi-mark.svg" width="40" height="40" alt="Saarthi"><button type="button" class="x" id="drwX" aria-label="Close menu">✕</button></div>
+ <h4>Loans</h4><a href="#loans">Working capital loan</a><a href="#loans">Machinery loan</a><a href="#loans">Business expansion loan</a><a href="#loans">Business line of credit</a><a href="#loans">Loan against property</a>
+ <h4>Resources</h4><a href="#calc">EMI calculator</a><a href="#faq">FAQ</a><a href="#">Contact Us</a>
+ <div class="dbt"><button type="button" class="pill sun" data-act="hdrapply" data-t="ctaApply">APPLY NOW</button><button type="button" class="pill ghost" data-act="chat" data-t="cta">CHECK ELIGIBILITY</button><a href="#" class="pill ghost" data-nb="1" data-t="login">SIGN UP</a></div></div></div>
+
+<main>
+<section class="hero w">
+ <div class="l ld" style="--ld:.1s"><div class="dots"></div>
+  <h1 class="ld" style="--ld:.25s" data-t="h1">Pehle jaaniye.<br>Phir faisla lijiye.</h1>
+  <p class="ld" style="--ld:.35s" data-t="hp">Ask anything about your business loan. Check how much you can borrow before sharing any personal details.</p><button type="button" class="pill sun hap ld" style="--ld:.42s" data-act="hdrapply" data-t="ctaApply">APPLY NOW</button></div>
+ <div class="r ld" style="--ld:.15s"><img src="../img/hero-bakery.jpg" alt="A smiling bakery owner standing in her shop" data-par="-.1"></div>
+ <button type="button" class="ask ld" style="--ld:.5s" data-act="chat"><img class="av" src="../img/saarthi-mark.svg" width="44" height="44" alt=""><span class="fq"><b data-t="askB">Ask Saarthi AI</b><span data-t="askS"> · Get your loan estimate first. Personal details only when you apply.</span></span><span class="arw" aria-hidden="true">→</span></button>
+</section>
+<button type="button" class="ask fab" id="fab" data-act="chat" aria-label="Ask Saarthi AI"><img class="av" src="../img/saarthi-mark.svg" width="44" height="44" alt=""><span class="fq"><b data-t="askB">Ask Saarthi AI</b><span data-t="askS"> · Get your loan estimate first. Personal details only when you apply.</span></span><span class="arw" aria-hidden="true">→</span></button>
+
+<section class="stats w ld" style="--ld:.65s" aria-label="Our numbers">
+ <div><b data-n="1.2" data-f="{} lakh+">1.2 lakh+</b><span>businesses funded</span></div>
+ <div><b data-n="180" data-f="₹{} Cr+">₹180 Cr+</b><span>lent so far</span></div>
+ <div><b data-n="4.6" data-f="{} ★">4.6 ★</b><span>from 2,300+ reviews</span></div>
+</section>
+
+<section class="why" id="why" aria-label="Why choose Saarthi">
+ <div class="stk"><div class="card">
+  <svg class="rings" viewBox="0 0 827 827" fill="none" aria-hidden="true"><defs><linearGradient id="rg" gradientUnits="userSpaceOnUse" x1="60" y1="250" x2="700" y2="560"><stop offset="0" stop-color="#0A1A34"/><stop offset="1" stop-color="#1E4C9A" stop-opacity="0"/></linearGradient></defs><g stroke="url(#rg)" stroke-opacity=".26" stroke-width="3" stroke-linecap="round" stroke-dasharray="0.5 10"><circle cx="413.5" cy="413.5" r="412"/><circle cx="413.5" cy="413.5" r="353"/><circle cx="413.5" cy="413.5" r="294"/><circle cx="413.5" cy="413.5" r="235"/><circle cx="413.5" cy="413.5" r="176"/></g></svg>
+  <h2>Why choose SAARTHI?</h2>
+  <canvas id="why3d" aria-hidden="true"></canvas>
+  <div class="txt" id="whytxt" aria-live="polite"><b>Your data stays safe</b><span>Used only for your loan. Never sold, never used for marketing calls.</span></div>
+  <div class="pg" id="whypg"><i class="on"></i><i></i><i></i><i></i></div>
+ </div></div>
+</section>
+
+<section class="tr" id="loans"><div class="stk">
+ <div class="intro" id="intro"><span class="eb">LOANS FOR YOUR BUSINESS</span><h2>One place for every business need</h2><p>Goods to sell, a new machine or a bigger shop. Pick your need and see the amount, the full cost and the papers before you apply.</p><button class="cta" id="cta">SEE LOAN TYPES →</button></div>
+ <div class="blue" id="blue"><span class="gl" style="width:900px;height:900px;left:-200px;top:-294px" data-par=".15"></span><span class="gl" style="width:700px;height:700px;right:-260px;bottom:-307px" data-par="-.15"></span>
+  <div class="tiles" id="tiles"></div></div>
+</div></section>
+
+<section class="calc w" id="calc">
+ <div class="hd rv"><h2>See your monthly EMI</h2><p id="clead">Move the sliders. The numbers update as you go.</p></div>
+ <div class="ccard rv">
+  <div class="cst" id="stage"><div class="top"><div><span class="cap">Your monthly EMI</span><b class="emi" id="emi"></b></div><div class="tp"><span class="cap">Total you pay</span><b id="tot1"></b></div></div>
+   <div class="persp"><div class="r3"><canvas id="pie" aria-label="Loan amount and interest as a 3D ring"></canvas><div class="pin" id="pin"><div class="in"><div class="lab" id="pinlab"></div><div class="stem"></div></div></div></div></div>
+   <div class="leg" id="leg"><button data-seg="0"><span class="k"><i style="background:#4D8BFF"></i>Loan amount</span><span class="v" id="lp"></span></button><button data-seg="1" class="on"><span class="k"><i style="background:#FFD36B"></i>Interest</span><span class="v" id="li"></span></button></div></div>
+  <div class="ctl">
+   <div class="f"><div class="h"><label for="P">Loan amount</label><output id="oP"></output></div><input type="range" id="P" min="50000" max="5000000" step="10000"><div class="mm"><span>₹50,000</span><span>₹50 lakh</span></div></div>
+   <div class="f"><div class="h"><label for="N">Loan Tenure</label><output id="oN"></output></div><input type="range" id="N" min="6" max="60" step="1"><div class="mm"><span>6 months</span><span>5 years</span></div></div>
+   <div class="f"><div class="h"><label for="R">Interest rate (per year)</label><output id="oR"></output></div><input type="range" id="R" min="12" max="28" step=".25"><div class="mm"><span>12%</span><span>28%</span></div></div>
+   <div class="trow"><div class="tot"><span data-t="totp">Total you pay</span><b id="tot"></b></div>
+   <button class="pill sun" data-act="apply" data-t="applyNow">CHECK ELIGIBILITY</button></div>
+   <p class="small">Rate is a sample. Your real rate depends on your credit check.</p></div>
+ </div>
+</section>
+
+<section class="docs w">
+ <div class="rv"><h2>Keep these 4 papers ready</h2><p>That’s all you need. Upload them from your phone</p></div>
+ <div class="steps rv" id="steps"></div>
+</section>
+
+<section class="hta w" id="hta" aria-labelledby="htaH">
+ <div class="hd"><h2 id="htaH">How to apply for a business loan online</h2><p>Check your loan range first, with no documents. Apply only when you're ready.</p><button class="pill sun" type="button" data-act="chat">CHECK ELIGIBILITY</button></div>
+ <div class="hs"><article class="hc" style="--i:0"><span class="hi"><svg width="30" height="30" viewBox="0 0 40 40" fill="none" stroke="#1C4C9A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8.33 8.33H31.67C33.51 8.33 35 9.83 35 11.67V25C35 26.84 33.51 28.33 31.67 28.33H18.33L11.67 33.33V28.33H8.33C6.49 28.33 5 26.84 5 25V11.67C5 9.83 6.49 8.33 8.33 8.33Z"/><path d="M12.5 16.67H27.5M12.5 21.67H21.67"/></svg></span><span class="hn">01</span><h3>Check your eligibility</h3><p>Answer a few short questions in our chat. No phone number, PAN or documents needed, and your credit score is not checked.</p></article><article class="hc" style="--i:1"><span class="hi"><svg width="30" height="30" viewBox="0 0 40 40" fill="none" stroke="#1C4C9A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11.67 5H28.33C30.17 5 31.67 6.49 31.67 8.33V31.67C31.67 33.51 30.17 35 28.33 35H11.67C9.83 35 8.33 33.51 8.33 31.67V8.33C8.33 6.49 9.83 5 11.67 5Z"/><path d="M13.33 10H26.67V15H13.33Z"/><path d="M14.17 21.67H14.18M20 21.67H20.01M25.83 21.67H25.84M14.17 28.33H14.18M20 28.33H20.01M25.83 28.33H25.84" stroke-width="3"/></svg></span><span class="hn">02</span><h3>See your loan range</h3><p>Get an estimate of how much you can borrow and your monthly EMI, based on your business.</p></article><article class="hc" style="--i:2"><span class="hi"><svg width="30" height="30" viewBox="0 0 40 40" fill="none" stroke="#1C4C9A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8.33333 8.33398H31.6667C33.5076 8.33398 35 9.82637 35 11.6673V28.334C35 30.1749 33.5076 31.6673 31.6667 31.6673H8.33333C6.49238 31.6673 5 30.1749 5 28.334V11.6673C5 9.82637 6.49238 8.33398 8.33333 8.33398Z"/><path d="M17.5 18.3333C17.5 20.1743 16.0077 21.6667 14.1667 21.6667C12.3258 21.6667 10.8334 20.1743 10.8334 18.3333C10.8334 16.4924 12.3258 15 14.1667 15C16.0077 15 17.5 16.4924 17.5 18.3333Z"/><path d="M9.66675 26.666C10.6667 24.4993 12.3334 23.3327 14.1667 23.3327C16.0001 23.3327 17.6667 24.4993 18.6667 26.666M23.3334 16.666H30.0001M23.3334 23.3327H28.3334"/></svg></span><span class="hn">03</span><h3>Apply online or talk to an expert</h3><p>Verify your mobile, PAN and Aadhaar, and share your bank statement online. Or schedule a call and our expert helps you finish it.</p></article><article class="hc" style="--i:3"><span class="hi"><svg width="30" height="30" viewBox="0 0 40 40" fill="none" stroke="#1C4C9A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M35 20C35 28.28 28.28 35 20 35C11.72 35 5 28.28 5 20C5 11.72 11.72 5 20 5C28.28 5 35 11.72 35 20Z"/><path d="M13.33 20.83L17.5 25L26.67 15.83"/></svg></span><span class="hn">04</span><h3>Get your offer and the money</h3><p>Read the full cost in the Key Facts Statement, sign online, and the money is sent to your bank account.</p></article></div><div class="dots" id="htaDots" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i></div>
+</section>
+<section class="tst" aria-label="Stories">
+ <div class="hd rv"><h2>What business owners say</h2><p>Real people, real shops. In their own words.</p></div>
+ <div class="tstage" id="tstage"><div class="fade l"></div><div class="fade r"></div><div class="ttrack" id="ttrack"></div></div>
+ <p class="note">Sample stories for the prototype.</p>
+</section>
+
+<section class="faq w" id="faq"><h2 class="rv">Frequently Asked Questions</h2><div class="ql rv" id="ql"></div></section>
+</main>
+
+<footer id="foot"><div class="w">
+ <div class="fg"><div class="b"><svg width="113" height="20" viewBox="0 0 113 20"><use href="#logo"/></svg><p>RBI-registered NBFC · Reg. no. N-XX.XXXXX</p><p>ISO 27001 Certified</p><p>We never ask for a fee before your loan.</p></div>
+  <div class="c"><h4>Loans</h4><a href="#loans">Working capital loan</a><a href="#loans">Machinery loan</a><a href="#loans">Business expansion loan</a><a href="#loans">Business line of credit</a><a href="#loans">Loan against property</a></div>
+  <div class="c"><h4>Resources</h4><a href="#calc">EMI calculator</a><a href="#">Guides</a><a href="#faq">FAQ</a></div>
+  <div class="c"><h4>Company</h4><a href="#">About us</a><a href="#">Grievance Redressal Officer</a><a href="#">Fair Practices Code</a><a href="#">Contact Us</a></div></div>
+ <div class="footer-support-ribbon">
+  <div class="support-item"><svg class="ti" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5l-2.5 1.5a11 11 0 0 0 5 5l1.5 -2.5l5 2v4a2 2 0 0 1 -2 2a16 16 0 0 1 -15 -15a2 2 0 0 1 2 -2"/></svg><span class="support-text"><strong>Customer Support (Toll-Free):</strong> <a href="tel:1800XXXXXXX">1800-XXX-XXXX</a><span class="support-hours">(9 AM to 8 PM, Mon - Sat)</span></span></div>
+  <div class="support-item"><svg class="ti" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z"/><path d="M3 7l9 6l9 -6"/></svg><span class="support-text"><strong>Support Email:</strong> <a href="mailto:customercare@saarthi.in">customercare@saarthi.in</a></span><span class="support-divider">|</span><span class="support-text"><strong>Grievance:</strong> <a href="mailto:grievance@saarthi.in">grievance@saarthi.in</a></span></div>
+ </div>
+ <div class="fb"><span>© 2026 Saarthi</span><span>All rights reserved</span></div>
+</div></footer>
+
+<div class="chat" id="chat" role="dialog" aria-label="Saarthi AI expert">
+ <div class="ch"><img class="av" src="../img/saarthi-mark.svg" width="40" height="40" alt=""><div><b>Saarthi AI expert</b><span>● Online · share details only if you apply</span></div><button type="button" class="x" id="closeChat" aria-label="Close chat">✕</button></div>
+ <div class="msgs" id="msgs"></div><div class="chips" id="chips"></div>
+ <form class="say" id="say"><input id="in" placeholder="Ask anything about business loans, in any language…" aria-label="Your answer"><button class="snd" aria-label="Send"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12 20 4l-6 16-3-7z"/><path d="M11 13 20 4"/></svg></button></form>
+ <p class="note">Estimates are indicative. Your final offer depends on your credit assessment.</p>
+</div>
+
+<script src="faq-data.js?v=6"></script>
+<script>
+window.KB=window.KB||{loans:{},biz:[],faq:[],base:[]}; // if the chat data file can't load, the rest of the page still works
+const $=id=>document.getElementById(id),inr=n=>'₹'+Math.round(n).toLocaleString('en-IN'),lakh=n=>n>=10000000?'₹'+(n/10000000).toFixed(2).replace(/\.?0+$/,'')+' crore':n>=100000?'₹'+(n/100000).toFixed(n%100000?1:0).replace('.0','')+' lakh':inr(n);
+const rm=matchMedia('(prefers-reduced-motion: reduce)').matches,C=t=>Math.min(1,Math.max(0,t)),L=(a,b,t)=>a+(b-a)*t,E=t=>t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;
+
+
+/* ---------- AI chat (same guide as ai-home.html) ---------- */
+const emi=(P,N,R)=>{const r=R/1200;return P*r*Math.pow(1+r,N)/(Math.pow(1+r,N)-1)},pv=(E,N,R)=>{const r=R/1200;return E*(1-Math.pow(1+r,-N))/r};
+const A={};
+const num=t=>{t=t.toLowerCase().replace(/,/g,'');const m=t.match(/(\d+(\.\d+)?)\s*(lakh|lac|l\b|k|thousand|hazaa?r|hajaa?r|cr|crore)?/);if(!m)return null;let v=+m[1];const u=m[3]||'';if(/^l/.test(u))v*=1e5;else if(/^k|thousand|^h/.test(u))v*=1e3;else if(/cr/.test(u))v*=1e7;else if(v<100)v*=1e5;return v};
+/* ===== Saarthi Guide: screening engine (rules). The real-AI version reads free text; the numbers always come from these fixed rules. ===== */
+const numS=t=>{t=String(t).toLowerCase().replace(/,/g,'');const m=t.match(/(\d+(\.\d+)?)\s*(lakh|lac|l\b|k|thousand|hazaa?r|hajaa?r|cr|crore)?/);if(!m)return null;let v=+m[1];const u=m[3]||'';if(/^l/.test(u))v*=1e5;else if(/^h/.test(u))v*=1e3;else if(/^k|thousand/.test(u))v*=1e3;else if(/cr/.test(u))v*=1e7;return v};
+const cnt=t=>{const m=String(t).match(/\d+/);return m?+m[0]:null};
+/* 4 business types (sample margins and EMI share, from the Saarthi Guide brief) */
+const BR={
+ rental:{label:'rental income',mf:.65,fmax:.50,re:/\b(i|we)\s+(own|have)\s+(a\s+|an\s+|my\s+)?(mall|shopping (centre|center|complex)|complex|building|warehouse|godown|shops|commercial property|property on rent)|\brent(ing)?\s+out\b|\blease(d)?\s+(out|to)\b|tenants?\s+(pay|give)|kiraya\s+(aata|ata|milta)|kiraye\s+par\s+(de|di|diya|diye|dete|deta|chadha)|mere\s+.{0,25}kiraye\s+par|\blandlord\b|rental income|rent income|income from rent|rent from (my )?tenants/i},
+ vehicle:{label:'vehicle-based',mf:.25,fmax:.45,re:/tractor|truck|lorry|tempo|pick-?up|\bvan\b|e-?rickshaw|auto ?rickshaw|rickshaw|taxi|\bcab\b|\bcar\b|\bbus\b|jcb|harvester|tipper|trailer|vehicle|gaa?di/i},
+ daily:{label:'daily-customer',mf:.15,fmax:.50,re:/kirana|grocery|general store|provision|juice|tea|chai|cafe|café|restaurant|dhaba|food stall|thela|bakery|sweet|mithai|pan shop|paan|medical store|chemist|pharmacy|mobile (shop|repair|recharge)|stationery|xerox|laundry|dry ?clean|pet groom|cloud kitchen|canteen|gym|spa|car wash|vegetable|sabzi|fruit|milk|dairy shop|meat|chicken|poultry shop|hardware|footwear|shoe|cosmetic|boutique|garment shop|cloth shop|galla|gullak|counter|chillar|retail|dukaa?n|shop|store/i},
+ batch:{label:'order or project',mf:.25,fmax:.45,re:/manufactur|factory|karkhana|workshop|fabricat|furniture|carpent|tailoring unit|garment (unit|making|manufactur)|stitching unit|leather|printing|press|packaging|decorat|event|cater|construction|contractor|interior|welding|engineering works|aadath|dhanda|karobaar|kaam.?dhaam|wholesale|distribut|trader|trading|supplier|export|transport|logistics/i},
+ seasonal:{label:'seasonal',mf:.20,fmax:.40,re:/firework|cracker|pataakh|mango|orchard|farm|crop|kheti|agri|nursery|festival|rakhi|diwali|gift pack|woollen|umbrella|raincoat|ice ?cream|cooler|season|mandi|tourism|tour operator|houseboat|sugarcane|ginning|mushroom|school uniform/i},
+ service:{label:'fixed-service',mf:.50,fmax:.55,re:/barber|salon|parlou?r|spa\b|freelanc|graphic|designer|design studio|\bca\b|ca firm|chartered|accountant|tax consult|consult|coach|tuition|teacher|academy|institute|coaching|clinic|doctor|dentist|physio|lawyer|advocate|architect|it service|software|saas|agency|photograph|video edit|web develop/i}};
+const ORDER=['rental','vehicle','seasonal','service','batch','daily'];
+const isHealth=()=>/doctor|clinic|dentist|dental|hospital|physio|diagnostic|pathology|\blab\b|medical|nursing|ayurved|homeo|vet|patient|eye care|optic/i.test((A.bizText||'')+' '+lastUse);
+const brOf=t=>ORDER.find(k=>BR[k].re.test(t))||null;
+function bizPhrase(t){t=String(t||'');let best=null;for(const k of ORDER){const m=BR[k].re.exec(t);if(m&&(best==null||m.index<best.index))best=m}if(!best)return '';
+ let w=(t.slice(best.index).match(/^[a-zA-Z.\-]+(?:\s+(?:shop|store|unit|centre|center|studio|parlou?r|works|business|firm|clinic|workshop|stall|kitchen|bar|corner|point|house|mart|hub|cart|truck|agency|salon|class(?:es)?|decorators?|manufacturing))?/)||[''])[0];
+ if(/^(shop|store|dukaa?n|retail)$/i.test(w)){const pv=t.slice(0,best.index).match(/([a-zA-Z]+)\s*$/);if(pv&&!/^(a|an|my|the|own|have|run)$/i.test(pv[1]))w=pv[1]+' '+w}return w.toLowerCase()}
+const QQ={
+ amt:{en:"To estimate your loan range, I'll ask a few short questions. No phone number is needed at this stage.\n\nWhat is the loan amount you are looking for?",hi:"आपकी लोन रेंज का अनुमान लगाने के लिए मैं कुछ छोटे सवाल पूछूँगा। अभी फ़ोन नंबर की ज़रूरत नहीं है।\n\nआप कितनी लोन राशि चाहते हैं?",chips:['₹2 Lakh','₹5 Lakh','₹10 Lakh'],read:t=>num(t),say:v=>`${lakh(v)}, noted.`},
+ use:{en:"What will you use the loan for?",hi:"आप लोन का इस्तेमाल किस काम के लिए करेंगे?",chips:Object.keys(KB.loans).map(n=>[n,KB.loans[n].sub]),read:t=>Object.keys(KB.loans).find(n=>t.toLowerCase().startsWith(n.toLowerCase()))||(/machin|equip|tool/i.test(t)?'Machinery loan':/property|house|land|ghar/i.test(t)?'Loan against property':/shop|grow|expan|repair|open/i.test(t)?'Business expansion loan':/day|salar|rent|cost|slow|line/i.test(t)?'Business line of credit':BR.vehicle.re.test(t)?'Machinery loan':/stock|raw|material|goods|supplies|packing|inventory/i.test(t)?'Working capital loan':/oven|tray|machine|equipment|tool|appliance|chair|fridge|computer|printer|hydroponic/i.test(t)?'Machinery loan':/renovat|interior|furnish|set ?up|setting up|new branch|branch/i.test(t)?'Business expansion loan':'Working capital loan'),say:v=>fitSay(v)},
+ yrs:{en:"How long has your business been running?",hi:"आपका बिज़नेस कितने समय से चल रहा है?",chips:['Less than 1 year','1-3 years','More than 3 years'],read:t=>/less|month|new|start|naya/i.test(t)?0.5:/more|3\+|[4-9]|\d\d/i.test(t)?4:2,say:()=>`Got it.`},
+ sales:{en:"What are your average monthly sales? An estimate is fine.",hi:"आपकी महीने की औसत बिक्री कितनी है? अंदाज़ा भी चलेगा।",chips:['₹1 lakh','₹2.5 lakh','₹5 lakh'],read:t=>num(t),say:v=>`About ${lakh(v)} a month.`},
+ d1:{en:b=>`Got it, ${bizName(b)}! Do you mostly get walk-in retail customers paying daily, or do you work on long-term contracts?`,hi:b=>`ठीक है, ${bizName(b)}! क्या ज़्यादातर ग्राहक रोज़ आकर पैसे देते हैं, या आप लंबे कॉन्ट्रैक्ट पर काम करते हैं?`,chips:['Walk-in, paid daily','Mostly contracts','A mix of both'],read:t=>/contract/i.test(t)&&!/mix|both/i.test(t)?'contract':'daily',say:()=>'Thanks.'},
+ d2:{en:"On a typical busy day (like a weekend), what does your billing counter collect?",hi:"किसी आम भीड़ वाले दिन (जैसे वीकेंड) आपके गल्ले में कितना आता है?",chips:['₹3,000','₹8,000','₹20,000'],read:t=>numS(t),say:v=>`Noted, ${inr(v)} on a busy day.`},
+ d3:{en:"On a slower day of the week, what do your counter sales drop to?",hi:"हफ़्ते के किसी धीमे दिन में आपकी काउंटर बिक्री कितनी रह जाती है?",chips:['₹1,500','₹4,000','₹10,000'],read:t=>numS(t),say:v=>`Got it, about ${inr(v)} on a slower day.`},
+ b1:{en:"Interesting field! Do your clients pay you upfront, or do you give them credit terms (like 30 to 60 days to pay invoices)?",hi:"बढ़िया! क्या आपके ग्राहक पहले पैसे देते हैं, या आप उन्हें उधार (30 से 60 दिन) देते हैं?",chips:['Mostly upfront','About 30 days credit','60 days or more'],read:t=>/60|more|zyada/i.test(t)?60:/30|credit|udhaar|baki/i.test(t)?30:0,say:()=>'Thanks.'},
+ b2:{en:"Roughly what is one such order or project worth?",hi:"एक ऐसा ऑर्डर या प्रोजेक्ट लगभग कितने का होता है?",chips:['₹25,000','₹1 lakh','₹5 lakh'],read:t=>numS(t),say:v=>`Noted, about ${inr(v)} per order.`},
+ b3:{en:"How many such orders or projects do you deliver in a month?",hi:"आप महीने में ऐसे कितने ऑर्डर या प्रोजेक्ट पूरे करते हैं?",chips:['2','5','10 or more'],read:t=>cnt(t),say:v=>`About ${v} a month.`},
+ s1:{en:b=>`Which months of the year bring in the absolute highest sales for your ${bizName(b,1).replace(/ business$/,'')} business?`,hi:b=>`साल के किन महीनों में आपके ${bizName(b,1)} की बिक्री सबसे ज़्यादा होती है?`,chips:['Oct–Dec (festive)','Mar–Jun (summer)','Jul–Sep (monsoon)','Spread across the year'],read:t=>t,say:()=>'Thanks.'},
+ s2:{en:"What is your total estimated turnover during peak season months?",hi:"पीक सीज़न के महीनों में आपका कुल टर्नओवर लगभग कितना होता है?",chips:['₹2 lakh','₹5 lakh','₹15 lakh'],read:t=>num(t),say:v=>`Noted, about ${lakh(v)}.`},
+ f1:{en:"Got it! For a professional setup/clinic, do your clients or patients pay per consultation/visit, or do you work on a monthly package/retainer model?",hi:"ठीक है! आपके ग्राहक या मरीज़ हर विज़िट/कंसल्टेशन पर पैसे देते हैं, या आप महीने के पैकेज/रिटेनर पर काम करते हैं?",chips:['Per consultation/visit','Monthly package/retainer','Both'],read:t=>t,say:()=>'Thanks.'},
+ f2:{en:()=>isHealth()?"Roughly what do your patients pay you in total per month?":"Roughly what do your clients pay you in total per month?",hi:()=>isHealth()?"आपके मरीज़ महीने में कुल लगभग कितना देते हैं?":"आपके ग्राहक महीने में कुल लगभग कितना देते हैं?",chips:['₹1 lakh','₹2.5 lakh','₹5 lakh'],read:t=>num(t),say:v=>`About ${lakh(v)} a month.`},
+ f3:{en:"What are your primary fixed monthly overheads like premises rent or staff salaries?",hi:"आपके महीने के तय खर्च कितने हैं, जैसे जगह का किराया या स्टाफ़ की सैलरी?",chips:['₹20,000','₹50,000','₹1 lakh'],read:t=>numS(t),say:v=>`Noted, ${inr(v)} a month.`},
+ r1:{en:"Roughly how much rent do your tenants pay you in total per month?",hi:"आपके किरायेदार हर महीने कुल लगभग कितना किराया देते हैं?",chips:['₹2 lakh','₹10 lakh','₹40 lakh'],read:t=>num(t),say:v=>`Noted, about ${lakh(v)} a month in rent from your tenants.`},
+ v1:{en:()=>`To help calculate the safe limit for buying your ${A.asset||'vehicle'}, roughly what do your regular business operations bring in per month in total?`,hi:()=>`आपके ${A.asset||'वाहन'} के लिए सुरक्षित लिमिट निकालने के लिए, आपके काम से हर महीने कुल लगभग कितनी कमाई होती है?`,chips:['₹50,000','₹1 lakh','₹2 lakh'],read:t=>num(t),say:v=>`Noted, about ${lakh(v)} a month.`},
+ bt:{en:"To tailor your estimate, what kind of business do you run? (e.g., Bakery, Ad Agency, Salon, Kirana store)",hi:"अनुमान को आपके हिसाब से बनाने के लिए, आप किस तरह का बिज़नेस करते हैं? (जैसे बेकरी, ऐड एजेंसी, सैलून, किराना स्टोर)",chips:['Bakery','Ad Agency','Salon','Kirana store'],read:t=>t.trim()||null,say:v=>{const k=brOf(v);A.bizText=v.trim().length<=40?v.trim().toLowerCase():(bizPhrase(v)||v.trim().toLowerCase());if(assetOf(v)&&!A.asset)A.asset=assetOf(v);if(k&&!A.br)setBracket(k);return HI()?`ठीक है, ${A.bizText}।`:`Got it, ${/^(a|an)\s/i.test(A.bizText)?A.bizText:(/^[aeiou]/i.test(A.bizText)?'an ':'a ')+A.bizText}.`}},
+ emi:{en:"Last one: do you currently pay any loan EMIs or shop rent? If yes, how much per month in total?",hi:"आख़िरी सवाल: क्या आप अभी कोई लोन EMI या दुकान का किराया भरते हैं? अगर हाँ, तो महीने में कुल कितना?",chips:['No EMIs or rent','₹5,000','₹10,000','₹25,000'],read:t=>/^no\b|nahi|none|zero|^0$|koi nahi/i.test(t.trim())?0:numS(t),say:v=>v?`Noted, ${inr(v)} a month.`:`No EMIs or rent, good.`}};
+const BRQ={daily:['d3'],batch:['b3','b2'],seasonal:['s2'],service:['f2'],vehicle:['v1'],rental:['r1']};
+const bizName=(b,bare)=>{const w=(A.bizText||'').replace(/\(.*\)/,'').trim().toLowerCase();const s=w&&w.length<40?w:({daily:'a shop',batch:'an order-based business',seasonal:'a seasonal business',service:'a service business'})[b];return bare?s.replace(/^(a|an|my)\s+/,''):(/^(a|an|my)\s/.test(s)?s:(/^[aeiou]/.test(s)?'an ':'a ')+s)};
+var chatHi=0;function HI(){return lang==='hi'||chatHi===1}
+function detectLang(t){if(/[\u0900-\u097F]/.test(t)){chatHi=1;return}const hw=(String(t).toLowerCase().match(/\b(hai|hain|chahiye|chaiye|mera|meri|mere|mujhe|kitna|kitni|kya|nahi|nahin|karna|paisa|paise|aap|hoga|kaise|kyun|lena|dena|wala|rakhna|padega|aahe|mala|pahije|kiti|majha|tumhi|ahe|kay|kasa)\b/g)||[]).length;if(hw>=2)chatHi=1;else if(hw===0&&String(t).trim().split(/\s+/).length>=4)chatHi=0}
+const HIACK=[[/^Got it\.$/,'ठीक है।'],[/^Thanks\.$/,'धन्यवाद।'],[/^No EMIs or rent, good\.$/,'कोई EMI या किराया नहीं, बढ़िया।'],[/^Here's your result:$/,'यह रहा आपका अनुमान:'],[/^(₹[\d.,]+ lakh), noted\.$/,'$1, नोट कर लिया।'],[/^Noted, (₹[\d,.]+(?: lakh)?) a month\.$/,'ठीक है, $1 महीना।'],[/^About (₹[\d,.]+(?: lakh)?) a month\.$/,'लगभग $1 महीना।'],[/^Noted, about (₹[\d,.]+(?: lakh)?) a month\.$/,'ठीक है, लगभग $1 महीना।'],[/^Got it, about (₹[\d,]+) on a slower day\.$/,'ठीक है, धीमे दिन लगभग $1।']];
+const hiAck=t=>{if(!HI())return t;for(const [r,h] of HIACK)if(r.test(t))return t.replace(r,h);return t};
+/* guardrails (brief): filler words, single business-slang words, abusive language */
+const BAD=/(^|[^a-z])(fuck\w*|f\*+k|shit\w*|bitch\w*|bastard|asshole|dickhead|idiot|stupid|moron|chutiy\w*|madarchod|maderchod|behen ?chod|bhen ?chod|bhenchod|bsdk|bhosd\w*|gandu|haram(i|khor)|kutt[ae]|kamin[ae]|saal[ae]|randi|lund|lavd[ae]|lod[ue]|mc|bc)([^a-z]|$)/i;
+const FILLER=/^\s*(ok+|okay|k+|thank ?you|thanks|thx|ty|got it|fine|cool|great|nice|hmm+|alright|sure|theek hai|thik hai|thik h|th(i|ee)k|acc?h+a|haan|yes)\s*[.!]*\s*$/i;
+const BSLANG=/^\s*(dhand(h)?[ao]|business|biz|kaam ?-?dhaam|kaam|shop|dukaa?n|karobaa?r|vyapaa?r)\s*[.!]*\s*$/i;
+const pendingQ=()=>qi>=0&&qi<Q.length?qText(Q[qi]).split('\n\n').pop():null;
+let hostile=0;
+const PLEASE=/^\s*((ok|okay|okk|great|cool|nice|accha|acha|theek hai|thik hai)[\s,!.]+)?(thanks|thank ?you|thank u|thanku|thnx|thanx|thnks|tnx|thx|ty|awesome|awsome|awesom|awsm|osm|perfect|perfecto|prefect|superb|supurb|super|dhanyavaad|dhanyawad|shukriya)(\s+(so much|a lot|very much|ji|bro|sir))?\s*[!.]*\s*$/i;
+const CLOSE_CHIPS=['Check a new loan limit','See papers I might need','Explore secured vs unsecured difference'];
+const closeChips=()=>{chips.innerHTML=CLOSE_CHIPS.map(c=>`<button type="button">${c}</button>`).join('')};
+const lc1=q=>q.replace(/^(\W*)(\w)/,(m,a,b)=>a+b.toLowerCase());
+function closingChip(t){const x=t.trim();
+ if(x===CLOSE_CHIPS[0]){Object.keys(QQ).forEach(k=>delete A[k]);['br','asset','bizText','biz','bizWord','pre','profit','credit'].forEach(k=>delete A[k]);Q=['amt','use','yrs','sales','emi'].map(k=>({k,...QQ[k]}));window.RES=0;window.BIG=0;window.ADV=0;window.LEAD=null;qi=0;ask();return true}
+ if(x===CLOSE_CHIPS[1]){bot("- Proof of Shop (Any utility bill or local registration)\n- Last 6 months bank statements (Digital login or phone photos)\n- Business PAN (Optional — can be updated later)",closeChips);return true}
+ if(x===CLOSE_CHIPS[2]){bot("Unsecured loans need no security: a Working Capital Loan, Business Line of Credit or Business Expansion Loan is given on your sales and bank statements.\n\nSecured loans use an asset as security: for a Machinery loan, the new machine itself is the security; for a Loan against property, your home, shop or land is the security, so the amount can be higher.",closeChips);return true}
+ return false}
+function guard(t){
+ if(closingChip(t))return true;
+ if(PLEASE.test(t)&&cbOpen&&msgs.querySelector('.cb:not(.done)')){bot(HI()?'आपका स्वागत है! बस ऊपर फ़ॉर्म में अपना मोबाइल नंबर डालें और समय चुनें, आपका Saarthi एक्सपर्ट आपको कॉल करेगा।':"You're welcome! Just add your mobile number in the form above and pick a time, and your Saarthi expert will call you.");return true}
+  if(PLEASE.test(t)&&!cbOpen){
+  if(window.CB){window.LOCKED=1;bot("It is our absolute pleasure to support your business growth! Your Saarthi expert call is locked in. Is there anything else I can guide you with today?",closeChips);return true}
+  if(!window.RES){if(qi<0||qi>=Q.length)qi=nextQ();const pq=pendingQ();if(pq){starts[qi]=msgs.children.length;bot(`You're welcome! Let's get you that estimate. No mobile number is needed right now. To proceed: ${lc1(pq)}`,()=>{chips.innerHTML=buildChips(Q[qi]);lastChips=chips.innerHTML});return true}}
+ }
+ if(BAD.test(t)){hostile=1;chips.innerHTML='';bot("This kind of language is strictly prohibited. I am here to help you guide and estimate your business loan query. How can I assist you with your business needs today?");return true}
+ if(hostile){hostile=0;if(FILLER.test(t)){bot(HI()?'बताइए, मैं आपकी क्या मदद कर सकता हूँ?':'Sure. How can I help with your business loan?',starters);return true}return false}
+ const pq=pendingQ();
+ if(FILLER.test(t)){if(pq){bot(`Awesome! Let's continue getting your estimate. Could you let me know: ${pq}`,()=>{chips.innerHTML=lastChips||buildChips(Q[qi])})}else bot(window.RES?(HI()?'बढ़िया! अपने लोन के बारे में कुछ और जानना चाहेंगे?':"Awesome! Is there anything else you'd like to know about your loan?"):(HI()?'बढ़िया! आप क्या जानना चाहेंगे?':'Awesome! What would you like to know?'),starters);return true}
+ const sw=t.match(BSLANG);if(sw&&!(qi>=0&&qi<Q.length&&Q[qi].k==='bt')){const w=sw[1].toLowerCase();if(pq){bot(`Got it, ${w} operations! Let's lock in your limit. ${pq}`,()=>{chips.innerHTML=lastChips||buildChips(Q[qi])})}else{qi=nextQ();bot(`Got it, ${w} operations! Let's lock in your limit.`,ask)}return true}
+ return false}
+const CREDIT=/udhaa?r|baa?ki|market me fasa|fasa (hua )?paisa|chukti|parcha/i,PROFIT=/kamai|kamaai|munaa?fa|bachat|profit|net income/i;
+const nextQ=()=>Q.findIndex(q=>A[q.k]===undefined);
+let Q=['amt','use','yrs','sales','emi'].map(k=>({k,...QQ[k]}));
+function setBracket(k){if(!BR[k])return;A.br=k;if(k==='rental')A.bizText='rental property';Q=['amt','use'].concat(A.bt!==undefined?['bt']:[],['yrs']).map(x=>({k:x,...QQ[x]})).concat(BRQ[k].map(x=>({k:x,...QQ[x]})),[{k:'emi',...QQ.emi}])}
+
+const WHYFIT={en:{'Working capital loan':"It pays for stock, raw material and supplier bills, and you repay it from your sales.",'Machinery loan':"It pays for the machines, tools or equipment you need to grow your output.",'Business expansion loan':"It covers setting up or growing your shop or premises, such as the rent deposit, renovation, fittings and furniture.",'Business line of credit':"It gives you a limit to draw from for day-to-day costs, and you pay interest only on what you use.",'Loan against property':"Your property is the security, so you can borrow a larger amount, usually at a lower rate."},
+ hi:{'Working capital loan':"इससे स्टॉक, कच्चा माल और सप्लायर के बिल चुकते हैं, और आप इसे अपनी बिक्री से लौटाते हैं।",'Machinery loan':"इससे वे मशीनें, औज़ार या उपकरण खरीदे जाते हैं जिनसे आपका काम बढ़े।",'Business expansion loan':"इससे दुकान शुरू करने या बढ़ाने का खर्च निकलता है, जैसे किराये का डिपॉज़िट, फ़िटिंग, फ़र्नीचर और पहला स्टॉक।",'Business line of credit':"इसमें रोज़ के खर्चों के लिए एक लिमिट मिलती है, और ब्याज सिर्फ़ इस्तेमाल की गई रकम पर लगता है।",'Loan against property':"आपकी प्रॉपर्टी गारंटी होती है, इसलिए ज़्यादा रकम आमतौर पर कम ब्याज पर मिलती है।"}};
+let lastUse='',usedChip=false;
+const DURABLE=/tractor|truck|lorry|tempo|pick-?up|\bvan\b|e-?rickshaw|auto ?rickshaw|rickshaw|taxi|\bcab\b|\bcar\b|\bbus\b|jcb|harvester|tipper|trailer|oven|tray|machine|equipment|tool|appliance|chair|fridge|freezer|computer|printer|generator|cnc|lathe|loom/i;
+const assetOf=t=>{const m=String(t||'').match(DURABLE);return m?m[0].toLowerCase():''};
+function secNote(v){const L=HI(),a=A.asset;
+ if(v==='Machinery loan'){return L?(a?` ${a} सालों चलता है, इसलिए यह सिक्योर्ड लोन है: ${a} ही गारंटी है।`:' यह सिक्योर्ड लोन है: जो मशीन आप खरीदेंगे, वही गारंटी है।'):(a?` A ${a} lasts for years, so this is a secured loan: the ${a} itself is the security.`:' This is a secured loan: the machine you buy is itself the security.')}
+ if(v==='Loan against property')return '';return L?' यह अनसिक्योर्ड लोन है, कुछ गिरवी नहीं रखना।':' This is an unsecured loan, so nothing needs to be kept as security.'}
+function fitSay(v){const L=HI()?'hi':'en',b=KB.biz.find(x=>x.re.test(lastUse))||A.biz,u=b&&b.uses&&b.uses[v],ph=lastUse.match(/\b(open|start|set up|setting up|expand|grow|buy|repair|renovate)\w*\s+(?:a|an|my|the|new|more)?\s*([a-z][a-z ]{2,30}?)(?:\s+(?:for|in|at|with)\b.*)?[.!?]*$/i);
+ const lead=ph?`${{open:'Opening',start:'Starting','set':'Setting up',setting:'Setting up',expand:'Expanding',grow:'Growing',buy:'Buying',repair:'Repairing',renovate:'Renovating'}[ph[1].toLowerCase().split(' ')[0]]||'This'} ${/^(a|an|my|the)$/i.test(ph[2])?'':(/^[aeiou]/i.test(ph[2])?'an ':'a ')}${ph[2].trim()}`:'That';
+ const why=WHYFIT[L][v]+secNote(v)+(u?(L==='hi'?'':` For your business, that means: ${u.toLowerCase()}.`):'');
+ const sec=KB.loans[v].secured?(L==='hi'?' रकम आपकी प्रॉपर्टी की कीमत पर निर्भर करती है, इसलिए अभी अनुमान दिखाएँगे और वैल्यूएशन के बाद पक्का करेंगे।':" The amount depends on your property's value, so we'll show an estimate now and confirm it after a valuation."):'';
+ if(usedChip)return L==='hi'?`ठीक है। ${why}${sec}`:(/^It /.test(why)?`Noted. ${an(v)[0].toUpperCase()+an(v).slice(1)} ${v} ${why.slice(3)}${sec}`:`Noted. With ${an(v)} ${v}, ${why.charAt(0).toLowerCase()+why.slice(1)}${sec}`);return L==='hi'?`${v} सही रहेगा। ${why}${sec}`:`${lead} fits ${an(v)} ${v}. ${why}${sec}`}
+let qi=-1,lastChips='';const msgs=$('msgs'),chips=$('chips');msgs.appendChild(chips);const put=el=>msgs.insertBefore(el,chips);new ResizeObserver(()=>{msgs.scrollTop=msgs.scrollHeight}).observe(msgs);new MutationObserver(()=>{msgs.scrollTop=msgs.scrollHeight}).observe(chips,{childList:true});
+const starts=[];function add(html,who){if(who==='me')setTimeout(()=>ph(qi>=0&&qi<Q.length?1:0),0);const parts=who==='ai'?String(html).split(/\n\n+/).filter(x=>x.trim()):[html];let d;parts.forEach(pt=>{pt=hiAck(pt);d=document.createElement('div');d.className='m '+who;d.innerHTML=pt.replace(/\n/g,'<br>');put(d)});return d}
+function bot(t,then){chips.innerHTML='';const ty=document.createElement('div');ty.className='typing';ty.innerHTML='<i></i><i></i><i></i>';put(ty);setTimeout(()=>{ty.remove();add(t,'ai');then&&then()},650)}
+const PH=['Ask me anything else about your loan…','Type your answer, or ask me anything…'],ph=i=>{if(!msgs.querySelector('.m.me'))return;window.phStop=1;$('in').placeholder=HI()?(i?'अपना जवाब लिखें, या कुछ भी पूछें…':'लोन के बारे में कुछ और पूछें…'):PH[i]};
+function buildChips(q){let c=q.chips;if(q.k==='use'&&A.biz){const Lx=[...A.biz.loans];if((A.amt||0)>CAP&&!Lx.includes('Loan against property'))Lx.push('Loan against property');c=Lx.map(n=>[n,(A.biz.uses||{})[n]||KB.loans[n].sub,1]);c.push('Something else')}return c.map(chipB).join('')}
+const chipB=c=>Array.isArray(c)?`<button type="button" class="cat${c[2]?' sug':''}" data-v="${c[0]} – ${c[1].toLowerCase()}"><b>${c[0]}${c[2]?' <i>Suggested</i>':''}</b><span>${c[1]}</span></button>`:`<button type="button">${c}</button>`;
+const START=['How much loan can I get?','Which documents are required?','What are the fees and charges?','Speak to a loan expert'];
+/* after a call is booked: no new-estimate chips, only what still helps */
+function bookedChips(){chips.innerHTML='<button type="button" data-cbchange="1">Change the time</button>'+START.slice(1,3).map(c=>`<button type="button">${c}</button>`).join('')}
+function starters(){if(window.CB)return bookedChips();chips.innerHTML=START.map(c=>`<button type="button">${c}</button>`).join('')}
+const MAXCALC=5000000;const an=w=>/^[AEIOU]/i.test(w)?'an':'a',CAP=2500000,capNote=a=>a>CAP?`Our business loans without collateral go up to ${lakh(CAP)} (sample). For a larger amount, a Loan against property may fit, since your property is the security.`:'';
+const startNote=t=>/\b(start|starting|shuru|naya|launch|opening|open a new|new (?:business|shop|clinic|unit))\b/i.test(t)?"Since you're starting out: most lenders want a business to have run for a while, usually 1 to 3 years depending on the lender. Our sample rule needs at least 1 year of sales, so I'll check that next.":'';
+const amtOnly=t=>/^\s*(?:₹|rs\.?|inr)?\s*[\d,.]+\s*(?:lakhs?|lacs?|l|k|thousand|cr|crores?)?\s*(?:rupees|rs)?\s*$/i.test(t);
+function intent(t){
+ if(/expert|person|speak|talk|human|call me|call back|callback/i.test(t))return expertCall();
+ if(slang(t))return;
+ const amt=/\d/.test(t)?num(t):null,biz=KB.biz.find(b=>b.re.test(t)),faq=KB.faq.find(f=>f.re.test(t));
+ if(!amt&&!biz&&faq&&!/^how much/i.test(t))return free(t,starters);
+ const other=!biz&&t.match(/(?:for|run|have|own|in)\s+(?:my|a|an|our|the)?\s*([a-z][a-z ]{2,24}?)\s+(?:business|shop|store|unit|company|work)\b/i);
+ if(amt||biz||other||brOf(t)||/loan|borrow|finance|udhaar|karz|how much|kitna|eligib/i.test(t)){if(biz||other||brOf(t))A.bizText=brOf(t)==='rental'?'rental income':bizPhrase(t)||(other&&other[1])||'';if(assetOf(t))A.asset=assetOf(t);if(biz){A.biz=biz;const pl=t.match(/\b(beauty parlou?r|kirana (?:store|shop|dukaan)|medical store|bakery|farm|salon|clinic|store|cafe|café|restaurant|workshop|factory|shop|boutique|dhaba|parlou?r|gym|school|garage|studio|hotel|canteen|lab|showroom|mart|nursery|academy|institute|dukaan|dukan)\b/i);A.bizWord=bizPhrase(t)||biz.word||(pl?pl[1].toLowerCase():'business')}let m=[];if(amt&&amt>=10000){A.amt=amt;m.push(`${lakh(amt)}, noted.`)}const cn=capNote(A.amt||0),sn=startNote(t);if(cn)m.push(cn);if(biz&&!HI())m.push(biz.note);if(sn)m.push(sn);else if(other)m.push(`Got it, a ${other[1].trim()} business. A few quick questions, and I'll match it to the right loan.`);qi=nextQ();m.length?bot(m.join('\n\n'),ask):ask();return}
+ free(t,starters)}
+/* text for the current question (questions can depend on the business type) */
+const qText=q=>{const v=HI()?q.hi:q.en;return typeof v==='function'?v(A.br):(q.k==='use'&&A.biz&&!HI()&&!DURABLE.test(A.bizWord||'')?`What will you use the loan for in your ${A.bizWord}?`:v)};
+/* mid-chat questions: answer in one line, then go back to the same step */
+const INTR=[{re:/girvi|collateral|security|guarant|kuch rakhna|gehna|mortgage|dukaa?n ke kaa?gaz/i,a:"If you choose a Working Capital Loan or Line of Credit, absolutely nothing needs to be kept as security! For Machinery loans, only the new machine itself acts as security."},
+ {re:/prepay|pre-pay|foreclos|close (it |the loan )?early|jaldi chuk|band kar/i,a:"Yes, you can close your floating-rate loan early with zero extra charges!"},
+ {re:/balance ?sheet|p ?& ?l\b|profit and loss/i,a:"No, you don't need a balance sheet to check your range!"}];
+function interrupt(t){if(!/\?|kya|kitna|kaise|hoga|padega|chahiye|need|do i/i.test(t))return null;const h=INTR.find(x=>x.re.test(t))||KB.faq.find(f=>f.re.test(t));return h?h.a:null}
+/* slang: "Mera galla 10,000 hai" = daily counter collection */
+function slang(t){if(!/galla|gullak|counter collection|chillar/i.test(t))return false;const lk=t.match(/(\d+(\.\d+)?)\s*(lakh|lac|cr)/i);if(lk&&A.amt===undefined)A.amt=num(lk[0]);const v=numS(t.replace(lk?lk[0]:'#',''));if(v==null)return false;if(A.br!=='daily')setBracket('daily');A.d1=A.d1||'daily';A.d2=v;A.bizText=A.bizText||'shop';qi=Q.findIndex(q=>q.k==='d3');starts[qi]=msgs.children.length;
+ bot(HI()?`ठीक है, गल्ले में रोज़ ${inr(v)}! हफ़्ते के किसी धीमे दिन में यह आमतौर पर कितना रह जाता है?`:`Noted, ${inr(v)} daily counter collection! On a slower day of the week, what does it usually drop to?`,()=>{chips.innerHTML=Q[qi].chips.map(chipB).join('');lastChips=chips.innerHTML});return true}
+function ask(){const q=Q[qi];
+ if(A.amt>MAXCALC){if(window.BIG)return;window.BIG=1;window.ADV=1;window.RES=1;qi=Q.length;ph(0);bot(`Growing your enterprise to this scale is a massive milestone! While our instant online calculator is capped at ₹50 Lakhs for quick digital processing, a premium request of ${lakh(A.amt)} qualifies perfectly for our Secured Corporate Loan Desk. We can easily cross this threshold by backing the loan with your commercial property or business assets, unlocking customized tenures and our best interest rates.`,()=>showCb());return}
+ if(q.k==='use'&&A.pre){A.use=A.pre;A.pre=null;usedChip=true;put(loanCard(A.use));qi=nextQ();return ask()}
+ if(!A.br&&qi>Q.findIndex(x=>x.k==='use')){const k=brOf((A.bizText||'')+' '+(usedChip?'':lastUse));if(k){A.bizText=A.bizText||bizPhrase(lastUse);setBracket(k);qi=nextQ();return ask()}}
+ ph(1);starts[qi]=msgs.children.length;bot(qText(q),()=>{chips.innerHTML=buildChips(q);lastChips=chips.innerHTML})}
+function answer(t){if(!t.trim())return;add(t,'me');$('in').value='';if(!window._chip)detectLang(t);window._chip=0;
+ if(isUndo(t)){const u=lastUndo();if(u!=null)return undoTo(u);return bot("There's nothing to undo yet. Ask me anything, or tap a question below.",starters)}
+ if(cbOpen&&/^\d{10}$/.test(t.trim())&&window.fillCb){window.fillCb(t.trim());return}
+ if(guard(t))return;
+ if(qi<0){intent(t);return}if(qi>=Q.length){free(t);return}
+ const q=Q[qi];
+ if(q.k==='use'&&/^something else$/i.test(t.trim())){chips.innerHTML=q.chips.map(chipB).join('');return}
+ if(/expert|speak to|talk to|call me|human|person/i.test(t)){expertCall();return}
+ const ia=interrupt(t);if(ia&&(q.read(t)==null||/\?/.test(t))){bot(`${ia}\n\n${qText(q).split('\n\n').pop().replace(/^(Got it|Interesting field|Great)[^!]*! /,'')}`,()=>{chips.innerHTML=lastChips||buildChips(q)});return}
+ if(slang(t))return;
+ if(['use','yrs'].includes(q.k)&&amtOnly(t)&&num(t)>=10000){A.amt=num(t);const cn=capNote(A.amt);bot(`Updated: you need about ${lakh(A.amt)}.${cn?' '+cn:''}\n\n${qText(q)}`,()=>{chips.innerHTML=buildChips(q);lastChips=chips.innerHTML});return}
+ if(q.k==='use'){usedChip=/ – /.test(t);lastUse=t.replace(/ – .*/,'');if(!usedChip&&assetOf(t))A.asset=assetOf(t)}
+ let credNote='';if(CREDIT.test(t)&&!A.credit){A.credit=1;credNote=HI()?'ठीक है, आपकी कुछ बिक्री बाद में (उधार पर) आती है। अभी हम उसे थोड़ा कम गिनेंगे।':'Noted, part of your sales comes in later (udhaar). We\'ll count that a little lower for now.'}
+ const INC=['sales','d3','b3','b2','s2','f2','v1','r1'];
+ if(PROFIT.test(t)&&INC.includes(q.k)&&num(t)){A.profit=num(t);Q.forEach(x=>{if(INC.includes(x.k)&&A[x.k]===undefined)A[x.k]=0});addUndo(qi);
+  const msg=(HI()?`ठीक है, लगभग ${lakh(A.profit)} महीने की कमाई (मुनाफ़ा)। हम सीधे यही इस्तेमाल करेंगे।`:`Noted, about ${lakh(A.profit)} a month in kamai (profit). We'll use that directly.`)+(credNote?'\n\n'+credNote:'');qi=nextQ();bot(msg,()=>qi>=0?ask():(qi=Q.length,result()));return}
+ const v=q.read(t);if((v==null||Number.isNaN(v))&&credNote){bot(`${credNote}\n\n${pendingQ()}`,()=>{chips.innerHTML=lastChips||buildChips(q)});return}
+ if(v==null||Number.isNaN(v)){bot(q.retry||(HI()?'बस एक अंदाज़ा बता दीजिए, जैसे ₹8,000।':'Just a rough figure is fine, for example ₹8,000.'),()=>{chips.innerHTML=lastChips||buildChips(q)});return}
+ addUndo(qi);
+ A[q.k]=v;if(q.k==='use'&&!A.br){const k=usedChip?brOf(A.bizText||''):brOf((A.bizText||'')+' '+t);if(k){A.bizText=A.bizText||bizPhrase(t);setBracket(k)}else if(usedChip&&!Q.some(x=>x.k==='bt')){Q.splice(Q.findIndex(x=>x.k==='use')+1,0,{k:'bt',...QQ.bt})}}let s=q.say(v);if(credNote)s=credNote+(s?'\n\n'+s:'');qi=nextQ();
+ const next=()=>{if(q.k==='use')put(loanCard(v));qi>=0?ask():(qi=Q.length,result())};s?bot(s,next):next()}
+/* fixed lending rules (sample): income = sales × margin; EMI room = income × EMI share − current EMIs and rent; loan = what that EMI repays at 18% over 3 years */
+function monthlySales(){const b=A.br;if(!b)return A.sales||0;if(b==='daily')return A.d2?A.d2*8+A.d3*18:A.d3*26;if(b==='batch')return A.b2*A.b3;if(b==='seasonal')return A.s2/0.6/12;if(b==='service')return A.f2;if(b==='vehicle')return A.v1;if(b==='rental')return A.r1;return 0}
+function result(){ph(0);const prop=A.use==='Loan against property',asset=A.use==='Machinery loan',N=prop?84:asset?60:36,R=prop||asset?14:18,br=BR[A.br]||{label:'small',mf:.20,fmax:.45};
+ if(A.yrs<1){bot(`Thanks! Right now your business is under 1 year old. Most lenders need at least 1 year of sales. Get a free Udyam certificate meanwhile, and take payments by UPI so your statement shows them. A Saarthi expert can also tell you when to come back.`,()=>{chips.innerHTML='<button type="button">Speak to a loan expert</button>'});return}
+ const S=monthlySales()*(A.credit?0.9:1),inet=A.profit!=null?A.profit:A.br==='service'?Math.max(0,Math.min(S*br.mf,S-(A.f3||0))):S*br.mf,big=S>=2500000,heavy=big&&(A.emi||0)>S*.3;let emiMax=inet*br.fmax-(A.emi||0);if(big&&!heavy)emiMax=Math.max(emiMax,S*.3-(A.emi||0));const r=R/1200;
+ const cap=KB.loans[A.use]&&KB.loans[A.use].secured?MAXCALC:CAP,lmax=heavy?0:emiMax>0?Math.min(cap,emiMax*(1-Math.pow(1+r,-N))/r):0;window.LEAD={...A,S,inet,emiMax,lmax,N,R};
+ /* no false promises: high existing commitments on a rental or property journey -> advisory + callback, no range */
+ if((A.br==='rental'&&(A.emi||0)>(A.r1||0))||(prop&&lmax<50000)){bot("Thanks for sharing your details. Because your current financial commitments are high relative to your baseline sales, our automated calculator cannot print an instant estimate. However, a Saarthi expert will review your property deeds and existing repayments to explore custom long-term restructuring structures for your business. Let's set up your call below:",()=>{window.ADV=1;window.RES=1;showCb()});return}
+ if(heavy){bot(HI()?'जानकारी देने के लिए धन्यवाद। आपके बिज़नेस के आकार को देखते हुए, Saarthi एक्सपर्ट आपकी बिक्री और मौजूदा किस्तों को साथ में देखकर सबसे सही लोन ढांचा सुझाएंगे, इसलिए हम यहां तुरंत अनुमान नहीं दिखा रहे। चलिए आपकी कॉल तय करते हैं:':"Thanks for sharing your details. For a business of your size, a Saarthi expert will look at your sales and current repayments together and suggest the best loan structure, so we won't print an instant estimate here. Let's set up your call below:",()=>{window.ADV=1;window.RES=1;showCb()});return}
+ if(lmax<50000){bot(`Thanks. Right now your current payments take up most of your income, so a new loan would stretch you. A Saarthi expert can look at options like a longer tenure${(KB.loans[A.use]&&KB.loans[A.use].secured)||A.use==='Machinery loan'?' or a co-applicant':' or a secured loan'}. Want a call back?`,()=>{chips.innerHTML='<button type="button">Speak to a loan expert</button>'});return}
+ const top=Math.floor(Math.min(A.amt,lmax)/10000)*10000,lo=Math.round(top*.8/10000)*10000,e=emi(lo,N,R);window.S={P:lo,N,R,max:top};
+ const papers=['Proof of Shop (Any utility bill or local registration)','Last 6 months bank statements (Digital login or phone photos)','Business PAN (Optional — can be updated later)'];
+ const runCost=!usedChip&&/stock|raw material|inventory|goods|salar|staff|wage|rent|bills?\b|supplier|working capital|day.to.day|running|expense|kharch|maal|samaan/i.test(lastUse||'');
+ const title=prop?(runCost?'Working capital loan (Secured Against Property)':'Loan against property (Secured)'):A.use;
+ const body=prop?`${title} • ${inr(e)} a month over 7 years at 14%. Because a Loan Against Property depends heavily on the market valuation of your real estate asset, your final approved limit and final interest rate will be confirmed after a quick valuation check by our expert team.`
+  :`${A.use} • ${inr(e)} a month for ${lakh(lo)} over ${N/12} years at ${R}%.${A.amt>lmax?` You asked for ${lakh(A.amt)}; based on your sales, ${lakh(lo)} is a safer amount.`:''} <b style="color:#fff">This is an estimate.</b> Your final offer will be confirmed after a quick check by our team.`;
+ const expert=prop?'A Saarthi loan expert will call you to safely review your property deeds and optimize your repayment plan.':'A Saarthi loan expert will call you and confirm exactly which papers you need.';
+ const d=document.createElement('div');d.className='res';d.innerHTML=`<span class="k">GOOD NEWS • YOU LIKELY QUALIFY</span><div class="big">${lakh(lo)} - ${lakh(top)}</div><div class="s">${body}</div><div class="docs2">${expert}</div><details class="pp"><summary>▼ See papers you may need</summary><ul>${papers.map(x=>`<li>${x}</li>`).join('')}</ul></details>
+ <div class="cta2"><button class="pill sun" data-cb="1">SCHEDULE CALL WITH EXPERT</button><button class="pill lite" data-act="apply">APPLY NOW</button></div>`;
+ bot("Here's your result:",()=>{window.RES=1;put(d);chips.innerHTML='<button type="button">Why this amount?</button><button type="button">What fees will I pay?</button>';if(!prop)setCalc(lo,N,R)})}
+const whyAmt=()=>{const L=window.LEAD;if(!L)return null;const br=BR[L.br]||{label:'small',mf:.20,fmax:.45};return L.profit!=null?`You told us your monthly kamai (profit) is about ${inr(L.profit)}. We keep up to ${Math.round(br.fmax*100)}% of it for EMIs, subtract your current EMIs and rent, and the loan that this EMI repays at ${L.R||18}% over ${(L.N||36)/12} years is your upper limit. These are sample rules; the team confirms the real numbers.`:`We estimate your monthly ${L.br==='rental'?'rent from tenants':'sales'} at about ${inr(L.S)} from your answers. For a ${br.label} business we count about ${Math.round(br.mf*100)}% of that as income${L.br==='service'?' (after your fixed costs)':''}, keep up to ${Math.round(br.fmax*100)}% of the income for EMIs, and subtract your current EMIs and rent. The loan that this EMI repays at ${L.R||18}% over ${(L.N||36)/12} years is your upper limit. These are sample rules; the team confirms the real numbers.`};
+/* 1-step callback inside the chat: mobile + OTP + best time */
+let cbOpen=false;
+/* time slots from the real clock: only times that are still possible */
+function cbSlots(){const n=new Date(),h=n.getHours()+n.getMinutes()/60,W=[[10,12,'10 AM-12 PM'],[12,14,'12-2 PM'],[14,16,'2-4 PM'],[16,19,'4-7 PM']],out=[];
+ if(h>=9&&h<19.5)out.push('Call me now (within 30 min)');W.filter(w=>w[0]>h+0.5).slice(0,2).forEach(w=>out.push('Today, '+w[2]));[W[0],W[2],W[3]].forEach(w=>out.push('Tomorrow, '+w[2]));return out}
+function expertCall(){if(window.CB)return showCb();bot(HI()?'ज़रूर। समय चुनिए, लोन एक्सपर्ट आपको एक बार कॉल करेंगे।':'Sure. Pick a time and a loan expert will call you once.',()=>showCb())}
+function showCb(){if(window.CB){bot(HI()?`आपकी कॉल पहले से तय है: ${window.CB.when}, +91 ${window.CB.masked} पर (रेफ़रेंस ${window.CB.ref})।`:`Your call is already scheduled ${window.CB.when} on +91 ${window.CB.masked} (reference ${window.CB.ref}). A Saarthi expert will call you then.`,bookedChips);return}if(msgs.querySelector('.cb:not(.done)'))return;cbOpen=true;const d=document.createElement('div');d.className='cb';
+ d.innerHTML=`<b>${window.ADV?'Where should your Saarthi Expert call you?':'To lock in this estimate, where should your Saarthi Expert call you?'}</b>
+ <div class="cbA"><label for="cbm">Mobile Number</label><div class="cbr"><span>+91</span><input class="cbm" id="cbm" inputmode="numeric" maxlength="10" placeholder="Enter here" autocomplete="tel-national"></div>
+ <label>⏰ Best Time to Call</label><div class="cbt">${cbSlots().map(x=>`<button type="button">${x}</button>`).join('')}</div>
+ <button type="button" class="pill sun cbgo" disabled>Schedule my call</button></div>
+ <div class="cbB" hidden><label for="cbp">🔑 Enter the 4-digit OTP sent to <span class="cbn"></span></label><input class="cbp" id="cbp" inputmode="numeric" maxlength="4" placeholder="_ _ _ _"><small>Demo mode · Enter any 4 digits.</small>
+ <div class="cbr2"><button type="button" class="pill sun cbv" disabled>Verify &amp; confirm call</button><button type="button" class="cbch">Change number or time</button></div></div>`;put(d);msgs.scrollTop=1e9;
+ const m=d.querySelector('.cbm'),o=d.querySelector('.cbp'),g=d.querySelector('.cbgo'),vb=d.querySelector('.cbv');let slot='';
+ const v=()=>{g.disabled=!(m.value.length===10&&slot);m.classList.toggle('filled',m.value.length===10)};
+ m.oninput=()=>{m.value=m.value.replace(/\D/g,'');v()};if(window.CBM){m.value=window.CBM;v()}
+ d.querySelectorAll('.cbt button').forEach(b=>b.onclick=()=>{slot=b.textContent;d.querySelectorAll('.cbt button').forEach(x=>x.classList.toggle('sel',x===b));v()});
+ g.onclick=()=>{d.querySelector('.cbn').textContent='+91 '+m.value.replace(/\d(?=\d{4})/g,'•');d.querySelector('.cbA').hidden=true;d.querySelector('.cbB').hidden=false;o.value='';vb.disabled=true;o.focus();msgs.scrollTop=1e9};
+ o.oninput=()=>{o.value=o.value.replace(/\D/g,'');vb.disabled=o.value.length!==4};
+ d.querySelector('.cbch').onclick=()=>{d.querySelector('.cbB').hidden=true;d.querySelector('.cbA').hidden=false;m.focus()};
+ vb.onclick=()=>{const ref='SAR-'+Math.floor(100000+Math.random()*900000),when=/^Call me now/.test(slot)?'in the next 30 minutes':slot.replace(/^(Today|Tomorrow), /,(x,a)=>a.toLowerCase()+', ');
+  try{sessionStorage.setItem('lead',JSON.stringify({ref,mobile:m.value,slot,answers:window.LEAD||A}))}catch(e){}
+  window.CBM=m.value;window.CB={ref,when:/^in the next/.test(when)?'within the next 30 minutes':'for '+when,masked:m.value.replace(/\d(?=\d{4})/g,'•')};cbOpen=false;d.classList.add('done');d.innerHTML=`<b>✓ Call scheduled</b><p>Reference ${ref}. A Saarthi expert will call +91 ${m.value.replace(/\d(?=\d{4})/g,'•')} ${when}. We call only once, at this time.</p>`;
+  bot("You're all set. Anything else you'd like to know meanwhile?",bookedChips)};
+ window.fillCb=x=>{m.value=x;v()};}
+
+function loanCard(n){const Lo=KB.loans[n],d=document.createElement('details');d.className='loan';d.innerHTML=`<summary>What is ${an(n)} ${n}?</summary><p>${Lo.what}</p><span class="lb">GOOD FOR</span><p style="margin-top:2px">${Lo.good}</p><span class="lb">SAMPLE RANGE</span><p style="margin-top:2px">${Lo.sample}</p><span class="lb">DOCUMENTS</span><ul>${KB.base.concat(Lo.docs).map(x=>`<li>${x}</li>`).join('')}</ul>`;return d}
+const isObj=t=>{if(!window.RES||!window.S||window.ADV)return false;const n=/\d/.test(t)?num(t):0;return /\bmore\b|higher|increase|too low|not enough|kam hai|kam h\b|zyada|jyada|badha|instead|can i get|i need|chahiye/i.test(t)||n>window.S.P};
+function objection(t){if(!isObj(t))return false;const n=/\d/.test(t)?num(t):0;
+ const want=n>=10000?n:(A.amt||window.S.max);bot(HI()?`मैं समझता हूँ कि आपको अपना बिज़नेस बढ़ाने के लिए ${lakh(want)} चाहिए। ${lakh(window.S.P)} हमारा शुरुआती अनुमान है, जो कुछ बुनियादी बातों पर आधारित है। हमारी क्रेडिट टीम को-एप्लिकेंट, सीज़न की बढ़ती बिक्री या GST रिटर्न देखकर यह सीमा आसानी से बढ़ा सकती है।`:`I completely understand you need ${lakh(want)} to scale your business. While ${lakh(window.S.P)} is our initial soft estimate based on basic parameters, our human credit team can easily boost this ceiling by evaluating secondary elements like a co-applicant, seasonal sales growth, or GST returns.`,()=>showCb());return true}
+function free(t,then){ph(0);if(qi>=Q.length&&objection(t))return;if(/expert|speak to|talk to|call me|call back|callback|human|person/i.test(t))return expertCall();if(/why this amount/i.test(t)&&whyAmt())return bot(whyAmt(),then);const h=INTR.find(x=>x.re.test(t))||KB.faq.find(f=>f.re.test(t));if(!h&&window.ADV&&msgs.querySelector('.cb:not(.done)'))return bot(HI()?'नोट कर लिया। आपके Saarthi एक्सपर्ट कॉल पर यह सब देखेंगे। बस ऊपर फ़ॉर्म में अपना मोबाइल नंबर डालें और समय चुनें।':'Noted. Your Saarthi expert will go through this with you on the call. Just add your mobile number in the form above and pick a time.');bot(h?h.a:"Good question. I'll pass this to a person who can answer it properly. Want a call back at a time you choose?",then)}
+function addUndo(i){if(i<0||i>=Q.length)return;const c=document.createElement('button');c.type='button';c.className='chg';c.dataset.q=i;c.innerHTML='<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 14 4 9l5-5"/><path d="M4 9h10.5a5.5 5.5 0 0 1 0 11H11"/></svg>Undo';c.setAttribute('aria-label','Undo this answer');put(c)}
+function undoTo(i){if(msgs.querySelector('.typing'))return;msgs.querySelectorAll('.chg').forEach(b=>{if(+b.dataset.q>=i)b.remove()});const ui=Q.findIndex(q=>q.k==='use');Q.slice(i).forEach(q=>delete A[q.k]);if(i<=ui){Q=['amt','use','yrs','sales','emi'].map(k=>({k,...QQ[k]}));A.br=null}
+ qi=i;starts[qi]=msgs.children.length;cbOpen=false;bot(`${HI()?'कोई बात नहीं! इसे ठीक करते हैं। पिछला सवाल फिर से देखते हैं:':"No problem at all! Let's correct that. Let's look at the previous question again:"}\n\n${qText(Q[qi]).split('\n\n').pop()}`,()=>{chips.innerHTML=buildChips(Q[qi]);lastChips=chips.innerHTML})}
+const lastUndo=()=>{const b=[...msgs.querySelectorAll('.chg')].pop();return b?+b.dataset.q:null};
+const isUndo=t=>/^\s*(\[SYSTEM_COMMAND: UNDO_LAST_STEP\]|undo|change my answer|go back|galat (ho gaya|hai)|wapas|pichla)\b/i.test(t);
+msgs.addEventListener('click',e=>{const c=e.target.closest('.chg');if(c)undoTo(+c.dataset.q)});
+$('say').onsubmit=e=>{e.preventDefault();answer($('in').value)};chips.onclick=e=>{const b=e.target.closest('button');if(b&&b.dataset.cbchange){add(b.textContent,'me');window.CB=null;showCb();return}if(b&&b.dataset.el){add(b.textContent,'me');if(ctxStart){const f=ctxStart;ctxStart=null;f();return}if(qi>=0&&qi<Q.length){ask();return}Object.keys(QQ).forEach(k=>delete A[k]);Q=['amt','use','yrs','sales','emi'].map(k=>({k,...QQ[k]}));A.br=null;qi=nextQ();ask();return}if(b){window._chip=1;answer(b.dataset.v||b.textContent)}};
+const dim=document.createElement('div');dim.className='dim';document.body.appendChild(dim);dim.onclick=()=>closeChat();
+let started=0,ctxStart=null;const eligChips=()=>starters();function openChat(first){$('chat').classList.add('open');dim.classList.add('on');document.documentElement.classList.add('chatlock');
+ const ctx=()=>{if(!first)return;const L=HI();
+  if(first.calc){const P=+$('P').value;ctxStart=()=>{A.amt=P;qi=1;ask()};bot(L?`अप्लाई करने से पहले आपकी पात्रता जाँच लेते हैं। आपने कैलकुलेटर में ${lakh(P)} चुना है।`:`To apply, let's first check your eligibility. You chose ${lakh(P)} in the calculator.`,eligChips)}
+  else if(first.loan!=null){const k=Object.keys(KB.loans)[first.loan],nm=t('TL')[first.loan][0];ctxStart=()=>{A.pre=k;qi=0;ask()};bot(L?`आपने ${nm} चुना है। क्या मैं इसके लिए आपकी पात्रता जाँचूँ?`:`You picked ${an(nm)} ${nm}. Shall I check your eligibility for it?`,eligChips)}};
+ if(!started){started=1;bot(t('hi'),()=>{starters();ctx()})}else ctx();
+ setTimeout(()=>$('in').focus({preventScroll:true}),300)}
+function closeChat(){dim.classList.remove('on');$('chat').classList.remove('open');document.documentElement.classList.remove('chatlock')}
+$('closeChat').onclick=closeChat;addEventListener('keydown',e=>{if(e.key==='Escape')closeChat()});
+
+function applyNow(){const s=window.S||{P:+$('P').value,N:+$('N').value,R:+$('R').value};try{sessionStorage.setItem('loan',JSON.stringify({P:s.P,N:s.N,R:s.R,max:s.max||s.P,use:A.use||''}))}catch(e){}location.href='apply.html'}
+document.addEventListener('click',e=>{const m=e.target.closest('[data-menu]');if(m){e.preventDefault();openMenu(m.dataset.menu);return}
+ if(openM&&!e.target.closest('.dd'))closeMenu();
+ const nb=e.target.closest('[data-nb]');if(nb){e.preventDefault();closeMenu();toast(t('notBuilt'));return}
+ const cb=e.target.closest('[data-cb]');if(cb){e.preventDefault();add('Schedule call with expert','me');showCb();return}
+ if(e.target.closest('.tile .sec')){e.preventDefault();return}
+ const ln=e.target.closest('[data-loan]');if(ln){e.preventDefault();closeMenu();openChat({loan:+ln.dataset.loan});return}
+ const g=e.target.closest('[data-go]');if(g){e.preventDefault();closeMenu();$(g.dataset.go).scrollIntoView({behavior:'smooth'});return}
+ const a=e.target.closest('[data-act]');if(!a)return;e.preventDefault();closeMenu();if(a.dataset.act==='apply'){if(fromChat||a.closest('.res'))applyNow();else openChat({calc:1})}else if(a.dataset.act==='hdrapply'){if(window.RES&&window.S&&!window.ADV)applyNow();else openChat()}else if(a.dataset.act==='chat')openChat();else{closeChat();$('calc').scrollIntoView({behavior:'smooth'})}});
+addEventListener('keydown',e=>{if(e.key==='Escape')closeMenu()});
+
+/* ---------- reveal on scroll + parallax ---------- */
+const io=new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}}),{threshold:.15});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+const pars=[...document.querySelectorAll('[data-par]')];
+function parallax(){if(rm)return;const h=innerHeight;pars.forEach(el=>{const host=el.parentElement.getBoundingClientRect();if(host.bottom<-200||host.top>h+200)return;const d=(host.top+host.height/2-h/2);el.style.transform=`translate3d(0,${d*+el.dataset.par}px,0)`})}
+/* count-up for the numbers */
+const sio=new IntersectionObserver(es=>es.forEach(x=>{if(!x.isIntersecting)return;sio.disconnect();document.querySelectorAll('[data-n]').forEach(b=>{const n=+b.dataset.n,dec=n%1?1:0,t0=performance.now();if(rm)return;(function f(t){const p=E(C((t-t0)/1400));b.textContent=b.dataset.f.replace('{}',(n*p).toFixed(dec));if(p<1)requestAnimationFrame(f)})(t0)})}),{threshold:.4});sio.observe(document.querySelector('.stats'));
+
+/* ---------- loan types: button grows into the blue section ---------- */
+const ic=['<path d="M66.667 30.0033V63.3366H13.3336V30.0033L40.0003 16.6699L66.667 30.0033ZM13.3336 30.0033H66.667M30.0003 43.3366H50.0003"/>',
+'<path d="M10 50a13.33 13.33 0 1 0 26.67 0a13.33 13.33 0 1 0-26.67 0Z"/><path d="M23.33 50v.03"/><path d="M56.67 56.67a6.67 6.67 0 1 0 13.33 0a6.67 6.67 0 1 0-13.33 0Z"/><path d="M35 56.67h21.67"/><path d="M66.67 50.67V36.67a3.33 3.33 0 0 0-3.33-3.34h-20l-6.67-16.66h-20v21.66"/><path d="M60 16.67h-3.33a3.33 3.33 0 0 0-3.34 3.33v13.33"/>',
+'<path d="M10 70H70"/><path d="M50 26.67a10 10 0 0 0 20 0v-3.34L63.33 10H16.67L10 23.33v3.34a10 10 0 0 0 20 0M10 23.33h20M30 26.67v-3.34M30 26.67a10 10 0 0 0 20 0M30 23.33h20M50 26.67v-3.34M50 23.33h20"/><path d="M16.67 70V36.17"/><path d="M63.33 70V36.17"/><path d="M30 70V56.67A6.67 6.67 0 0 1 36.67 50h6.66A6.67 6.67 0 0 1 50 56.67V70"/>',
+'<path d="M23.3336 16.6699H30.0003M30.0003 16.6699H56.667M30.0003 16.6699C36.667 16.6699 40.0003 23.3366 40.0003 30.0033M23.3336 30.0033H40.0003M40.0003 30.0033H56.667M40.0003 30.0033C40.0003 36.6699 36.667 43.3366 30.0003 43.3366H23.3336L46.667 66.6699"/>',
+'<path d="M46.667 66.6699H66.667V36.6699L40.0003 16.6699L13.3336 36.6699V66.6699H33.3336M46.667 66.6699H33.3336M46.667 66.6699V50.0033H33.3336V66.6699M50.0003 23.6699V16.6699H56.667V28.6699"/>'];
+
+const SEC=[['un'],['se'],['un'],['un'],['se']];
+const tile=(i,d)=>`<a href="#" class="tile rv2" style="--d:${d}s" data-loan="${i}"><svg class="big" width="80" height="80" viewBox="0 0 80 80" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ic[i]}</svg><span class="row"><span><b>${t('TL')[i][0]}</b><span>${t('TL')[i][1]}</span></span><span class="ar">→</span></span><span class="sec ${SEC[i][0]}" tabindex="0" role="note" aria-label="${t('SECL')[i][0]}: ${t('SECL')[i][1]}">${t('SECL')[i][0]} ⓘ<span class="stip">${t('SECL')[i][1]}</span></span></a>`;
+function renderTiles(){$('tiles').innerHTML=`<div>${[0,1,2].map(i=>tile(i,.05+.05*i)).join('')}</div><div>${[3,4].map(i=>tile(i,.2+.05*(i-3))).join('')}</div>`;tiltOn($('tiles'))}
+const tr=$('loans'),blue=$('blue'),intro=$('intro'),cta=$('cta'),pinLen=()=>tr.offsetHeight-innerHeight;
+function grow(){const p=C(-tr.getBoundingClientRect().top/pinLen()),g=rm?(p>.4?1:0):E(C((p-.08)/.72));
+ const b=cta.getBoundingClientRect(),c=blue.getBoundingClientRect();
+ const t=L(b.top-c.top,0,g),l=L(b.left-c.left,0,g),r=L(c.right-b.right,0,g),bt=L(c.bottom-b.bottom,0,g),rad=g>=1?0:L(b.height/2,48,g);
+ blue.style.clipPath=g<=0?'inset(50%)':`inset(${t}px ${r}px ${bt}px ${l}px round ${rad}px)`;cta.style.opacity=g>.02?0:1;intro.style.opacity=1-C((g-.2)/.4);blue.classList.toggle('open',g>.6);if(PHONE.matches)blue.querySelectorAll('.tile').forEach((el,i)=>el.classList.toggle('pop',rm?g>.6:p>.5+i*.08))}
+cta.onclick=()=>scrollTo({top:tr.offsetTop+pinLen()*.95,behavior:rm?'auto':'smooth'});
+
+/* ---------- papers ---------- */
+const DI=['<path d="M8.33333 8.33398H31.6667C33.5076 8.33398 35 9.82637 35 11.6673V28.334C35 30.1749 33.5076 31.6673 31.6667 31.6673H8.33333C6.49238 31.6673 5 30.1749 5 28.334V11.6673C5 9.82637 6.49238 8.33398 8.33333 8.33398Z"/><path d="M17.5 18.3333C17.5 20.1743 16.0077 21.6667 14.1667 21.6667C12.3258 21.6667 10.8334 20.1743 10.8334 18.3333C10.8334 16.4924 12.3258 15 14.1667 15C16.0077 15 17.5 16.4924 17.5 18.3333Z"/><path d="M9.66675 26.666C10.6667 24.4993 12.3334 23.3327 14.1667 23.3327C16.0001 23.3327 17.6667 24.4993 18.6667 26.666M23.3334 16.666H30.0001M23.3334 23.3327H28.3334"/>','<path d="M19.9999 6.66602C16.9057 6.66602 13.9383 7.89518 11.7503 10.0831C9.56242 12.271 8.33325 15.2385 8.33325 18.3327V21.666M31.6666 21.666V18.3327C31.6547 16.4645 31.1943 14.6266 30.3242 12.9734C29.4541 11.3202 28.1997 9.90017 26.6666 8.83268M14.9999 33.3327C16.6666 29.9993 17.4999 25.8327 17.4999 21.666C17.4999 21.003 17.7633 20.3671 18.2322 19.8982C18.701 19.4294 19.3369 19.166 19.9999 19.166C20.663 19.166 21.2988 19.4294 21.7677 19.8982C22.2365 20.3671 22.4999 21.003 22.4999 21.666C22.4999 26.666 21.4999 30.8327 19.4999 34.9993M25.8333 31.666C26.6666 28.3327 27.1666 24.9993 27.1666 21.666M14.1666 18.3327C14.1666 16.7856 14.7812 15.3019 15.8751 14.2079C16.9691 13.1139 18.4528 12.4993 19.9999 12.4993C21.547 12.4993 23.0307 13.1139 24.1247 14.2079C25.2187 15.3019 25.8333 16.7856 25.8333 18.3327"/>','<path d="M5 16.6673L20 8.33398L35 16.6673M8.33333 16.6673V28.334M15.8333 16.6673V28.334M24.1667 16.6673V28.334M31.6667 16.6673V28.334M5 33.334H35"/>','<path d="M20 25C20 26.3261 20.5268 27.5979 21.4645 28.5355C22.4021 29.4732 23.6739 30 25 30C26.3261 30 27.5979 29.4732 28.5355 28.5355C29.4732 27.5979 30 26.3261 30 25C30 23.6739 29.4732 22.4021 28.5355 21.4645C27.5979 20.5268 26.3261 20 25 20C23.6739 20 22.4021 20.5268 21.4645 21.4645C20.5268 22.4021 20 23.6739 20 25Z"/><path d="M21.6667 29.166V36.666L25.0001 34.166L28.3334 36.666V29.166"/><path d="M16.6667 31.6673H8.33333C7.44928 31.6673 6.60143 31.3161 5.97631 30.691C5.35119 30.0659 5 29.218 5 28.334V11.6673C5 9.83398 6.5 8.33398 8.33333 8.33398H31.6667C32.5507 8.33398 33.3986 8.68517 34.0237 9.31029C34.6488 9.93542 35 10.7833 35 11.6673V28.334C34.9994 28.9185 34.8451 29.4926 34.5526 29.9987C34.26 30.5048 33.8396 30.925 33.3333 31.2173"/><path d="M10 15H30M10 20H15M10 25H13.3333"/>'];
+function renderSteps(){$('steps').innerHTML=t('D').map(([a,b],i)=>`<div class="step"><i><svg width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="#1C4C9A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${DI[i]}</svg></i><b>${a}</b><span>${b}</span></div>`).join('')}
+
+/* ---------- testimonials: moving strip, centre card biggest ---------- */
+const ttr=$('ttrack'),tst=$('tstage');let tcs=[],tx=0,tHover=false,setW=0;
+const tm=()=>{if(tcs.length)setW=tcs[7].offsetLeft-tcs[0].offsetLeft};
+function renderTst(){const h=t('T').map(d=>`<article class="tcard"><p class="q">${d[0]}</p><div class="who"><b>${d[1]}</b><span>${d[2]}</span></div></article>`).join('');ttr.innerHTML=h+h+h;tcs=[...ttr.children];tm();if(!tx)tx=-setW*.5}
+
+
+tst.addEventListener('mouseenter',()=>tHover=true);tst.addEventListener('mouseleave',()=>tHover=false);
+function strip(){if(!tcs.length)return;if(!rm&&!tHover)tx-=.5;if(-tx>=setW)tx+=setW;ttr.style.transform=`translateX(${tx}px)`;const W=tst.clientWidth,c=W/2;
+ tcs.forEach(el=>{const r=el.offsetLeft+tx+el.offsetWidth/2,d=Math.max(-1.3,Math.min(1.3,(r-c)/(W/2)));el.style.transform=`perspective(900px) rotateY(${d*38}deg) scale(${1-Math.abs(d)*.24})`})}
+
+addEventListener('resize',tm);
+
+/* ---------- FAQ ---------- */
+
+function renderFaq(){const all=$('ql').dataset.all;$('ql').innerHTML=t('F').map(([q,a],i)=>`<div class="qi${i?'':' open'}${i>4&&!all?' hide':''}"><button aria-expanded="${!i}">${q}<span class="pm" aria-hidden="true"></span></button><div class="a"><div><p>${a}</p></div></div></div>`).join('')+(all?'':`<button class="more" id="more">${t('fm')}</button>`)}
+$('ql').onclick=e=>{const b=e.target.closest('.qi button');if(b){const it=b.parentNode,o=!it.classList.contains('open');$('ql').querySelectorAll('.qi').forEach(x=>{x.classList.remove('open');x.firstChild.setAttribute('aria-expanded',false)});if(o){it.classList.add('open');b.setAttribute('aria-expanded',true)}}
+ if(e.target.id==='more'){$('ql').dataset.all=1;$('ql').querySelectorAll('.qi.hide').forEach(x=>x.classList.remove('hide'));e.target.remove()}};
+
+/* ---------- EMI calculator with the 3D ring (from ai-home.html) ---------- */
+function fill(el){el.style.setProperty('--p',((el.value-el.min)/(el.max-el.min)*100)+'%')}
+let fromChat=0;function setCalc(P,N,R){$('P').value=P;$('N').value=N;$('R').value=R;fromChat=1;calc();$('clead').textContent=t('cf')}
+function calc(){const P=+$('P').value,N=+$('N').value,R=+$('R').value,e=emi(P,N,R),I=e*N-P;['P','N','R'].forEach(k=>fill($(k)));
+ $('oP').innerHTML=`<i>₹</i>${Math.round(P).toLocaleString('en-IN')}`;$('oN').innerHTML=`${N}<i>${t('mo')}</i>`;$('oR').innerHTML=`${R}<i>%</i>`;
+ $('emi').textContent=inr(e);$('lp').textContent=inr(P);$('li').textContent=inr(I);$('tot').textContent=$('tot1').textContent=inr(P+I);window.S={P,N,R,max:(window.S&&window.S.max)||P};ring3d(P,I)}
+const SEG=[{n:'Loan amount',top:['#8193E2','#4A85E1','#3A60CB'],wall:['#4573D7','#3A62A4','#2D3D5F'],edge:'#3A60CB',inner:'#3B5FC0'},{n:'Interest',top:['#F8E6A6','#F4DA83','#EBC86A'],wall:['#F2D87B','#E3C063','#B8974A'],edge:'#E6C66E',inner:'#D9B85F'}];
+let sel=1,cur=[.8,.2],tgt=cur.slice(),lift=[0,1],tilt=.52,spin=0,tTilt=.52,tSpin=0,vals=[0,0];const hole=.62;
+const cv=$('pie'),ctx=cv.getContext('2d');
+function size(){const r=cv.getBoundingClientRect(),d=devicePixelRatio||1;cv.width=r.width*d;cv.height=r.height*d;ctx.setTransform(d,0,0,d,0,0)}
+function arcBand(X,Y,rx,ry,u,v,z1,z2){ctx.beginPath();ctx.ellipse(X,Y+z1,rx,ry,0,u,v);ctx.ellipse(X,Y+z2,rx,ry,0,v,u,true);ctx.closePath()}
+function draw(){const R=cv.getBoundingClientRect();if(!R.width)return;const W=R.width,H=R.height,cx=W/2,cy=H*.54,rx=W*.4,ry=rx*tilt,dep=W*.07,h=hole;
+ ctx.clearRect(0,0,W,H);ctx.save();ctx.filter='blur(16px)';ctx.fillStyle='rgba(127,180,238,.75)';ctx.beginPath();ctx.ellipse(cx,cy+dep+ry*.55,rx*1.02,ry*.62,0,0,7);ctx.fill();ctx.restore();
+ let a=-Math.PI/2+spin;const gap=.05;
+ const sl=cur.map((f,i)=>{const s={i,a1:a+gap/2,a2:a+f*Math.PI*2-gap/2};a+=f*Math.PI*2;s.m=(s.a1+s.a2)/2;const off=2+lift[i]*10;s.ox=Math.cos(s.m)*off;s.oy=Math.sin(s.m)*off*tilt*1.6-lift[i]*14;return s});
+ const pt=(X,Y,ang,k,z)=>[X+Math.cos(ang)*rx*k,Y+Math.sin(ang)*ry*k+z];
+ const vis=(s,lo,hi)=>{const out=[];for(let b=-2*Math.PI;b<=4*Math.PI;b+=2*Math.PI){const u=Math.max(s.a1,lo+b),v=Math.min(s.a2,hi+b);if(v>u)out.push([u,v])}return out};
+ sl.slice().sort((x,y)=>Math.sin(x.m)-Math.sin(y.m)).forEach(s=>{if(s.a2-s.a1<.003)return;const c=SEG[s.i],X=cx+s.ox,Y=cy+s.oy;
+  vis(s,Math.PI,2*Math.PI).forEach(([u,v])=>{ctx.globalAlpha=.85;ctx.fillStyle=c.inner;arcBand(X,Y,rx*h,ry*h,u,v,0,dep);ctx.fill();ctx.globalAlpha=1});
+  [s.a1,s.a2].forEach(ang=>{const [x0,y0]=pt(X,Y,ang,h,0),[x1,y1]=pt(X,Y,ang,1,0);ctx.fillStyle=c.edge;ctx.beginPath();ctx.moveTo(x0,y0);ctx.lineTo(x1,y1);ctx.lineTo(x1,y1+dep);ctx.lineTo(x0,y0+dep);ctx.closePath();ctx.globalAlpha=.92;ctx.fill();ctx.globalAlpha=1;ctx.strokeStyle='rgba(255,255,255,.55)';ctx.lineWidth=1.2;ctx.stroke()});
+  vis(s,0,Math.PI).forEach(([u,v])=>{const g=ctx.createLinearGradient(0,Y,0,Y+ry+dep);g.addColorStop(0,c.wall[0]);g.addColorStop(.45,c.wall[1]);g.addColorStop(1,c.wall[2]);ctx.globalAlpha=.96;ctx.fillStyle=g;arcBand(X,Y,rx,ry,u,v,0,dep);ctx.fill();ctx.globalAlpha=1;const cs=ctx.createLinearGradient(0,Y,0,Y+ry+dep);cs.addColorStop(.6,'rgba(255,255,255,0)');cs.addColorStop(1,'rgba(255,255,255,.25)');ctx.fillStyle=cs;ctx.fill();ctx.strokeStyle='rgba(255,255,255,.8)';ctx.lineWidth=2;ctx.beginPath();ctx.ellipse(X,Y+dep-1.5,rx,ry,0,u,v);ctx.stroke()});
+  const tg=ctx.createLinearGradient(X-rx,Y-ry,X+rx*.6,Y+ry);tg.addColorStop(0,c.top[0]);tg.addColorStop(.5,c.top[1]);tg.addColorStop(1,c.top[2]);ctx.globalAlpha=.97;ctx.fillStyle=tg;ctx.beginPath();ctx.ellipse(X,Y,rx,ry,0,s.a1,s.a2);ctx.ellipse(X,Y,rx*h,ry*h,0,s.a2,s.a1,true);ctx.closePath();ctx.fill();
+  {const gl=ctx.createLinearGradient(0,Y-ry,0,Y+ry);gl.addColorStop(0,'rgba(255,255,255,.45)');gl.addColorStop(.5,'rgba(255,255,255,0)');ctx.globalAlpha=1;ctx.fillStyle=gl;ctx.fill()}ctx.strokeStyle='rgba(255,255,255,.75)';ctx.lineWidth=1.6;ctx.beginPath();ctx.ellipse(X,Y,rx-1,ry-1,0,s.a1,s.a2);ctx.stroke();
+  {const u=Math.max(s.a1,-Math.PI*.95),v=Math.min(s.a2,-Math.PI*.15);if(v>u){const a=u+(v-u)*.12,b=u+(v-u)*.88;ctx.save();ctx.filter='blur(2px)';ctx.fillStyle='rgba(255,255,255,.55)';ctx.beginPath();ctx.ellipse(X,Y,rx*.95,ry*.95,0,a,b);ctx.ellipse(X,Y,rx*.86,ry*.86,0,b,a,true);ctx.closePath();ctx.fill();ctx.restore()}}
+  const k=(1+h)/2;s.px=X+Math.cos(s.m)*rx*k;s.py=Y+Math.sin(s.m)*ry*k});
+ const s=sl[sel];if(s&&s.px){$('pin').style.left=s.px+'px';$('pin').style.top=s.py+'px'}
+ $('pinlab').innerHTML=`${SEG[sel].n} ${Math.round(tgt[sel]*100)}%<small>${inr(vals[sel])}</small>`}
+function ring3d(P,I){vals=[P,I];const t=P+I;tgt=vals.map(v=>v/t);document.querySelectorAll('#leg button').forEach(b=>b.classList.toggle('on',+b.dataset.seg===sel));draw()}
+function ringStep(){let mv=false;for(let i=0;i<2;i++){const d=tgt[i]-cur[i],l=(i===sel?1:0)-lift[i];if(Math.abs(d)>1e-4||Math.abs(l)>1e-3)mv=true;cur[i]+=d*.14;lift[i]+=l*.14}
+ if(Math.abs(tTilt-tilt)>1e-3||Math.abs(tSpin-spin)>1e-3)mv=true;tilt+=(tTilt-tilt)*.1;spin+=(tSpin-spin)*.1;if(mv)draw()}
+const r3=document.querySelector('.r3');let tapT;const tapPin=()=>{r3.classList.add('tap');clearTimeout(tapT);tapT=setTimeout(()=>r3.classList.remove('tap'),3000)};cv.addEventListener('click',tapPin);
+$('leg').onclick=e=>{tapPin();const b=e.target.closest('[data-seg]');if(b){sel=+b.dataset.seg;calc()}};
+cv.onclick=e=>{const r=cv.getBoundingClientRect(),x=e.clientX-r.left-r.width/2,y=(e.clientY-r.top-r.height*.54)/tilt;let ang=Math.atan2(y,x)-(-Math.PI/2+spin);ang=((ang%(2*Math.PI))+2*Math.PI)%(2*Math.PI);sel=ang<tgt[0]*2*Math.PI?0:1;calc()};
+const stg=$('stage');if(matchMedia('(hover:hover)').matches&&!rm){stg.addEventListener('mousemove',e=>{const b=stg.getBoundingClientRect();tTilt=.44+((e.clientY-b.top)/b.height)*.18;tSpin=((e.clientX-b.left)/b.width-.5)*.5});stg.addEventListener('mouseleave',()=>{tTilt=.52;tSpin=0})}
+addEventListener('resize',()=>{size();draw()});size();['P','N','R'].forEach(id=>$(id).oninput=()=>{window.S=null;calc()});
+$('P').value=500000;$('N').value=24;$('R').value=18;
+
+/* ---------- words in English and Hindi ---------- */
+const I={en:{m_biz:"Business Loans",m_res:"Resources",m_comp:"Company",m_help:"Help",login:"SIGN UP",cta:"CHECK ELIGIBILITY",ctaApply:"APPLY NOW",
+ rbi:"RBI-registered NBFC · Reg. no. N-XX.XXXXX",h1:"Pehle jaaniye.<br>Phir faisla lijiye.",hp:"Ask anything about your business loan. Check how much you can borrow before sharing any personal details.",
+ askB:"Ask Saarthi AI",askS:" · Get your loan estimate first. Personal details only when you apply.",
+ st:[["{} lakh+","businesses funded"],["₹{} Cr+","lent so far"],["{} ★","from 2,300+ reviews"]],
+ why:"Why choose SAARTHI?",W:[["Your data stays safe","Used only for your loan. Never sold, never used for marketing calls."],["2-minutes eligibility check","Fully online, from your phone, no branch visits."],["Less Paperwork","PAN, Aadhaar, 6 months of bank statements, and GST or Udyam."],["Money in 48 Hours","Get the loan amount in your bank within 48 hours of approval."]],
+ eb:"LOANS FOR YOUR BUSINESS",lh:"One place for every business need",lp:"Goods to sell, a new machine or a bigger shop. Pick your need and see the amount, the full cost and the papers before you apply.",seeTypes:"SEE LOAN TYPES →",
+ TL:[["Working capital loan","Buy goods or raw material"],["Machinery loan","Buy machines or equipment"],["Business expansion loan","Grow, repair or open a shop"],["Business line of credit","Run day-to-day costs"],["Loan against property","Use my property as security"]],
+ ch:"See your monthly EMI",cl:"Move the sliders. The numbers update as you go.",cf:"Filled from your chat. Move the sliders. When it looks right, apply.",yme:"Your monthly EMI",totp:"Total you pay",la:"Loan amount",int:"Interest",ten:"Loan Tenure",rate:"Interest rate (per year)",mo:"months",m6:"6 months",y5:"5 years",l25:"₹50 lakh",applyNow:"CHECK ELIGIBILITY",rnote:"Rate is a sample. Your real rate depends on your credit check.",
+ dh:"Keep these 4 papers ready",dp:"That’s all you need. Upload them from your phone",D:[["PAN card","Of the business owner"],["Aadhaar card","Linked to your mobile number"],["Bank statement","Last 6 months, as a PDF"],["GST or Udyam certificate","Whichever one you have"]],
+ th:"What business owners say",tp:"Real people, real shops. In their own words.",tn:"Sample stories for the prototype.",
+ T:[["The line of credit helps me in the slow months.","Farah N.","Boutique · Hyderabad"],["I got one call, at the time I chose. Nothing more.","Ravi T.","Auto parts · Coimbatore"],["Not ready yet, they told me what to fix first.","Kavita D.","Dairy · Anand"],["I saw my EMI before I gave my number. No calls after.","Sunita P.","Tailoring shop · Nashik"],["The total cost was written right there. No surprise charges later.","Imran S.","Mobile repair · Lucknow"],["I filled it from my shop counter, in Hindi.","Meena K.","Kirana store · Indore"],["They told me which papers to keep ready. Done in one go.","Arjun R.","Bakery · Pune"]],
+ fh:"Frequently Asked Questions",fm:"See all 10 questions →",
+ F:[["My CIBIL score is low. Will I get a loan?","Often, yes. A lower score usually means a smaller amount or a higher rate, not a straight no. If it's too low, we'll tell you what to fix first."],["What fees will I pay?","Only a processing fee (sample: up to 2% + GST). It's shown before you apply, and there are no other charges."],["How many days until I get the money?","Usually 2–4 working days after your papers are checked (sample timeline)."],["I don't file ITR. Can I still apply?","Yes. We can use your last 6 months of bank statements and GST returns instead."],["How do I know this website is real?","Check our registration number on the RBI website. And never pay any fee before your loan is approved."],["Will you call me after I check my range?","No. Checking your range needs no phone number. We call only if you apply and choose a time."],["Can I repay early?","Yes. You can close the loan early. Any charge for this is shown upfront (sample)."],["Who sees my details?","Only the team handling your loan and the credit bureau for your check. We never sell your details."],["My business is only 1 year old. Can I apply?","Yes, for smaller amounts. A longer business history helps you get a bigger loan."],["Can I apply in Hindi or Marathi?","Yes. The whole check works in Hindi, Marathi and English."]],
+ fb:["RBI-registered NBFC · Reg. no. N-XX.XXXXX","ISO 27001 Certified","We never ask for a fee before your loan."],
+ FC:[["Loans"],["Resources","EMI calculator","Guides","FAQ"],["Company","About us","Grievance Redressal Officer","Fair Practices Code","Contact Us"]],
+ rights:"All rights reserved",copy:"© 2026 Saarthi",
+ megaH:"WHAT DO YOU NEED MONEY FOR?",megaB:"See your business loan range in 2 minutes",megaP:"No phone number, no effect on your credit score.",
+ MR:["EMI calculator","Guides: loans without ITR","FAQ","How to check we're real"],MC:["About us","Grievance Redressal Officer","Fair Practices Code","Contact us"],MH:["FAQ","Contact us","Report a fake call"],
+ notBuilt:"Only the business loan journey is built in this prototype.",SECL:[['Unsecured','Unsecured: given on your sales and bank statements. Nothing is kept as security.'],['Secured','Secured: the new machine you buy is the only security.'],['Unsecured','Unsecured: given on your sales. Nothing is kept as security.'],['Unsecured','Unsecured: a limit based on your regular bank transactions. Nothing is kept as security.'],['Secured','Secured: your home, shop or land is the security, so the amount can be higher.']],
+ cT:"Saarthi AI expert",cS:"● Online · share details only if you apply",cP:"Ask anything about business loans, in any language…",cN:"Estimates are indicative. Your final offer depends on your credit assessment.",send:"Send",hi:"Hi! I'm your Saarthi guide. Ask me anything about business loans, in any language. What would you like to know?"},
+hi:{m_biz:"बिज़नेस लोन",m_res:"जानकारी",m_comp:"कंपनी",m_help:"मदद",login:"साइन अप",cta:"पात्रता जाँचें",ctaApply:"अभी अप्लाई करें",
+ rbi:"RBI में रजिस्टर्ड NBFC · रजि. नं. N-XX.XXXXX",h1:"पहले जानिए।<br>फिर फ़ैसला लीजिए।",hp:"अपने बिज़नेस लोन के बारे में कुछ भी पूछें। कोई निजी जानकारी दिए बिना देखें कि आपको कितना लोन मिल सकता है।",
+ askB:"सारथी AI से पूछें",askS:" · पहले अपना लोन अनुमान देखें। निजी जानकारी सिर्फ़ अप्लाई करते समय।",
+ st:[["{} लाख+","बिज़नेस को लोन मिला"],["₹{} करोड़+","अब तक लोन दिया"],["{} ★","2,300+ रिव्यू से"]],
+ why:"SAARTHI ही क्यों?",W:[["आपका डेटा सुरक्षित","सिर्फ़ आपके लोन के लिए इस्तेमाल होता है। न कभी बेचा जाता है, न मार्केटिंग कॉल के लिए।"],["2 मिनट में पात्रता जाँच","पूरी तरह ऑनलाइन, आपके फ़ोन से, ब्रांच जाने की ज़रूरत नहीं।"],["कम कागज़ात","पैन, आधार, 6 महीने के बैंक स्टेटमेंट, और GST या उद्यम।"],["48 घंटे में पैसे","मंज़ूरी के 48 घंटे के अंदर लोन की रकम आपके बैंक में।"]],
+ eb:"आपके बिज़नेस के लिए लोन",lh:"बिज़नेस की हर ज़रूरत, एक ही जगह",lp:"बेचने के लिए सामान, नई मशीन या बड़ी दुकान। अपनी ज़रूरत चुनें और अप्लाई करने से पहले रकम, पूरा खर्च और कागज़ात देखें।",seeTypes:"लोन के प्रकार देखें →",
+ TL:[["वर्किंग कैपिटल लोन","सामान या कच्चा माल खरीदें"],["मशीनरी लोन","मशीन या उपकरण खरीदें"],["बिज़नेस बढ़ाने का लोन","दुकान बढ़ाएँ, मरम्मत करें या नई खोलें"],["बिज़नेस क्रेडिट लाइन","रोज़ के खर्च चलाएँ"],["प्रॉपर्टी पर लोन","अपनी प्रॉपर्टी गारंटी के रूप में रखें"]],
+ ch:"अपनी मासिक EMI देखें",cl:"स्लाइडर खिसकाएँ। नंबर साथ-साथ बदलेंगे।",cf:"आपकी चैट से भरा गया। स्लाइडर खिसकाएँ, सही लगे तो अप्लाई करें।",yme:"आपकी मासिक EMI",totp:"कुल चुकाना होगा",la:"लोन की रकम",int:"ब्याज",ten:"लोन की अवधि",rate:"ब्याज दर (सालाना)",mo:"महीने",m6:"6 महीने",y5:"5 साल",l25:"₹50 लाख",applyNow:"पात्रता जाँचें",rnote:"दर सिर्फ़ उदाहरण है। आपकी असली दर क्रेडिट जाँच पर निर्भर करती है।",
+ dh:"ये 4 कागज़ तैयार रखें",dp:"बस इतना ही चाहिए। इन्हें अपने फ़ोन से अपलोड करें",D:[["पैन कार्ड","बिज़नेस मालिक का"],["आधार कार्ड","आपके मोबाइल नंबर से जुड़ा"],["बैंक स्टेटमेंट","पिछले 6 महीने का, PDF में"],["GST या उद्यम सर्टिफ़िकेट","जो भी आपके पास हो"]],
+ th:"बिज़नेस मालिक क्या कहते हैं",tp:"असली लोग, असली दुकानें। उन्हीं के शब्दों में।",tn:"प्रोटोटाइप के लिए सैंपल कहानियाँ।",
+ T:[["मंदी के महीनों में क्रेडिट लाइन मेरी मदद करती है।","फ़राह एन.","बुटीक · हैदराबाद"],["मुझे एक ही कॉल आया, मेरे चुने समय पर। बस।","रवि टी.","ऑटो पार्ट्स · कोयंबटूर"],["अभी तैयार नहीं था, तो उन्होंने बताया पहले क्या ठीक करूँ।","कविता डी.","डेयरी · आणंद"],["नंबर देने से पहले ही मैंने अपनी EMI देख ली। बाद में कोई कॉल नहीं।","सुनीता पी.","टेलरिंग शॉप · नासिक"],["पूरा खर्च वहीं लिखा था। बाद में कोई छुपा चार्ज नहीं।","इमरान एस.","मोबाइल रिपेयर · लखनऊ"],["मैंने दुकान के काउंटर से ही, हिंदी में भर दिया।","मीना के.","किराना स्टोर · इंदौर"],["उन्होंने बताया कौन से कागज़ तैयार रखूँ। एक बार में काम हो गया।","अर्जुन आर.","बेकरी · पुणे"]],
+ fh:"अक्सर पूछे जाने वाले सवाल",fm:"सभी 10 सवाल देखें →",
+ F:[["मेरा CIBIL स्कोर कम है। क्या मुझे लोन मिलेगा?","अक्सर हाँ। कम स्कोर का मतलब आमतौर पर कम रकम या ज़्यादा ब्याज होता है, सीधा मना नहीं। अगर बहुत कम है, तो हम बताएँगे कि पहले क्या ठीक करें।"],["मुझे कितनी फ़ीस देनी होगी?","सिर्फ़ प्रोसेसिंग फ़ीस (सैंपल: 2% + GST तक)। यह अप्लाई करने से पहले दिखाई जाती है, और कोई दूसरा चार्ज नहीं है।"],["पैसे कितने दिन में मिलेंगे?","आमतौर पर कागज़ जाँचने के 2–4 कामकाजी दिनों में (सैंपल समय)।"],["मैं ITR नहीं भरता। क्या मैं फिर भी अप्लाई कर सकता हूँ?","हाँ। हम आपके पिछले 6 महीने के बैंक स्टेटमेंट और GST रिटर्न इस्तेमाल कर सकते हैं।"],["कैसे पता करूँ कि यह वेबसाइट असली है?","RBI की वेबसाइट पर हमारा रजिस्ट्रेशन नंबर जाँचें। और लोन मंज़ूर होने से पहले कभी कोई फ़ीस न दें।"],["रेंज देखने के बाद क्या आप मुझे कॉल करेंगे?","नहीं। रेंज देखने के लिए फ़ोन नंबर नहीं चाहिए। हम सिर्फ़ तभी कॉल करते हैं जब आप अप्लाई करें और समय चुनें।"],["क्या मैं लोन जल्दी चुका सकता हूँ?","हाँ। आप लोन पहले बंद कर सकते हैं। इसका कोई भी चार्ज पहले से दिखाया जाता है (सैंपल)।"],["मेरी जानकारी कौन देखता है?","सिर्फ़ आपका लोन देखने वाली टीम और आपकी जाँच के लिए क्रेडिट ब्यूरो। हम आपकी जानकारी कभी नहीं बेचते।"],["मेरा बिज़नेस सिर्फ़ 1 साल पुराना है। क्या मैं अप्लाई कर सकता हूँ?","हाँ, छोटी रकम के लिए। बिज़नेस जितना पुराना, लोन उतना बड़ा मिल सकता है।"],["क्या मैं हिंदी या मराठी में अप्लाई कर सकता हूँ?","हाँ। पूरी जाँच हिंदी, मराठी और अंग्रेज़ी में होती है।"]],
+ fb:["RBI में रजिस्टर्ड NBFC · रजि. नं. N-XX.XXXXX","ISO 27001 प्रमाणित","हम लोन से पहले कभी फ़ीस नहीं माँगते।"],
+ FC:[["लोन"],["जानकारी","EMI कैलकुलेटर","गाइड","सवाल-जवाब"],["कंपनी","हमारे बारे में","शिकायत निवारण अधिकारी","फ़ेयर प्रैक्टिस कोड","संपर्क करें"]],
+ rights:"सर्वाधिकार सुरक्षित",copy:"© 2026 सारथी",
+ megaH:"पैसे किस काम के लिए चाहिए?",megaB:"2 मिनट में अपनी बिज़नेस लोन रेंज देखें",megaP:"फ़ोन नंबर नहीं, क्रेडिट स्कोर पर कोई असर नहीं।",
+ MR:["EMI कैलकुलेटर","गाइड: ITR के बिना लोन","सवाल-जवाब","कैसे जाँचें कि हम असली हैं"],MC:["हमारे बारे में","शिकायत निवारण अधिकारी","फ़ेयर प्रैक्टिस कोड","संपर्क करें"],MH:["सवाल-जवाब","संपर्क करें","फ़र्ज़ी कॉल की शिकायत"],
+ notBuilt:"इस प्रोटोटाइप में सिर्फ़ बिज़नेस लोन का सफ़र बना है।",SECL:[['अनसिक्योर्ड','अनसिक्योर्ड: आपकी बिक्री और बैंक स्टेटमेंट पर मिलता है। कुछ गिरवी नहीं रखना।'],['सिक्योर्ड','सिक्योर्ड: जो नई मशीन आप खरीदेंगे, वही एकमात्र गारंटी है।'],['अनसिक्योर्ड','अनसिक्योर्ड: आपकी बिक्री पर मिलता है। कुछ गिरवी नहीं रखना।'],['अनसिक्योर्ड','अनसिक्योर्ड: आपके नियमित बैंक लेन-देन पर लिमिट मिलती है। कुछ गिरवी नहीं रखना।'],['सिक्योर्ड','सिक्योर्ड: आपका घर, दुकान या ज़मीन गारंटी है, इसलिए रकम ज़्यादा हो सकती है।']],
+ cT:"सारथी AI एक्सपर्ट",cS:"● ऑनलाइन · जानकारी सिर्फ़ अप्लाई करने पर दें",cP:"बिज़नेस लोन के बारे में कुछ भी पूछें, किसी भी भाषा में…",cN:"अनुमान सिर्फ़ संकेत हैं। आपका अंतिम ऑफ़र क्रेडिट जाँच पर निर्भर करता है।",send:"भेजें",hi:"नमस्ते! मैं आपका सारथी गाइड हूँ। बिज़नेस लोन के बारे में कुछ भी पूछें, किसी भी भाषा में। आप क्या जानना चाहेंगे?"}};
+let lang='en';try{lang=localStorage.getItem('sr-lang')||'en'}catch(e){}
+const t=k=>(I[lang][k]??I.en[k]);
+const EN_LOANS=I.en.TL.map(x=>x[0]);
+/* fixed texts: [selector, key] */
+const FIX=[['.strip .rbi span','rbi'],['.why h2','why'],['.intro .eb','eb'],['.intro h2','lh'],['.intro p','lp'],['#cta','seeTypes'],['.calc .hd h2','ch'],['.cst .top .cap','yme'],['.cst .tp .cap','totp'],['label[for=P]','la'],['label[for=N]','ten'],['label[for=R]','rate'],['.ctl .small','rnote'],['.docs h2','dh'],['.docs>div>p','dp'],['.tst .hd h2','th'],['.tst .hd p','tp'],['.tst .note','tn'],['.faq h2','fh'],['.ch b','cT'],['.ch span','cS'],['.chat .note','cN'],['.fb span:first-child','copy'],['.fb span:last-child','rights'],['#leg [data-seg="0"] .k','la'],['#leg [data-seg="1"] .k','int']];
+function setLang(l){lang=l;try{localStorage.setItem('sr-lang',l)}catch(e){}document.documentElement.lang=l;
+ document.querySelectorAll('#lang button').forEach(b=>b.classList.toggle('on',b.dataset.l===l));
+ document.querySelectorAll('[data-t]').forEach(el=>el.innerHTML=t(el.dataset.t));
+ FIX.forEach(([s,k])=>document.querySelectorAll(s).forEach(el=>{const i=el.querySelector('i');el.innerHTML=(i?i.outerHTML:'')+t(k)}));
+ document.querySelectorAll('.stats>div').forEach((d,i)=>{const b=d.querySelector('b');b.dataset.f=t('st')[i][0];b.textContent=b.dataset.f.replace('{}',b.dataset.n);d.querySelector('span').textContent=t('st')[i][1]});
+ document.querySelectorAll('.f .mm').forEach((m,i)=>{const s=m.children;if(i===0)s[1].textContent=t('l25');if(i===1){s[0].textContent=t('m6');s[1].textContent=t('y5')}});
+ const fb=document.querySelectorAll('.fg .b p');t('fb').forEach((x,i)=>fb[i].textContent=x);
+ document.querySelectorAll('.fg .c').forEach((c,ci)=>{const h=c.querySelector('h4'),a=c.querySelectorAll('a');h.textContent=t('FC')[ci][0];a.forEach((x,i)=>x.textContent=ci===0?t('TL')[i][0]:t('FC')[ci][i+1])});
+ $('clead').textContent=t(fromChat?'cf':'cl');
+ renderTiles();renderSteps();renderTst();renderFaq();window.renderWhy&&window.renderWhy();calc();closeMenu()}
+document.getElementById('lang').innerHTML='<button data-l="en">EN</button><button data-l="hi">हिंदी</button>';
+document.getElementById('lang').onclick=e=>{const b=e.target.closest('[data-l]');if(b)setLang(b.dataset.l)};
+let whyI=0;window.renderWhy=i=>{if(i!=null)whyI=i;const p=t('W')[whyI],x=$('whytxt');x.innerHTML=`<b>${p[0]}</b><span>${p[1]}</span>`};
+
+/* ---------- header menus (behaviour from test.html): only the business loan journey is built ---------- */
+function toast(m){document.querySelectorAll('.toast').forEach(x=>x.remove());const d=document.createElement('div');d.className='toast';d.setAttribute('role','status');d.textContent=m;document.body.appendChild(d);setTimeout(()=>d.remove(),3200)}
+const ICS=['<path d="M2 6l7-4 7 4v9H2z M2 6h14 M6 10h6"/>','<path d="M2 12a3 3 0 1 0 6 0a3 3 0 1 0-6 0 M12 13.5a1.5 1.5 0 1 0 3 0a1.5 1.5 0 1 0-3 0 M8 13.5h4 M15 12V8.5H10L8.5 4H4v5"/>','<path d="M2 16h14 M3 16V8 M15 16V8 M2 5l1.5-3h11L16 5v1a2 2 0 0 1-4 0 2 2 0 0 1-4 0 2 2 0 0 1-4 0z M7 16v-3h4v3"/>','<path d="M5 2h8 M5 5.5h8 M7 2c2 0 3 1.5 3 3.5S9 9 7 9H5l6 7"/>','<path d="M2 9l7-6 7 6 M4 8v8h10V8 M7 16v-4h4v4"/>'];
+const mi=(ic,b,s,attr)=>`<button class="mi" ${attr}>${ic?`<i><svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="#1C4C9A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">${ic}</svg></i>`:''}<span><b>${b}</b>${s?`<small>${s}</small>`:''}</span></button>`;
+let openM=null;
+function closeMenu(){openM=null;document.querySelectorAll('#nav .dd').forEach(x=>x.remove());document.querySelectorAll('#nav [data-menu]').forEach(b=>b.setAttribute('aria-expanded',false))}
+function openMenu(k){const btn=document.querySelector(`[data-menu=${k}]`);const was=openM===k;closeMenu();if(was)return;openM=k;btn.setAttribute('aria-expanded',true);
+ const go={0:'data-go="calc"',2:'data-go="faq"'};let h;
+ if(k==='biz')h=`<div class="dd mega" role="menu"><div><h4>${t('megaH')}</h4>${t('TL').map((x,i)=>mi(ICS[i],x[0],x[1],`data-loan="${i}"`)).join('')}</div><div class="mpro"><b>${t('megaB')}</b><p>${t('megaP')}</p><button class="pill" data-act="chat">${t('cta')}</button></div></div>`;
+ else{const L=k==='res'?t('MR'):k==='comp'?t('MC'):t('MH');h=`<div class="dd" role="menu">${L.map((x,i)=>mi('',x,'',k==='res'&&go[i]?go[i]:k==='help'&&i===0?'data-go="faq"':'data-nb="1"')).join('')}</div>`}
+ btn.parentNode.insertAdjacentHTML('beforeend',h)}
+
+/* ---------- tilt on hover for the loan cards (from loan-transition.html) ---------- */
+function tiltOn(root){if(rm||!matchMedia('(hover:hover)').matches)return;root.querySelectorAll('.tile').forEach(c=>{
+ c.addEventListener('mousemove',e=>{const r=c.getBoundingClientRect(),x=(e.clientX-r.left)/r.width,y=(e.clientY-r.top)/r.height;c.style.transform=`perspective(800px) rotateX(${(.5-y)*12}deg) rotateY(${(x-.5)*12}deg) scale(1.02)`;c.style.setProperty('--gx',x*100+'%');c.style.setProperty('--gy',y*100+'%');c.classList.add('hov')});
+ c.addEventListener('mouseleave',()=>{c.style.transform='';c.classList.remove('hov')})})}
+
+setLang(lang);
+/* typing placeholder: fixed prefix, only the example changes */
+(function(){const inputElement=$('in'),staticPrefix="Tell Saarthi AI what you need a loan for... (e.g., ",examples=["Clinic renovation","Kirana stock","Bakery oven"];let exampleIndex=0,charIndex=0,isDeleting=false;
+ function typeCycle(){const currentExample=examples[exampleIndex];if(isDeleting)charIndex--;else charIndex++;
+  inputElement.placeholder=staticPrefix+currentExample.substring(0,charIndex)+")";let dynamicSpeed=isDeleting?30:60;
+  if(!isDeleting&&charIndex===currentExample.length){dynamicSpeed=2500;isDeleting=true}else if(isDeleting&&charIndex===0){isDeleting=false;exampleIndex=(exampleIndex+1)%examples.length;dynamicSpeed=200}
+  if(!window.phStop)setTimeout(typeCycle,dynamicSpeed)}
+ if(matchMedia('(prefers-reduced-motion: reduce)').matches)inputElement.placeholder=staticPrefix+examples[0]+")";else typeCycle()})();
+/* ---------- Hybrid AI: when this page runs as a Claude artifact, Claude reads free text (any language, slang, mid-chat questions).
+   It only extracts answers and writes short replies; every number on the result comes from the fixed rules above. ---------- */
+let AI=null;(async()=>{
+ /* 1) our own server (website hosting): the key stays on the server */
+ try{const h=await (await fetch('/api/health',{cache:'no-store'})).json();if(h&&h.ai){AI={json:async p=>{const r=await fetch('/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({prompt:p})});const j=await r.json();if(!r.ok||!j.json)throw new Error(j.error||'no answer');return j.json}};return}}catch(e){}
+ /* 2) inside a Claude artifact: the viewer's own Claude */
+ try{if(window.claude&&claude.use)AI=await claude.use('sample')}catch(e){AI=null}})();
+const GUIDE=`You are "Saarthi Guide," an expert AI underwriter and empathetic conversational lending assistant for an RBI-regulated NBFC. Your goal is to help self-employed individuals, retailers, and micro-entrepreneurs estimate their loan eligibility in under 60 seconds without scaring them away.
+
+CORE EXPERIENCE PRINCIPLES:
+1. NEVER ask for a Phone Number, PAN, or sensitive identification in the initial screening phase.
+2. Be an empathetic peer. Avoid financial jargon (don't say FOIR, Amortization, or Debt-Service). Keep language accessible to small shopkeepers.
+3. Clearly understand the structural difference between Secured Loans (backed by an asset like property or machinery) and Unsecured Loans (backed purely by cash flow/sales) but explain them only when asked, using everyday terms.
+4. Support multilingual queries. If the user shifts to Hindi, Hinglish, or any regional language, seamlessly adapt your vocabulary while keeping the questions identical in intent.
+
+STRICT SEQUENCE & DYNAMIC OVERRIDE ANCHOR:
+- You must strictly guide the user through a cohesive question sequence: Funding Amount -> Business Intent/Purpose -> Vintage -> Sales Scale -> Obligations Check.
+- CRITICAL OVERRIDE: At ANY point in this flow, the user can choose to click a pre-made button OR type raw text freely into the input bar.
+- If the user types a custom response explaining their intent (e.g., "for clinic renovation", "buying boutique stock", "setting up hydroponic trays"), do NOT display dynamic error flags. Accept their text as the primary source of truth, map it to an underwriting risk bracket silently, and advance the conversation naturally.
+
+UNDERLYING LOAN PRODUCT KNOWLEDGE MATRIX:
+Recognize this strict product collateral allocation internally:
+- UNSECURED LOANS (No asset collateral needed): Working Capital Loan, Business Line of Credit, Business Expansion Loan.
+- SECURED LOANS (Collateral asset needed): Machinery Loan (secured by the equipment bought), Loan Against Property (secured by real estate).
+
+CUSTOM / UNLISTED BUSINESS RISK BRACKETS (silently categorize):
+1. DAILY_VELOCITY (e.g., juice bars, pet groomers, cloud kitchens, retail stores) -> btype "daily"
+2. BATCH_PROJECT (e.g., leather artisans, small garment manufacturers, wedding decorators, furniture makers) -> btype "batch"
+3. SEASONAL_CYCLIC (e.g., firework wholesalers, mango orchards, festival gift packagers, mushroom growers) -> btype "seasonal"
+4. FIXED_CAPACITY_SERVICE (e.g., graphic design freelancers, CA firms, private clinics, doctors, salons) -> btype "service"
+
+SLANG, MULTILINGUAL & REGIONAL DIALECT MAPPING:
+- "Galla", "Galla sales", "Counter collection", "Gullak", "Chillar count" -> Daily Counter Turnover (DAILY_VELOCITY).
+- "Dhanda", "Karobaar", "Kaam-dhaam", "Karkhana", "Workshop", "Aadath" -> Business Enterprise / Manufacturing (BATCH_PROJECT).
+- "Kamai", "Munafa", "Bachat" -> Net Profit / Disposable Income.
+- "Udhaar", "Baki", "Market me fasa paisa", "Chukti", "Parcha clearance" -> Accounts Receivable / Invoice Credit Terms.
+- "Mandi collection", "Tej-mandi", "Season ka kaam" -> SEASONAL_CYCLIC.
+- "Girvi", "Security", "Dukan ke kagaz" -> Loan collateral or property security queries.
+
+CONVERSATIONAL PERSONA ACTIONS:
+- If a user asks mid-chat "Isme kuch girvi rakhna padega?", intercept immediately and reply: "If you choose a Working Capital Loan or Line of Credit, absolutely nothing needs to be kept as security! For Machinery loans, only the new machine itself acts as security."
+- If a user says "Mera galla 10,000 hai", reply naturally: "Noted, ₹10,000 daily counter collection! On a slower day of the week, what does it usually drop to?"
+- Other mid-chat questions (e.g. prepayment, balance sheet): answer concisely in a single sentence and reassure (prepayment: "Yes, you can close your floating-rate loan early with zero extra charges!"); the page then returns to the step. Never ask for or discuss the user's CIBIL or credit score in the chat; if they bring it up, a Saarthi expert covers it on the call.
+
+HANDLING UNDO ACTIONS & STATE REVERSAL:
+- The page shows an "Undo" button after every answer and also handles typed "undo / change my answer" itself: it wipes the previous answer, steps back one level, says "No problem at all! Let's correct that. Let's look at the previous question again:" and repeats that question with its chips.
+
+CRITICAL UNDERWRITING INCOME VALIDATION:
+- Retail Shops/Counters: after a daily collection, the page asks "And on a slower day of the week, what does that daily collection drop to?"
+- Workshops/Manufacturers: after an order value, the page asks "How many such orders or projects do you typically complete and deliver in a month?"
+- Doctors/Clinics/Professional Services: the page asks "Roughly what do your clients or patients pay you in a month in total?"
+
+CONVERSATIONAL TEXT FILLER & PROFANITY GUARDRAIL (the page also enforces these with fixed text):
+1. Filler ("ok", "thanks", "got it", "fine"): treat as a pause and bring the user back to the exact pending question: "Awesome! Let's continue getting your estimate. Could you let me know: [pending question]?"
+2. Single business slang words ("dhanda", "business", "kaam-dhaam", "shop") mid-journey: "Got it, business/dhanda operations! Let's lock in your limit. [pending question]"
+3. Insults, abusive terms or slurs: reply exactly "This kind of language is strictly prohibited. I am here to help you guide and estimate your business loan query. How can I assist you with your business needs today?" If they then write a normal business message, answer it normally.
+LANGUAGE: always reply in the language and script the user writes in (English, Hindi, Hinglish, Marathi or any Indian language).
+
+RENTAL / PROPERTY INCOME: only when the user OWNS property and RECEIVES rent (e.g. "I own a mall", "I rent out shops", "mere godown kiraye par hain", "tenants pay me", "kiraya aata hai") use btype "rental" and the page asks "Roughly how much rent do your tenants pay you in total per month?" (key r1). Rent the user PAYS is an obligation (key emi), never income.
+
+YOUR ROLE ON THIS PAGE: the page asks every question, shows the chips, computes all numbers and renders the final offer card and the two buttons ("SCHEDULE CALL WITH EXPERT" and "APPLY NOW") with fixed rules. You only read the user's raw message, extract answers, map the business bracket silently, and write one short, warm reply in the user's language. Never say a user's answer was wrong or invalid.`;
+const KEYS='amt (rupees, number), use (exactly one of: Working capital loan | Machinery loan | Business expansion loan | Business line of credit | Loan against property), yrs (0.5 if under 1 year, 2 if 1-3 years, 4 if more than 3), btype (daily|batch|seasonal|service|vehicle|rental), bizText (short business name in English, e.g. "barber shop"), d1 ("daily"|"contract"), d2 (busy-day counter collection, rupees), d3 (slow-day collection, rupees), b1 (credit days: 0|30|60), b2 (average order value, rupees), b3 (orders per month, number), s1 (peak months as text, or "Spread across the year"), s2 (peak-season or monthly turnover, rupees), f1 (retainer or per project), f2 (monthly billing, rupees), f3 (fixed monthly costs, rupees), emi (current monthly EMIs + rent, rupees; 0 if none), r1 (monthly rent received from tenants, rupees), sales (average monthly sales in rupees, only when no business type is known)';
+async function aiAnswer(t){detectLang(t);if(isUndo(t)||(qi>=Q.length&&isObj(t))||BAD.test(t)||hostile||FILLER.test(t)||BSLANG.test(t)||PLEASE.test(t)||CLOSE_CHIPS.includes(t.trim()))return answer2(t);add(t,'me');$('in').value='';const q0=qi;const ty=document.createElement('div');ty.className='typing';ty.innerHTML='<i></i><i></i><i></i>';put(ty);chips.innerHTML='';
+ const q=qi>=0&&qi<Q.length?Q[qi]:null,known={};Object.keys(QQ).forEach(k=>{if(A[k]!==undefined&&typeof A[k]!=='object')known[k]=A[k]});
+ const prompt=`${GUIDE}
+
+Screening step now: ${q?`"${q.k}" — the question shown was: "${qText(q)}"`:'not started (the user is asking or starting)'}${qi>=Q.length?' (screening already finished; answer their follow-up)':''}.
+Answers known so far: ${JSON.stringify(known)}.
+User's message: """${t}"""
+
+Return ONLY JSON: {"type":"answers"|"side_question"|"wants_expert"|"other","values":{...only keys you can fill from THIS message...},"reply":"..."}
+values keys: ${KEYS}.
+- "answers": the message answers the current step and/or other steps; reply = a short natural acknowledgement (no question).
+- "side_question": a question or doubt mid-check; reply = the answer in one or two sentences. Still fill any values it contains.
+- "wants_expert": they want a person or a call back.
+- "other": anything else; reply = brief helpful answer.
+If they ask to check eligibility or how much loan they can get, use "answers" with whatever values you find (can be empty).`;
+ let r=null;try{r=await AI.json(prompt,{modelTier:'quick',cache:false})}catch(e){r=null}
+ ty.remove();if(!r||typeof r!=='object'){answer2(t);return}
+ const v=r.values||{};for(const k of Object.keys(v)){if(v[k]==null||v[k]===''||!(k in QQ)&&k!=='bizText')continue;if(k==='use'&&!KB.loans[v[k]])continue;if(k==='btype'){if(BR[v[k]])setBracket(v[k]);continue}A[k]=v[k]}
+ if(v.use)lastUse=v.use;
+ if(q0>=0&&q0<Q.length&&Object.keys(v).some(k=>v[k]!=null&&v[k]!==''))addUndo(q0);
+ if(r.type==='wants_expert'){if(window.CB){showCb();return}add(r.reply||'Sure. Pick a time and a loan expert will call you once.','ai');showCb();return}
+ const go=()=>{qi=nextQ();if(qi<0){qi=Q.length;result()}else ask()};
+ const started=qi>=0&&qi<Q.length,anyVal=Object.keys(v).some(k=>v[k]!=null&&v[k]!=='');
+ if(r.type==='answers'&&(started||anyVal||/loan|eligib|kitna|how much/i.test(t))){if(r.reply)add(r.reply,'ai');if(v.use&&KB.loans[v.use])put(loanCard(v.use));go();return}
+ if(started){add(`${r.reply||''}\n\n${qText(Q[qi]).split('\n\n').pop()}`.trim(),'ai');chips.innerHTML=lastChips||buildChips(Q[qi]);return}
+ add(r.reply||"Good question. A Saarthi expert can answer this on a call.",'ai');starters()}
+const answer2=answer;
+$('say').onsubmit=e=>{e.preventDefault();const t=$('in').value;if(!t.trim())return;if(AI)aiAnswer(t);else answer2(t)};
+
+/* sticky Ask bar: shows once the banner bar scrolls away, hides while the chat or footer is in view */
+const fab=$('fab'),heroAsk=document.querySelector('.hero .ask');let heroGone=false,footIn=false;const PHONE=matchMedia('(max-width:560px)');const fabSet=()=>fab.classList.toggle('show',!$('chat').classList.contains('open')&&(PHONE.matches||(heroGone&&!footIn)));PHONE.addEventListener('change',()=>fabSet());
+addEventListener('scroll',()=>{const g=heroAsk.getBoundingClientRect().bottom<0;if(g!==heroGone){heroGone=g;fabSet()}},{passive:true});
+new IntersectionObserver(([e])=>{footIn=e.isIntersecting;fabSet()}).observe(document.querySelector('footer'));
+new MutationObserver(fabSet).observe($('chat'),{attributes:true,attributeFilter:['class']});
+/* logo shrinks to ₹T when scrolling down, opens again when scrolling up */
+(function(){const h=document.querySelector('.hdr');let y0=scrollY;addEventListener('scroll',()=>{const y=scrollY;if(y<60)h.classList.remove('mini');else if(y>y0+6)h.classList.add('mini');if(Math.abs(y-y0)>6)y0=y},{passive:true})})();
+/* How to apply slider: dot shows which card is in view */
+(function(){const hs=document.querySelector('.hta .hs'),ds=[...document.querySelectorAll('#htaDots i')];hs.addEventListener('scroll',()=>{const cs=[...hs.children],x=hs.scrollLeft;let k=0,b=1e9;cs.forEach((c,i)=>{const d=Math.abs(c.offsetLeft-hs.offsetLeft-16-x);if(d<b){b=d;k=i}});ds.forEach((d,i)=>d.classList.toggle('on',i===k))},{passive:true})})();
+/* phone menu (drawer) */
+(function(){const d=$('drw'),b=$('hmb'),open=o=>{d.hidden=!o;b.setAttribute('aria-expanded',o);document.documentElement.classList.toggle('chatlock',o)};b.onclick=()=>open(true);$('drwX').onclick=()=>open(false);d.addEventListener('click',e=>{if(e.target===d||e.target.closest('a,button'))open(false)})})();
+/* ---------- one loop for all scroll effects ---------- */
+(function loop(){parallax();grow();strip();ringStep();requestAnimationFrame(loop)})();
+</script>
+
+<!-- Why choose: each 3D icon turns 180° as you scroll, then the next point comes in (from the puffy-icons-scroll pack) -->
+<script type="module">
+import * as THREE from 'three';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+import { MeshoptDecoder } from 'three/addons/libs/meshopt_decoder.module.js';
+const POINTS=[['icons/frame-102.glb','Your data stays safe','Used only for your loan. Never sold, never used for marketing calls.'],
+ ['icons/frame.glb','2-minutes eligibility check','Fully online, from your phone, no branch visits.'],
+ ['icons/frame-2.glb','Less Paperwork','PAN, Aadhaar, 6 months of bank statements, and GST or Udyam.'],
+ ['icons/frame-104.glb','Money in 48 Hours','Get the loan amount in your bank within 48 hours of approval.']];
+const track=document.getElementById('why'),canvas=document.getElementById('why3d'),txt=document.getElementById('whytxt'),dots=[...document.querySelectorAll('#whypg i')];
+const ease=t=>t<.5?4*t**3:1-(-2*t+2)**3/2,clamp=v=>Math.min(1,Math.max(0,v)),TURN=180,SWAP=90;
+const renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true});renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.toneMapping=THREE.NeutralToneMapping;
+const scene=new THREE.Scene();scene.environment=new THREE.PMREMGenerator(renderer).fromScene(new RoomEnvironment(),.04).texture;scene.environmentIntensity=.8;
+const key=new THREE.DirectionalLight(0xffffff,1.4);key.position.set(-1.5,2.5,3);scene.add(key);
+const camera=new THREE.PerspectiveCamera(30,1,.1,50);camera.position.set(0,.1,6.6);const holder=new THREE.Group();scene.add(holder);
+const loader=new GLTFLoader().setMeshoptDecoder(MeshoptDecoder);
+const icons=await Promise.all(POINTS.map(async([u])=>{const obj=(await loader.loadAsync(u)).scene,box=new THREE.Box3().setFromObject(obj),sz=box.getSize(new THREE.Vector3()),wrap=new THREE.Group();obj.position.sub(box.getCenter(new THREE.Vector3()));wrap.add(obj);wrap.scale.setScalar(2/Math.max(sz.x,sz.y,1e-6));wrap.visible=false;holder.add(wrap);return wrap}));
+const resize=()=>renderer.setSize(canvas.clientWidth,canvas.clientHeight,false);addEventListener('resize',resize);resize();
+let smooth=0,shown=-1;
+(function frame(now){const r=track.getBoundingClientRect();smooth+=(clamp(-r.top/Math.max(1,r.height-innerHeight))-smooth)*.12;
+ const n=icons.length,steps=n-1,pos=smooth*steps,k=Math.min(Math.floor(pos),steps-1),local=pos-k;
+ const angle=(k+ease(clamp((local-.18)/.64)))*TURN,index=Math.min(n-1,Math.floor((angle+(TURN-SWAP))/TURN));
+ holder.rotation.y=THREE.MathUtils.degToRad(angle-index*TURN);
+ const fromSwap=Math.abs((((angle%TURN)+TURN)%TURN)-SWAP)/90;holder.scale.setScalar(.92+.08*Math.min(1,fromSwap));holder.position.y=Math.sin(now/900)*.05;
+ if(index!==shown){shown=index;icons.forEach((m,i)=>m.visible=i===index);window.renderWhy(index);txt.classList.remove('sw');void txt.offsetWidth;txt.classList.add('sw');dots.forEach((d,i)=>d.classList.toggle('on',i===index))}
+ if(r.bottom>0&&r.top<innerHeight)renderer.render(scene,camera);requestAnimationFrame(frame)})(0);
+</script>
+<script>/* how to apply: the deck spreads as the cards come into view */
+(()=>{const sec=document.getElementById('hta');if(!sec)return;const st=sec.querySelector('.hs');
+function tick(){const r=st.getBoundingClientRect(),p=Math.min(1,Math.max(0,(innerHeight-r.top)/(innerHeight*.6)));sec.style.setProperty('--p',p.toFixed(3))}
+addEventListener('scroll',()=>requestAnimationFrame(tick),{passive:true});addEventListener('resize',tick);tick()})();
+</script>
+</body></html>
