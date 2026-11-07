@@ -206,7 +206,7 @@ html[lang=hi] .hero h1{line-height:1.25}
 .snd{flex:none;width:46px;height:46px;border-radius:50%;border:0;background:var(--blue);display:grid;place-items:center;cursor:pointer;transition:transform .15s,background .2s}.snd:hover{background:var(--navy);transform:scale(1.05)}.snd svg{translate:-1px 1px}
 .why .card{height:540px}.rings{top:-91px}.why canvas{top:113px;left:calc(50% - 166px - 210px);width:420px;height:420px}.why .txt{top:50%;translate:0 -50%;margin-top:52px}.why .txt.sw{animation:sw2 .5s cubic-bezier(.2,.8,.2,1)}@keyframes sw2{from{opacity:0;transform:translateY(14px)}}
 .tile b{font-weight:500;color:#fff}
-html.chatlock,html.chatlock body{overflow:hidden}.msgs{overscroll-behavior:contain}.msgs .chips{padding:4px 0 2px}.msgs .chips:empty{display:none}
+html.chatlock{overflow:hidden}html.chatlock body{overflow:clip}.msgs{overscroll-behavior:contain}.msgs .chips{padding:4px 0 2px}.msgs .chips:empty{display:none}
 .tile .sec{position:absolute;top:24px;right:18px;font-size:12px;font-weight:500;padding:4px 10px;border-radius:999px;border:1px solid #ffffff33;background:#ffffff14;color:#fff;cursor:help;outline:0}.tile .sec.se{border-color:#FFD36B80;color:#FFE7A8}
 .tile .stip{position:absolute;right:0;top:calc(100% + 8px);width:230px;background:#0B1F47;color:#fff;font-size:13px;font-weight:400;line-height:1.45;padding:10px 12px;border-radius:10px;box-shadow:0 10px 30px #00000059;opacity:0;pointer-events:none;translate:0 -4px;transition:opacity .18s,translate .18s;z-index:5;text-align:left}
 .tile .sec:hover .stip,.tile .sec:focus .stip{opacity:1;translate:0 0}
@@ -618,9 +618,9 @@ msgs.addEventListener('click',e=>{const c=e.target.closest('.chg');if(c)undoTo(+
 $('say').onsubmit=e=>{e.preventDefault();answer($('in').value)};chips.onclick=e=>{const b=e.target.closest('button');if(b&&b.dataset.cbchange){add(b.textContent,'me');window.CB=null;showCb();return}if(b&&b.dataset.el){add(b.textContent,'me');if(ctxStart){const f=ctxStart;ctxStart=null;f();return}if(qi>=0&&qi<Q.length){ask();return}Object.keys(QQ).forEach(k=>delete A[k]);Q=['amt','use','yrs','sales','emi'].map(k=>({k,...QQ[k]}));A.br=null;qi=nextQ();ask();return}if(b){window._chip=1;answer(b.dataset.v||b.textContent)}};
 const dim=document.createElement('div');dim.className='dim';document.body.appendChild(dim);dim.onclick=()=>closeChat();
 let started=0,ctxStart=null;const eligChips=()=>starters();function openChat(first){$('chat').classList.add('open');dim.classList.add('on');document.documentElement.classList.add('chatlock');
- const ctx=()=>{if(!first)return;const L=HI();
-  if(first.calc){const P=+$('P').value;ctxStart=()=>{A.amt=P;qi=1;ask()};bot(L?`अप्लाई करने से पहले आपकी पात्रता जाँच लेते हैं। आपने कैलकुलेटर में ${lakh(P)} चुना है।`:`To apply, let's first check your eligibility. You chose ${lakh(P)} in the calculator.`,eligChips)}
-  else if(first.loan!=null){const k=Object.keys(KB.loans)[first.loan],nm=t('TL')[first.loan][0];ctxStart=()=>{A.pre=k;qi=0;ask()};bot(L?`आपने ${nm} चुना है। क्या मैं इसके लिए आपकी पात्रता जाँचूँ?`:`You picked ${an(nm)} ${nm}. Shall I check your eligibility for it?`,eligChips)}};
+ const ctx=()=>{if(!first)return;const L=HI();const pv=window.__ctxEl;if(pv&&pv.isConnected&&![...msgs.querySelectorAll('.m.me')].some(m=>pv.compareDocumentPosition(m)&Node.DOCUMENT_POSITION_FOLLOWING))pv.remove();const mark=()=>{const a=msgs.querySelectorAll('.m.ai');window.__ctxEl=a[a.length-1];eligChips()};
+  if(first.calc){const P=+$('P').value;ctxStart=()=>{A.amt=P;qi=1;ask()};bot(L?`अप्लाई करने से पहले आपकी पात्रता जाँच लेते हैं। आपने कैलकुलेटर में ${lakh(P)} चुना है।`:`To apply, let's first check your eligibility. You chose ${lakh(P)} in the calculator.`,mark)}
+  else if(first.loan!=null){const k=Object.keys(KB.loans)[first.loan],nm=t('TL')[first.loan][0];ctxStart=()=>{A.pre=k;qi=0;ask()};bot(L?`आपने ${nm} चुना है। क्या मैं इसके लिए आपकी पात्रता जाँचूँ?`:`You picked ${an(nm)} ${nm}. Shall I check your eligibility for it?`,mark)}};
  if(!started){started=1;bot(t('hi'),()=>{starters();ctx()})}else ctx();
  setTimeout(()=>$('in').focus({preventScroll:true}),300)}
 function closeChat(){dim.classList.remove('on');$('chat').classList.remove('open');document.documentElement.classList.remove('chatlock')}
