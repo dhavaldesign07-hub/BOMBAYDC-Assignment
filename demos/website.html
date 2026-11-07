@@ -284,6 +284,12 @@ html.chatlock,html.chatlock body{overflow:hidden}.msgs{overscroll-behavior:conta
  .hta .dots{display:flex;justify-content:center;gap:8px;margin-top:14px}.hta .dots i{width:8px;height:8px;border-radius:50%;background:#C9D6F2;transition:background .2s,width .2s}.hta .dots i.on{background:var(--navy);width:22px;border-radius:8px}
 }
 @media (min-width:561px){.hta .dots{display:none}}
+/* loan cards: Secured/Unsecured as text under the need line; APPLY NOW chip top-right */
+.tile .row{margin-top:auto}.tile{justify-content:flex-start}
+.tile .sec,.tile .sec.se{position:relative;top:auto;right:auto;align-self:flex-start;margin-top:10px;padding:0;border:0;background:none;border-radius:0;font-size:14px;font-weight:500;color:#ffffffd9}.tile .sec.se{color:#ffffffd9}
+.tile .stip{left:0;right:auto}
+.tile .apc{position:absolute;top:24px;right:18px;font-size:12px;font-weight:700;letter-spacing:.02em;padding:6px 12px;border-radius:999px;border:1px solid #ffffff66;background:#ffffff14;color:#fff;transition:background .2s,border-color .2s}.tile:hover .apc,.tile .apc:hover{background:#ffffff29;border-color:#ffffffa6}
+@media (max-width:560px){.tile .sec{grid-column:2;grid-row:2;justify-self:start;align-self:center;margin-top:0;font-size:13px}.tile .apc{position:static;grid-column:2;grid-row:2;justify-self:end;align-self:center;font-size:11px;padding:5px 10px}}
 /* load: the whole page rises together, nothing is cut off inside a box */
 .ld{animation:none}main{animation:up .9s cubic-bezier(.2,.8,.2,1) .05s backwards}
 @media (prefers-reduced-motion:reduce){main{animation:none}}
@@ -647,7 +653,7 @@ const ic=['<path d="M66.667 30.0033V63.3366H13.3336V30.0033L40.0003 16.6699L66.6
 '<path d="M46.667 66.6699H66.667V36.6699L40.0003 16.6699L13.3336 36.6699V66.6699H33.3336M46.667 66.6699H33.3336M46.667 66.6699V50.0033H33.3336V66.6699M50.0003 23.6699V16.6699H56.667V28.6699"/>'];
 
 const SEC=[['un'],['se'],['un'],['un'],['se']];
-const tile=(i,d)=>`<a href="#" class="tile rv2" style="--d:${d}s" data-loan="${i}"><svg class="big" width="80" height="80" viewBox="0 0 80 80" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ic[i]}</svg><span class="row"><span><b>${t('TL')[i][0]}</b><span>${t('TL')[i][1]}</span></span><span class="ar">→</span></span><span class="sec ${SEC[i][0]}" tabindex="0" role="note" aria-label="${t('SECL')[i][0]}: ${t('SECL')[i][1]}">${t('SECL')[i][0]} ⓘ<span class="stip">${t('SECL')[i][1]}</span></span></a>`;
+const tile=(i,d)=>`<a href="#" class="tile rv2" style="--d:${d}s" data-loan="${i}"><svg class="big" width="80" height="80" viewBox="0 0 80 80" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ic[i]}</svg><span class="row"><span><b>${t('TL')[i][0]}</b><span>${t('TL')[i][1]}</span></span><span class="ar">→</span></span><span class="sec ${SEC[i][0]}" tabindex="0" role="note" aria-label="${t('SECL')[i][0]}: ${t('SECL')[i][1]}">${t('SECL')[i][0]} ⓘ<span class="stip">${t('SECL')[i][1]}</span></span><span class="apc">${t('ctaApply')}</span></a>`;
 function renderTiles(){$('tiles').innerHTML=`<div>${[0,1,2].map(i=>tile(i,.05+.05*i)).join('')}</div><div>${[3,4].map(i=>tile(i,.2+.05*(i-3))).join('')}</div>`;tiltOn($('tiles'))}
 const tr=$('loans'),blue=$('blue'),intro=$('intro'),cta=$('cta'),pinLen=()=>tr.offsetHeight-innerHeight;
 function grow(){const p=C(-tr.getBoundingClientRect().top/pinLen()),g=rm?(p>.4?1:0):E(C((p-.08)/.72));
