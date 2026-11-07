@@ -1,4 +1,4 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,interactive-widget=resizes-content">
 <title>Saarthi – Business loans</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
@@ -279,6 +279,7 @@ html.chatlock,html.chatlock body{overflow:hidden}.msgs{overscroll-behavior:conta
  .hta .hc{flex:0 0 80%;scroll-snap-align:start;min-height:280px}
  .chat .note{padding:0 32px 12px;line-height:1.45}
  .intro h2{font-size:24px;line-height:1.2}
+ .chat{top:var(--vvt,0px);bottom:auto;height:var(--vvh,100dvh);border-radius:0;translate:0 24px}.chat.open{translate:0 0}.chat .ch{padding-top:14px}
  .hero .r img{top:0;height:100%;transform:none!important;object-position:center 20%}
  html{scrollbar-width:none}::-webkit-scrollbar{display:none}
  .hta .dots{display:flex;justify-content:center;gap:8px;margin-top:14px}.hta .dots i{width:8px;height:8px;border-radius:50%;background:#C9D6F2;transition:background .2s,width .2s}.hta .dots i.on{background:var(--navy);width:22px;border-radius:8px}
@@ -794,7 +795,7 @@ setLang(lang);
   inputElement.placeholder=staticPrefix+currentExample.substring(0,charIndex)+")";let dynamicSpeed=isDeleting?30:60;
   if(!isDeleting&&charIndex===currentExample.length){dynamicSpeed=2500;isDeleting=true}else if(isDeleting&&charIndex===0){isDeleting=false;exampleIndex=(exampleIndex+1)%examples.length;dynamicSpeed=200}
   if(!window.phStop)setTimeout(typeCycle,dynamicSpeed)}
- if(matchMedia('(prefers-reduced-motion: reduce)').matches)inputElement.placeholder=staticPrefix+examples[0]+")";else typeCycle()})();
+ if(matchMedia('(max-width:560px)').matches)inputElement.placeholder='Tell Saarthi AI what you need a loan for.';else if(matchMedia('(prefers-reduced-motion: reduce)').matches)inputElement.placeholder=staticPrefix+examples[0]+")";else typeCycle()})();
 /* ---------- Hybrid AI: when this page runs as a Claude artifact, Claude reads free text (any language, slang, mid-chat questions).
    It only extracts answers and writes short replies; every number on the result comes from the fixed rules above. ---------- */
 let AI=null;(async()=>{
@@ -895,6 +896,10 @@ new MutationObserver(fabSet).observe($('chat'),{attributes:true,attributeFilter:
 (function(){const h=document.querySelector('.hdr');let y0=scrollY;addEventListener('scroll',()=>{const y=scrollY;if(y<60)h.classList.remove('mini');else if(y>y0+6)h.classList.add('mini');if(Math.abs(y-y0)>6)y0=y},{passive:true})})();
 /* How to apply slider: dot shows which card is in view */
 (function(){const hs=document.querySelector('.hta .hs'),ds=[...document.querySelectorAll('#htaDots i')];hs.addEventListener('scroll',()=>{const cs=[...hs.children],x=hs.scrollLeft;let k=0,b=1e9;cs.forEach((c,i)=>{const d=Math.abs(c.offsetLeft-hs.offsetLeft-16-x);if(d<b){b=d;k=i}});ds.forEach((d,i)=>d.classList.toggle('on',i===k))},{passive:true})})();
+/* phone: chat fills the screen and stays above the keyboard */
+(function(){const ch=$('chat'),v=window.visualViewport,mq=matchMedia('(max-width:560px)');if(!v)return;
+ const fit=()=>{if(!mq.matches){ch.style.removeProperty('--vvh');ch.style.removeProperty('--vvt');return}ch.style.setProperty('--vvh',v.height+'px');ch.style.setProperty('--vvt',v.offsetTop+'px');const m=$('msgs');m.scrollTop=m.scrollHeight};
+ v.addEventListener('resize',fit);v.addEventListener('scroll',fit);mq.addEventListener('change',fit);fit()})();
 /* phone menu (drawer) */
 (function(){const d=$('drw'),b=$('hmb'),open=o=>{d.hidden=!o;b.setAttribute('aria-expanded',o);document.documentElement.classList.toggle('chatlock',o)};b.onclick=()=>open(true);$('drwX').onclick=()=>open(false);d.addEventListener('click',e=>{if(e.target===d||e.target.closest('a,button'))open(false)})})();
 /* ---------- one loop for all scroll effects ---------- */
