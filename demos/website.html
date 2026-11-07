@@ -285,8 +285,8 @@ html.chatlock,html.chatlock body{overflow:hidden}.msgs{overscroll-behavior:conta
 }
 @media (min-width:561px){.hta .dots{display:none}}
 /* load: the whole page rises together, nothing is cut off inside a box */
-.ld{animation:none}.strip,.hdr.ld,main{animation:up .9s cubic-bezier(.2,.8,.2,1) backwards}.hdr.ld{animation-delay:.05s}main{animation-delay:.1s}
-@media (prefers-reduced-motion:reduce){.strip,.hdr.ld,main{animation:none}}
+.ld{animation:none}main{animation:up .9s cubic-bezier(.2,.8,.2,1) .05s backwards}
+@media (prefers-reduced-motion:reduce){main{animation:none}}
 @media (max-width:900px){.why canvas{left:50%!important;translate:-50% 0!important;top:70px!important;width:340px!important;height:340px!important}}
 .cbr{border:1px solid var(--line);border-radius:12px;overflow:hidden;gap:0}.cbr span{padding:0 12px;align-self:stretch;display:grid;place-items:center;border-right:1px solid var(--line);background:#fff}.cbr input.cbm{border:0;border-radius:0}.cbr:focus-within,.cbr:has(.filled){border-color:var(--navy)}.cbr:has(.filled) span{background:#F4F8FF}
 </style>
@@ -394,6 +394,8 @@ html.chatlock,html.chatlock body{overflow:hidden}.msgs{overscroll-behavior:conta
 
 <script src="faq-data.js?v=6"></script>
 <script>
+/* refresh always opens at the top (fresh start, RBI line visible) */
+if('scrollRestoration' in history)history.scrollRestoration='manual';if(!location.hash)scrollTo(0,0);
 window.KB=window.KB||{loans:{},biz:[],faq:[],base:[]}; // if the chat data file can't load, the rest of the page still works
 const $=id=>document.getElementById(id),inr=n=>'₹'+Math.round(n).toLocaleString('en-IN'),lakh=n=>n>=10000000?'₹'+(n/10000000).toFixed(2).replace(/\.?0+$/,'')+' crore':n>=100000?'₹'+(n/100000).toFixed(n%100000?1:0).replace('.0','')+' lakh':inr(n);
 const rm=matchMedia('(prefers-reduced-motion: reduce)').matches,C=t=>Math.min(1,Math.max(0,t)),L=(a,b,t)=>a+(b-a)*t,E=t=>t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;
