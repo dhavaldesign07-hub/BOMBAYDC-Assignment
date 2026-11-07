@@ -252,7 +252,6 @@ html.chatlock,html.chatlock body{overflow:hidden}.msgs{overscroll-behavior:conta
 @media (max-width:560px){
  html,body{overflow-x:clip}
  .hdr .act{display:none}.hmb{display:grid}.hdr .bar{padding:0 6px 0 18px}
- .ld{animation:none}.strip,.hdr.ld,main{animation:up .9s cubic-bezier(.2,.8,.2,1) backwards}
  .hero .l{padding:40px 22px 44px}.hero .ask{display:none}.hero .r{height:300px}
  .ask.fab .av{display:block;width:40px;height:40px}.ask.fab{gap:12px;padding:10px 12px 10px 10px}
  footer{padding-bottom:120px}
@@ -285,6 +284,9 @@ html.chatlock,html.chatlock body{overflow:hidden}.msgs{overscroll-behavior:conta
  .hta .dots{display:flex;justify-content:center;gap:8px;margin-top:14px}.hta .dots i{width:8px;height:8px;border-radius:50%;background:#C9D6F2;transition:background .2s,width .2s}.hta .dots i.on{background:var(--navy);width:22px;border-radius:8px}
 }
 @media (min-width:561px){.hta .dots{display:none}}
+/* load: the whole page rises together, nothing is cut off inside a box */
+.ld{animation:none}.strip,.hdr.ld,main{animation:up .9s cubic-bezier(.2,.8,.2,1) backwards}.hdr.ld{animation-delay:.05s}main{animation-delay:.1s}
+@media (prefers-reduced-motion:reduce){.strip,.hdr.ld,main{animation:none}}
 @media (max-width:900px){.why canvas{left:50%!important;translate:-50% 0!important;top:70px!important;width:340px!important;height:340px!important}}
 .cbr{border:1px solid var(--line);border-radius:12px;overflow:hidden;gap:0}.cbr span{padding:0 12px;align-self:stretch;display:grid;place-items:center;border-right:1px solid var(--line);background:#fff}.cbr input.cbm{border:0;border-radius:0}.cbr:focus-within,.cbr:has(.filled){border-color:var(--navy)}.cbr:has(.filled) span{background:#F4F8FF}
 </style>
